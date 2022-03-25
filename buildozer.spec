@@ -4,7 +4,7 @@
 title = SRAPS App
 
 # (str) Package name
-package.name = srapsapp
+package.name = sraps
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = com.tdynamos
