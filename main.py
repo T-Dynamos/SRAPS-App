@@ -6,6 +6,7 @@ __version__ = "2.0"
 import kivy
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.uix.anchorlayout import *
+from kivymd.uix.dialog import MDDialog
 from kivymd.app import *
 from kivymd.uix.label import *
 from kivy.uix.image import *
@@ -18,7 +19,7 @@ from kivymd.uix.screen import *
 from kivymd.uix.textfield import *
 from kivy.core.audio import *
 from kivymd.uix.list import *
-from kivymd.toast import toast as Toast
+from kivymd.toast import toast as Toast1
 from kivy.uix.scrollview import *
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.behaviors import RoundedRectangularElevationBehavior
@@ -48,7 +49,7 @@ from kivy.core.window import Window
 from kivymd.uix.snackbar import Snackbar
 import time
 import _thread
-from kivymd.uix.picker import *
+from colorpicker import MDColorPicker
 from kivymd.uix.dialog import MDDialog
 from functools import partial
 import settings
@@ -109,6 +110,8 @@ def update_data():
 	o.news.text = str(DataBase["News"])		
 	o.nimg1.source = str(DataBase["SliderImages"])
 	add_part(links)
+def Toast(string):
+	Toast1(string)
 def update_menu():
 	KV = """
 #:import _thread _thread
@@ -230,6 +233,7 @@ MDCard:
 			size:(0.8,0.8)
 			source:"assets/time.jpg"
 			allow_stretch:True
+			keep_ratio :False
 	ScrollView:
 		MDGridLayout:
 			cols:1
@@ -278,6 +282,49 @@ MDCard:
 	modal.add_widget(Builder.load_string(a))
 	modal.open()	
 	
+	
+def about_menu():
+	a = """
+MDCard:
+	radius:30
+	elevation:50
+	orientation:"vertical"
+	md_bg_color:app.colorHex("#FE3545")
+	AnchorLayout:
+		Image:
+			source:"assets/td-s.png"
+			allow_stretch:True
+			size:(self.width,self.height)
+			keep_ratio :False
+	ScrollView:
+		GridLayout:
+			cols:1
+			adaptive_height:True
+			spacing:app.spacing*3
+			orientation :"lr-tb"
+			padding:0		
+			MDLabel:
+				text:"We Are Technocractic Dynamos"
+				font_name:"assets/Poppins-Bold.ttf"
+				theme_text_color:"Custom"
+				text_color:1,1,1,1
+				font_size:"20sp"
+			MDLabel:
+				text:"> Technocratic Dynamos , a group made of youths to empower technology. We're dedicated to providing you the very best of an overall experience in an app, with an emphasis on [easy UI], [Lag Free experience ]"
+				font_name:"assets/Poppins-Bold.ttf"
+				text_color:0,0,0,1
+				font_size:"15sp"
+				theme_text_color:"Custom"							
+"""
+	modal = ModalView(
+	background_color=[0,0,0,0],
+	size_hint=(0.8, 0.9),
+	overlay_color=(0, 0, 0, 0),
+
+	)
+
+	modal.add_widget(Builder.load_string(a))
+	modal.open()		
 def show_adim():
 	a = """
 MDCard:
@@ -323,7 +370,7 @@ MDCard:
 			MDLabel:
 				text:""
 				font_name:"assets/Poppins-Bold.ttf"
-				font_size:"15sp"				
+				font_size:"15sp"			
 			MDLabel:
 				text:"• Date of birth once entered will not be altered in any instance."
 				font_name:"assets/Poppins-Regular.ttf"
@@ -450,7 +497,7 @@ def get_part_of_day(h):
 def getUpdate():
 	url = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/.srapsapp.filestobeupdated"
 	ur = requests.get(url)
-	files = (ur.text).split(",")
+	files = (ur.text.replace("\n","")).split(",")
 	for file in files:
 		os.remove(file)
 		url_file = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/"+file
@@ -461,6 +508,7 @@ from datetime import datetime
 from platform import python_version
 
 class SRAPS_APP(MDApp):
+	about_menu = lambda self: about_menu()
 	update_menu=lambda self:update_menu()
 	table = lambda self: show_teachers()
 	settings = settings
@@ -499,9 +547,9 @@ class SRAPS_APP(MDApp):
 		_thread.start_new_thread(self.start,())
 	
 	def show_theme_picker(self):
-		a = lambda self : print(self.theme_cls.accent_palette)
-		theme_dialog = MDThemePicker(on_close=a)
-		theme_dialog.open()
+
+		color_picker = MDColorPicker(size_hint=(0.45, 0.85))
+		color_picker.open()
   	  
 	def theme(self,theme):
 		if theme == "Dark":
@@ -527,18 +575,18 @@ class SRAPS_APP(MDApp):
 		if float(ur.text) ==  float (__version__):
 			Toast("Already up Date")
 			d.text = "UP TO DATE"
-			b.text = "Updated Version : "+ur.text
+			b.text = "Updated Version : "+ur.text.replace("\n","")
 		else:
-			Toast("Updates Available : "+ur.text)
+			Toast("Updates Available : "+ur.text.replace("\n",""))
 			time.sleep(3)
 			Toast("Staring Auto Update")
-			b.text = "Update Available : "+ur.text
+			b.text = "Update Available : "+ur.text.replace("\n","")
 			d.text = "Updating ..."
 			try:
 				getUpdate()
 				Toast("Done Updating")
 				d.text = "UP TO DATE"
-				b.text = "Updated Version : "+ur.text
+				b.text = "Updated Version : "+ur.text.replace("\n","")
 			except Exception as e:
 				print(str(e))
 				Toast("Unexpected Error"+str(e))
@@ -547,9 +595,4 @@ class SRAPS_APP(MDApp):
 
 #########################################
 
-
-try:
-	SRAPS_APP().run()
-except Exception as e:
-	Toast("[Unexpected Error] : "+str(e))
-	print("[Unexpected Error] : "+str(e))
+SRAPS_APP().run()

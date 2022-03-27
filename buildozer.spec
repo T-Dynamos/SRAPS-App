@@ -36,7 +36,7 @@ version.filename = main.py
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = kivy==2.0.0, kivymd, requests,pillow,charset_normalizer,chardet,idna,urllib3,certifi,kivymd_extensions,kivymd_extensions.akivymd
+requirements = kivy==2.0.0, https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip, requests,pillow,charset_normalizer,chardet,idna,urllib3,certifi,kivymd_extensions,kivymd_extensions.akivymd
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes

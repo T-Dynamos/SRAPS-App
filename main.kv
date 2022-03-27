@@ -1,5 +1,5 @@
 #:import webbrowser  webbrowser
-#: import Window kivy.core.window
+#: import Window kivy.core.window.Window
 <FitImgCard@MDCard>
 	text:""
 	img:""
@@ -10,11 +10,7 @@
 		halign:"center"
 		size_hint:None,None
 		size: app.y-app.y//15, "200dp"
-		style:'outline'
-		line_color:0,0,0,1
-		line_width:20
-		md_bg_color:app.colorHex("#FFEFE6")
-		
+		md_bg_color:app.colorHex("#FFEFE6")		
 
 		FitImage:
 			source:root.img
@@ -48,7 +44,7 @@
 		halign:"center"
 		size_hint:None,None
 		size: app.y-app.y//15, "200dp"
-		style:'outline'
+		style:'outlined'
 		line_color:0,0,0,1
 		orientation:"horizontal"
 		line_width:20
@@ -1013,7 +1009,23 @@ MDScreen:
 						MDIconButton:
 							icon:"chevron-right"
 							on_press:app.update_menu()													
-																												
+					MDCard:
+						radius:70
+						padding: 16
+						size_hint: None, None
+						size: app.y, "50dp"
+						elevation:0
+						ripple_behavior:True
+						on_press:app.about_menu()					
+						style:'elevated'
+						md_bg_color:app.colorHex("#EEF3FB")
+						MDLabel:
+							text:"About Us"
+							font_name:"assets/Poppins-Regular.ttf"
+							font_size:"15sp"
+						MDIconButton:
+							icon:"chevron-right"
+							on_press:app.about_menu()																																			
 																																																																						
 			MDLabel:
 				pos_hint:{"center_x":0.5,"center_y":0.10}
