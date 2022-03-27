@@ -499,7 +499,7 @@ def getUpdate():
 	ur = requests.get(url)
 	files = (ur.text.replace("\n","")).split(",")
 	for file in files:
-		os.remove(file)
+		
 		url_file = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/"+file
 		r = requests.get(url_file)
 		open(file, 'wb').write(r.content)
