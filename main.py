@@ -23,7 +23,7 @@ from kivymd.toast import toast as Toast1
 from kivy.uix.scrollview import *
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.behaviors import RoundedRectangularElevationBehavior
-from kivymd.uix.card import MDCard
+from kivymd.uix.card import *
 from kivymd.uix.gridlayout import MDGridLayout
 from kivymd.uix.dialog import MDDialog
 from kivy.utils import get_color_from_hex
@@ -55,15 +55,18 @@ from functools import partial
 import settings
 from android.runnable import run_on_ui_thread
 from jnius import autoclass
+from kivymd.uix.behaviors import *
+from kivy.uix.widget import Widget
+from kivy.metrics import dp
+from kivymd.uix.fitimage import FitImage
+class MyMDCard(MDCard,FakeRectangularElevationBehavior):
+	pass
 
 try:
 	from dataDb import Teachers
 except Exception:
 	Teachers=[]
 	pass
-
-
-
 screen_manager = ScreenManager()
 if platform != "android":
 	Window.size = (Window.size[0]//2, Window.size[1])
@@ -115,7 +118,7 @@ def Toast(string):
 def update_menu():
 	KV = """
 #:import _thread _thread
-MDCard:
+MyMDCard:
 	radius:50
 	elevation:60
 	orientation:"vertical"
@@ -132,7 +135,7 @@ MDCard:
 	MDLabel:
 		id:ud2
 		text:"Currently Installed Version "+app.__version__
-		font_name:"assets/Poppins-SemiBoldItalic.ttf"
+		font_name:"assets/Lato-Italic.ttf"
 		font_size:"15sp"
 		hailgn:"center"
 	AnchorLayout:
@@ -142,7 +145,7 @@ MDCard:
 		MDRoundFlatButton:
 			id:ud3
 			text:"Check for Update"
-			font_name:"assets/Poppins-SemiBoldItalic.ttf"
+			font_name:"assets/Lato-Italic.ttf"
 			font_size:"15sp"
 			halign:"center"
 			line_width:5
@@ -196,7 +199,7 @@ MDLabel:
 			"""))
 		pass
 	else:
-		card = MDCard(
+		card = MyMDCard(
 		radius=[20],
 		padding=0,
 		elevation=10,
@@ -207,23 +210,28 @@ MDLabel:
 		card.add_widget(FitImage(source='assets/no-internet.png'))
 		screen_manager.get_screen("Mscreen").ids.fu.add_widget(card)	
 	for link in links:
-		card = MDCard(
+		card = MyMDCard(
 		radius=[20],
 		padding=10,
 		halign="center",
 		elevation=0,
 		size_hint=(None,None),
-		size= (y-y//15, "200dp")
+		size= (y-y//8, "200dp"),
+		md_bg_color=[0,0,0,1],
 		)
-		image = AsyncImage (source=link, allow_stretch=True)
+		image = AsyncImage (source=link, allow_stretch=True,keep_ratio=False, width="200dp")
+		a = AnchorLayout ()
 		card.add_widget(image)
+		a.add_widget(card)
 		o = screen_manager.get_screen("Mscreen").ids
-		o.fu.add_widget(card)
+		for i in range(1,6):
+			o.fu.add_widget(MDLabel ())	
+		o.fu.add_widget(a)
 	
 def show_timings():
 
 	a = """
-MDCard:
+MyMDCard:
 	radius:[30]
 	size:(0.85,0.85)
 	elevation:50
@@ -234,6 +242,7 @@ MDCard:
 			source:"assets/time.jpg"
 			allow_stretch:True
 			keep_ratio :False
+			radius:30
 	ScrollView:
 		MDGridLayout:
 			cols:1
@@ -285,7 +294,7 @@ MDCard:
 	
 def about_menu():
 	a = """
-MDCard:
+MyMDCard:
 	radius:30
 	elevation:50
 	orientation:"vertical"
@@ -296,6 +305,7 @@ MDCard:
 			allow_stretch:True
 			size:(self.width,self.height)
 			keep_ratio :False
+			radius:30
 	ScrollView:
 		GridLayout:
 			cols:1
@@ -327,7 +337,7 @@ MDCard:
 	modal.open()		
 def show_adim():
 	a = """
-MDCard:
+MyMDCard:
 	radius:[30]
 	size:(0.85,0.85)
 	elevation:50
@@ -423,7 +433,7 @@ MDCard:
 	modal.add_widget(Builder.load_string(a))
 	modal.open()			
 def show_fees():
-	card = MDCard(elevation=50,radius=[30,30,30,30],size=(0.83,0.7))
+	card = MyMDCard(elevation=50,radius=[30,30,30,30],size=(0.83,0.7))
 	a = MDDataTable(
 	size=(0.8,0.8),
 	use_pagination=True,
@@ -433,7 +443,8 @@ def show_fees():
 
 	("Class", dp(20)),
 
-	("Monthly Fees", dp(20))],
+	("Monthly Fees", dp(20))
+	],
 	row_data = (
 		["1","Newly Admit Fees","₹ 15395"],
 		["2","NUR - UKG ","₹ 3080"],
@@ -457,7 +468,7 @@ def show_fees():
 
 	modal.open()	
 def show_teachers():
-	card = MDCard(elevation=50, radius=[30],size=(1,1))
+	card = MyMDCard(elevation=50, radius=[30],size=(1,1))
 	f = MDDataTable(
 	size=(0.8,0.8),
 	use_pagination=True,
@@ -499,7 +510,7 @@ def getUpdate():
 	ur = requests.get(url)
 	files = (ur.text.replace("\n","")).split(",")
 	for file in files:
-		
+		os.remove(file)
 		url_file = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/"+file
 		r = requests.get(url_file)
 		open(file, 'wb').write(r.content)

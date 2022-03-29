@@ -1,14 +1,32 @@
 #:import webbrowser  webbrowser
 #: import Window kivy.core.window.Window
-<FitImgCard@MDCard>
+#: import MDBoxLayout kivymd.uix.boxlayout.MDBoxLayout 
+<BaseShadowWidget>
+    size_hint: None, None
+    size: 100, 100
+    md_bg_color: 0, 0, 1, 1
+    elevation: 36
+    pos_hint: {'center_x': .5}	
+    
+
+<MyLayout@MDSwiperItem>:
+	img:""
+	FitImage:
+        source: root.img
+        radius: [20,]					
+					
+
+<FitImgCard@MDBoxLayout>
 	text:""
 	img:""
 	link:""
-	MDCard:
+	size:(app.y,"300dp")
+	MyMDCard:
 		radius:60
-		elevation:10
+		elevation:30
 		halign:"center"
 		size_hint:None,None
+		style:"elevated"
 		size: app.y-app.y//15, "200dp"
 		md_bg_color:app.colorHex("#FFEFE6")		
 
@@ -35,10 +53,10 @@
     				line_color: 1, 0,0 , 1
     				size:(self.width,"30dp")
     				on_press:webbrowser.open(root.link)
-<FitCard2@MDCard>
+<FitCard2@MyMDCard>
 	text:""
 	image:""
-	MDCard:
+	MyMDCard:
 		radius:60
 		elevation:10
 		halign:"center"
@@ -56,9 +74,9 @@
 			text:root.text
 
 		
-<FitCard@MDCard>
+<FitCard@MyMDCard>
 	text:""
-	MDCard:
+	MyMDCard:
 		radius:60
 		elevation:40
 		halign:"center"
@@ -71,8 +89,18 @@
 			halign:"center"
 			font_name:"assets/Poppins-Bold.ttf"
 			halign:'center'
-
-
+<MyImg@MyMDCard>:
+	radius:60
+	elevation:40
+	halign:"center"
+	size_hint:None,None
+	size: app.y-app.y//15,"170dp"
+	style:'elevated'
+	md_bg_color:app.colorHex("#B0FFB4")
+	FitImage:
+		id:nimg1
+		source:app.NI
+		radius:[30]
 <Content>:
     orientation: "vertical"
     padding: dp(10)
@@ -102,17 +130,23 @@ MDScreen:
 	on_enter:app.wid()
 
 	MDBottomNavigation:
-		panel_color:app.colorHex("#F1F5FB")
-		selected_color_background:app.colorHex("#9DE6FF")
+		use_text:True
+		elected_color_background: 0, 0, 1, .4
+		panel_color: get_color_from_hex("#eeeaea")
+		font_name:"assets/Poppins-Regular.ttf"
+		font_size:"10sp"
+		selected_color_background:get_color_from_hex("#97ecf8")
+		text_color_active: 0, 0, 0, 1
 		MDBottomNavigationItem:
 			md_bg_color:app.colorHex("#7E59FF")
 			name: "screen1"
 			icon:"home"
 			icon_color: 0,0,0,1
 			text:"Home"
-			font_name:"Poppins-Bold.ttf"
-			font_size:"20sp"
-			MDCard:
+			font_name:"assets/Lato-Italic.ttf"
+			_label_font_size: "12sp"
+			inactive_font_size: "10sp"
+			MyMDCard:
 				radius:60
 				id:t1
 				height:20
@@ -136,7 +170,7 @@ MDScreen:
 				pos_hint:{"center_x":0.085,"center_y":0.79}
 				size_hint_x : 0.5
 				size_hint_y : 0.5												
-			MDCard:
+			MyMDCard:
 				radius:70
 				elevation:30
 				padding: 16
@@ -144,7 +178,7 @@ MDScreen:
 				size: app.y, "430dp"
 				style:'elevated'
 				md_bg_color:app.colorHex("#EEF3FB")
-				pos_hint:{"center_x":0.5,"center_y":0.30}
+				pos_hint:{"center_x":0.5,"center_y":0.35}
 				ScrollView:
 					MDGridLayout:
 						cols:1
@@ -152,12 +186,7 @@ MDScreen:
 						spacing: Window.size[1]/20
 						padding:0
 						id:fu
-						MDSwiper:
-							size:app.y,"250dp"
-							MDSwiperItem:
-								FitCard2:
-									text:"Auditorium"
-									image:"assets/ncc-1.jpg"
+
 								
 						MDLabel:
 							text:''
@@ -169,7 +198,8 @@ MDScreen:
 							text:'Latest News'
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
-						MDCard:
+
+						MyMDCard:
 							radius:60
 							elevation:40
 							halign:"center"
@@ -181,60 +211,55 @@ MDScreen:
 								id:nimg1
 								source:app.NI
 								radius:[30]
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'			
 						
 
 						MDLabel:
 							id:news
 							text:app.News
-							font_name:"assets/Poppins-Regular.ttf"
-							font_size:'15sp'
+							font_name:"assets/Lato-Italic.ttf"
+							font_size:'18sp'
 
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'			
+
 
 						MDLabel:
 							text:'About Us'
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
+
+
+						MDLabel:
+							text:'Education is the most powerful tool which can be used to change the world.'
+							font_name:"assets/Lato-Italic.ttf"
+							font_size:'18sp'
+
+						MyMDCard:
+							radius:60
+							halign:"center"
+							size_hint:None,None
+							size: app.y-app.y//15, Window.size[1]-Window.size[1]//20
+							style:'elevated'
+							padding:20
+							md_bg_color:app.colorHex("#F1A7FF")
+							AnchorLayout:
+								MDLabel:
+									hailgn:'center'
+									text:' Shri Ram Ashram Public School, one of the most prestigious schools in Punjab, founded in 1923 at the behest and benediction of Pandit Madan Mohan Malaviya Ji and other national leaders with the sole aim and objective of providing value based quality education. Since then it has been a path breaker in the pursuit of excellence. Its endeavour of integrating with quality is reflected in the outstanding results of X & XII year after year and accolades won in different fields. The school considers education to be a life-long process which should have a strong foundation.The goal of the school is to inculcate in each student a love for learning and a desire to excel at every level. The school also aims at equipping the students with the intellectual and practical skills that are necessary to meet the challenges in the future. We assure you that here your child will become an enlightened citizen .                                   '
+									font_name:'assets/Lato-Italic.ttf'
+									font_size:"19sp"
+						MDLabel:
+							text:''
+							font_name:"assets/Poppins-Bold.ttf"
+							font_size:'20sp'			
 						MDLabel:
 							text:''
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
 
 						MDLabel:
-							text:'Education is the most powerful tool which can be used to change the world.'
-							font_name:"assets/Poppins-SemiBoldItalic.ttf"
-							font_size:'15sp'
-						MDLabel:
 							text:''
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-						MDCard:
-							radius:60
-							halign:"center"
-							size_hint:None,None
-							size: app.y-app.y//15, "620dp"
-							style:'elevated'
-							padding:20
-							md_bg_color:app.colorHex("#F1A7FF")
-							MDLabel:
-								hailgn:'center'
-								text:' Shri Ram Ashram Public School, one of the most prestigious schools in Punjab, founded in 1923 at the behest and benediction of Pandit Madan Mohan Malaviya Ji and other national leaders with the sole aim and objective of providing value based quality education. Since then it has been a path breaker in the pursuit of excellence. Its endeavour of integrating with quality is reflected in the outstanding results of X & XII year after year and accolades won in different fields. The school considers education to be a life-long process which should have a strong foundation.The goal of the school is to inculcate in each student a love for learning and a desire to excel at every level. The school also aims at equipping the students with the intellectual and practical skills that are necessary to meet the challenges in the future. We assure you that here your child will become an enlightened citizen .                                   '
-								font_name:'assets/Poppins-Regular.ttf'
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'			
+
 						MDLabel:
 							text:''
 							font_name:"assets/Poppins-Bold.ttf"
@@ -261,8 +286,8 @@ MDScreen:
 							font_size:'20sp'
 						MDLabel:
 							text:'To blend Indian customs and traditions with the global standards of education and facilitate value based quality education to maximum number of children of our society within their affordable resources.'
-							font_name:"assets/Poppins-SemiBoldItalic.ttf"
-							font_size:'15sp'
+							font_name:"assets/Lato-Italic.ttf"
+							font_size:'18sp'
 						MDLabel:
 							text:''
 							font_name:"assets/Poppins-Bold.ttf"
@@ -287,16 +312,19 @@ MDScreen:
 							font_size:'20sp'
 						MDLabel:
 							text:'To blend Indian customs and traditions with the global standards of education and facilitate value based quality education to maximum number of children of our society within their affordable resources.'
-							font_name:"assets/Poppins-SemiBoldItalic.ttf"
-							font_size:'15sp'
+							font_name:"assets/Lato-Italic.ttf"
+							font_size:'18sp'
 						MDLabel:
 							text:''
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
+
 						MDLabel:
 							text:''
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
+					
+								
 						MDLabel:
 							text:'Our Features'
 							font_name:"assets/Poppins-Bold.ttf"
@@ -735,7 +763,8 @@ MDScreen:
 							
 							text:"Medical"
 							
-							link:"http://www.shriramashramps.org/medical"						
+							link:"http://www.shriramashramps.org/medical"	
+		
 			Image:
 				source : "assets/logo.png"
 				pos_hint : {"center_x":0.5,"center_y":0.83}
@@ -752,7 +781,7 @@ MDScreen:
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
 
-			MDCard:
+			MyMDCard:
 				radius:60
 				elevation:0
 				padding:60
@@ -761,7 +790,7 @@ MDScreen:
 				style:'elevated'
 				md_bg_color:app.colorHex("#EEF3FB")
 				pos_hint:{"center_x":0.5,"center_y":0.40}			
-			MDCard:
+			MyMDCard:
 				radius:80
 				id:t2
 				height:20
@@ -775,7 +804,7 @@ MDScreen:
 
 
 
-			MDCard:
+			MyMDCard:
 				radius:120
 				id:t3
 				pos_hint:{"center_x":0.5,"center_y":1}
@@ -847,6 +876,7 @@ MDScreen:
 				icon : "school"
 				line_width :2
 				font_name : "assets/Poppins-Regular.ttf"
+				radius:[10,10]
 				icon_color:app.theme_cls.accent_color
 				theme_text_color:"Custom"
 				text_color:app.theme_cls.accent_color
@@ -872,9 +902,9 @@ MDScreen:
 				size_hint_y : 0.08
 				line_width :3						
 			MDRoundFlatIconButton:
-				text : "Result"
+				text : "Book Lists"
 				pos_hint : {"center_x":0.5,"center_y":0.25}				
-				icon : "notebook"
+				icon : "book-multiple"
 				line_width :2
 				font_name : "assets/Poppins-Regular.ttf"
 				icon_color:app.theme_cls.accent_color
@@ -900,7 +930,7 @@ MDScreen:
 			text:"Settings"
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
-			MDCard:
+			MyMDCard:
 				radius:60
 				id:t4
 				height:20
@@ -920,7 +950,7 @@ MDScreen:
 				pos_hint:{"center_x":0.5,"center_y":0.90}
 				theme_text_color:"Custom"
 				text_color:app.theme_cls.accent_color
-			MDCard:
+			MyMDCard:
 				radius:60
 				elevation:30
 				padding: 16
@@ -931,7 +961,7 @@ MDScreen:
 				pos_hint:{"center_x":0.5,"center_y":0.37}
 				MDGridLayout:
 					cols:1
-					MDCard:
+					MyMDCard:
 						radius:70
 						padding: 16
 						size_hint: None, None
@@ -953,7 +983,7 @@ MDScreen:
 							width: dp(30)
 							active:app.update
 							on_active:app.settings.writeSettings("logs","False") if self.active is False else app.settings.writeSettings("logs","True")
-					MDCard:
+					MyMDCard:
 						radius:70
 						padding: 16
 						size_hint: None, None
@@ -975,7 +1005,7 @@ MDScreen:
 							width: dp(30)
 							active:app.update
 							on_active: app.update_b()
-					MDCard:
+					MyMDCard:
 						radius:70
 						padding: 16
 						size_hint: None, None
@@ -992,7 +1022,7 @@ MDScreen:
 						MDIconButton:
 							icon:"chevron-right"
 							on_press:app.show_theme_picker()
-					MDCard:
+					MyMDCard:
 						radius:70
 						padding: 16
 						size_hint: None, None
@@ -1009,7 +1039,7 @@ MDScreen:
 						MDIconButton:
 							icon:"chevron-right"
 							on_press:app.update_menu()													
-					MDCard:
+					MyMDCard:
 						radius:70
 						padding: 16
 						size_hint: None, None
