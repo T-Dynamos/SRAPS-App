@@ -5,6 +5,7 @@ __version__ = "2.0"
 
 import kivy
 from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.floatlayout import *
 from kivy.uix.anchorlayout import *
 from kivymd.uix.dialog import MDDialog
 from kivymd.app import *
@@ -34,6 +35,7 @@ import kivymd_extensions.akivymd
 from kivymd.uix.expansionpanel import *
 from kivymd.uix.datatables import MDDataTable
 from kivy.uix.anchorlayout import AnchorLayout
+from kivymd.uix.tab import *
 import requests
 import webbrowser
 import os
@@ -49,7 +51,6 @@ from kivy.core.window import Window
 from kivymd.uix.snackbar import Snackbar
 import time
 import _thread
-from colorpicker import MDColorPicker
 from kivymd.uix.dialog import MDDialog
 from functools import partial
 import settings
@@ -59,6 +60,46 @@ from kivymd.uix.behaviors import *
 from kivy.uix.widget import Widget
 from kivy.metrics import dp
 from kivymd.uix.fitimage import FitImage
+from kivy import Logger
+from kivy.animation import Animation
+from kivy.clock import Clock
+from kivy.event import EventDispatcher
+from kivy.factory import Factory
+from kivy.lang import Builder
+from kivy.metrics import dp
+from kivy.properties import (
+    BooleanProperty,
+    ColorProperty,
+    ListProperty,
+    NumericProperty,
+    ObjectProperty,
+    OptionProperty,
+    StringProperty,
+)
+from kivy.uix.anchorlayout import AnchorLayout
+from kivy.uix.behaviors import ButtonBehavior, FocusBehavior
+from kivy.uix.recyclegridlayout import RecycleGridLayout
+from kivy.uix.recycleview.layout import LayoutSelectionBehavior
+from kivy.uix.recycleview.views import RecycleDataViewBehavior
+from kivy.utils import get_color_from_hex
+from kivy.vector import Vector
+
+from kivymd.color_definitions import colors, palette
+from kivymd.theming import ThemableBehavior
+from kivymd.toast import toast
+from kivymd.uix.behaviors import (
+    CircularRippleBehavior,
+    FakeRectangularElevationBehavior,
+    SpecificBackgroundColorBehavior,
+)
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.button import MDIconButton
+from kivymd.uix.circularlayout import MDCircularLayout
+from kivymd.uix.dialog import BaseDialog
+from kivymd.uix.label import MDLabel
+from kivymd.uix.relativelayout import MDRelativeLayout
+from kivymd.uix.textfield import MDTextField
+from kivymd.uix.tooltip import MDTooltip
 class MyMDCard(MDCard,FakeRectangularElevationBehavior):
 	pass
 
@@ -79,7 +120,8 @@ def check_intr():
 		print(str(e))
 		return False
 	return True
-
+class Tab(MDFloatLayout, MDTabsBase):
+	pass
 	
 def getDb():
 	apiUrl = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/dataDb.py"
@@ -227,7 +269,257 @@ MDLabel:
 		for i in range(1,6):
 			o.fu.add_widget(MDLabel ())	
 		o.fu.add_widget(a)
-	
+def booklist():
+	a = """
+MyMDCard:
+	id:hi
+	radius:30
+	elevation:60
+	ScrollView:
+		GridLayout:
+			cols:1
+			adaptive_height:True
+			orientation:"lr-tb"
+			spacing:app.y//5
+			size_hint_y:None
+			MDLabel:
+			MDLabel:
+				text:"Choose Class"
+				font_name:"assets/Poppins-Bold.ttf"
+				font_size:"25sp"
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "NUR"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "UKG"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "LKG"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")   				 
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "1st"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "2nd"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "3rd"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "4th"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "5th"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "6th"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "7th"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "8th"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "9th"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "10th"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "+1"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			AnchorLayout:
+				MDRectangleFlatButton:
+    				text: "+2"
+    				font_name:"assets/Lato-Italic.ttf"
+   				 theme_text_color: "Custom"
+   				 line_width:3
+   				 size:(hi.width-hi.width//10,"50dp")
+			MDLabel:
+			MDLabel:
+			MDLabel:
+"""
+	modal = ModalView(
+	background_color=[0,0,0,0],
+	size_hint=(0.8, 0.8),
+
+	overlay_color=(0, 0, 0, 0),
+
+	)
+
+	modal.add_widget(Builder.load_string(a))
+	modal.open()	
+Builder.load_string(
+    """
+<Tab@MDFloatLayout+MDTabsBase>
+    md_bg_color: app.theme_cls.bg_normal
+
+
+<ColorSelector>
+    canvas:
+        Color:
+            rgba: root.rgb_hex(root.color_name)
+        Ellipse:
+            size: self.size
+            pos: self.pos
+
+
+<AccentColorSelector@ColorSelector>
+    on_release: app.theme_cls.accent_palette = root.color_name; app.settings.writeSettings("accent",root.color_name)
+
+
+<PrimaryColorSelector@ColorSelector>
+    on_release: app.theme_cls.primary_palette = root.color_name; app.settings.writeSettings("primary",root.color_name)
+
+
+<MDThemePicker>
+    size_hint: None, None
+    size: "284dp", "400dp"
+
+    MyMDCard:
+        radius:50
+        orientation: "vertical"
+
+		MDToolbar:
+		    title:"Change Theme"
+		    font_name:"assets/Poppins-Bold.ttf"
+		    
+		    
+        MDTabs:
+            on_tab_switch: root.on_tab_switch(*args)
+
+            Tab:
+                id: theme_tab
+                text: "Theme"
+                font_name:"assets/Lato-Italic.ttf"
+
+                MDGridLayout:
+                    id: primary_box
+                    adaptive_size: True
+                    spacing: "8dp"
+                    padding: "12dp"
+                    pos_hint: {"center_x": .5, "top": 1}
+                    cols: 5
+                    rows: 4
+
+                MDFlatButton:
+                    text: "CLOSE"
+                    pos: root.width - self.width - 10, 10
+                    on_release: root.dismiss()
+
+            Tab:
+                text: "Accent"
+                font_name:"assets/Lato-Italic.ttf"
+
+                MDGridLayout:
+                    id: accent_box
+                    adaptive_size: True
+                    spacing: "8dp"
+                    padding: "12dp"
+                    pos_hint: {"center_x": .5, "top": 1}
+                    cols: 5
+                    rows: 4
+
+                MDFlatButton:
+                    text: "CLOSE"
+                    pos: root.width - self.width - 10, 10
+                    on_release: root.dismiss()
+
+"""
+)
+
+
+class ColorSelector(MDIconButton):
+    color_name = OptionProperty("Indigo", options=palette)
+
+    def rgb_hex(self, col):
+        return get_color_from_hex(colors[col][self.theme_cls.accent_hue])
+
+
+class MDThemePicker(
+    BaseDialog
+):
+    def on_open(self):
+        self.on_tab_switch(None, self.ids.theme_tab, None, None)
+
+    def on_tab_switch(
+        self, instance_tabs, instance_tab, instance_tab_label, tab_text
+    ):
+        if instance_tab.text == "Theme":
+            if not self.ids.primary_box.children:
+                for name_palette in palette:
+                    self.ids.primary_box.add_widget(
+                        Factory.PrimaryColorSelector(color_name=name_palette)
+                    )
+        if instance_tab.text == "Accent":
+            if not self.ids.accent_box.children:
+                for name_palette in palette:
+                    self.ids.accent_box.add_widget(
+                        Factory.AccentColorSelector(color_name=name_palette)
+                    )
+
+def theme_picker():
+	c = MDThemePicker()
+	c.open()
 def show_timings():
 
 	a = """
@@ -519,6 +811,7 @@ from datetime import datetime
 from platform import python_version
 
 class SRAPS_APP(MDApp):
+	booklist = lambda self:booklist()
 	about_menu = lambda self: about_menu()
 	update_menu=lambda self:update_menu()
 	table = lambda self: show_teachers()
@@ -558,9 +851,7 @@ class SRAPS_APP(MDApp):
 		_thread.start_new_thread(self.start,())
 	
 	def show_theme_picker(self):
-
-		color_picker = MDColorPicker(size_hint=(0.45, 0.85))
-		color_picker.open()
+	 	  theme_picker()
   	  
 	def theme(self,theme):
 		if theme == "Dark":
