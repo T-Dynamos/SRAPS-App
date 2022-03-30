@@ -1,41 +1,42 @@
-import settings_conf
 import os
-logs = settings_conf.logs
-update = settings_conf.update
-accent = settings_conf.accent
-primary = settings_conf.primary
+class settings_conf():
+	def logs():
+		import settings_conf
+		return settings_conf.logs
+	def update():
+		import settings_conf
+		return settings_conf.update
+	def accent():
+		import settings_conf
+		return settings_conf.accent
+	def primary():
+		import settings_conf
+		return settings_conf.primary
+logs = settings_conf.logs()
+update = settings_conf.update()
+accent = settings_conf.accent()
+primary = settings_conf.primary()
 getSettings =  lambda : {"logs":logs,"update":update,"accent":accent,"primary":primary}
-
-def writeSettings(set,data):
-		if "logs" in set:
-			data1 = f"""
-logs = {data}	
+def writeSettings (data,key):
+	if "logs" == data:
+		data_w = f"""logs = {key}	
 update = {update}
 accent = "{accent}"
-primary = "{primary}"		
-	"""
-		elif "update" in set:
-			data1 = f"""
-logs = {logs}	
-update = {data}
+primary = "{primary}"	"""	
+	if "update" == data:
+		data_w = f"""logs = {logs}	
+update = {key}
 accent = "{accent}"
-primary = "{primary}"		
-	"""			
-		elif "accent" in set:
-			data1 = f"""
-logs = {logs}	
+primary = "{primary}"	"""
+	if "accent" == data:
+		data_w = f"""logs = {logs}	
 update = {update}
-accent = "{data}"
-primary = "{primary}"	
-	"""
-		elif "primary" in set:
-			data1 = f"""
-logs = {logs}	
+accent = "{key}"
+primary = "{primary}"	"""
+	if "primary" == data:
+		data_w = f"""logs = {logs}	
 update = {update}
 accent = "{accent}"
-primary = "{data}"		
-	"""					
-		file2 = open('settings_conf.py', 'w')
-		print(data)
-		file2.write(data1)
-		
+primary = "{key}"	"""
+	file = open("settings_conf.py","w")
+	file.write(data_w)

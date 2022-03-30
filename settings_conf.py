@@ -1,6 +1,4 @@
-
 logs = True	
 update = False
-accent = "Yellow"
-primary = "Blue"		
-	
+accent = "DeepPurple"
+primary = "LightBlue"	
