@@ -212,7 +212,7 @@ def show_message():
 		snackbar_x="10dp",
 
 		radius=[30,30,30,30],
-		snackbar_y="55dp",
+		snackbar_y="75dp",
 		size_hint_x=.95)
 		a = lambda self : (Toast("Updating data"),_thread.start_new_thread(update_data,()),dialog.dismiss())
 		b = lambda self : Toast("Internet not connected")
@@ -887,6 +887,7 @@ class SRAPS_APP(MDApp):
 		return get_color_from_hex(color)
 
 	def build(self):
+		self.theme_cls.material_style = "M3"
 		self.theme_cls.primary_palette = settings.getSettings()["primary"]
 		self.theme_cls.accent_palette = settings.getSettings()["accent"]		
 
