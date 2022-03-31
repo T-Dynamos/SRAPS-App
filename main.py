@@ -78,12 +78,13 @@ from kivy.properties import (
 )
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.behaviors import ButtonBehavior, FocusBehavior
+from kivy.graphics.transformation import Matrix
 from kivy.uix.recyclegridlayout import RecycleGridLayout
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.utils import get_color_from_hex
 from kivy.vector import Vector
-
+from kivy.uix.scatter import *
 from kivymd.color_definitions import colors, palette
 from kivymd.theming import ThemableBehavior
 from kivymd.toast import toast
@@ -100,6 +101,7 @@ from kivymd.uix.label import MDLabel
 from kivymd.uix.relativelayout import MDRelativeLayout
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.tooltip import MDTooltip
+from kivy.uix.relativelayout import RelativeLayout 
 class MyMDCard(MDCard,FakeRectangularElevationBehavior):
 	pass
 
@@ -294,6 +296,7 @@ MyMDCard:
    				 theme_text_color: "Custom"
    				 line_width:3
    				 size:(hi.width-hi.width//10,"50dp")
+   				 on_press:app.load_img("https://i.postimg.cc/5yXynH8w/0003.jpg")
 			AnchorLayout:
 				MDRectangleFlatButton:
     				text: "UKG"
@@ -723,7 +726,54 @@ MyMDCard:
 	)
 
 	modal.add_widget(Builder.load_string(a))
-	modal.open()			
+	modal.open()		
+def load_img(img):
+	a = f"""
+MyMDCard:
+	id:f
+	raidus:30
+	elevation:60
+	orientation:"vertical"
+	MDLabel:
+	MDLabel:
+	AnchorLayout:
+		id:fu
+		anchor_x:"center"
+		anchor_y:"bottom"
+		Scatter:
+			id:ok			
+			do_rotation:False
+			do_scale:True
+			AsyncImage:
+				halign:"center"
+				source:"{img}"
+				size:(fu.width,fu.height*3.3)
+				keep_ratio:False
+				allow_stretch:True
+	BoxLayout:
+		size:(f.width-f.width//15,"50dp")
+		orientation:"horizontal"
+		padding:50
+		MDRaisedButton:
+  		  text: "Save to Gallery"
+    		font_size: "18sp"
+   		 font_name: "assets/Poppins-Regular.ttf"
+		MDIconButton:
+			icon:"share-variant-outline"   
+		MDIconButton:
+			icon:"whatsapp"		 	
+"""	
+	modal = ModalView(
+	background_color=[0,0,0,0],
+	size_hint=(0.83, 0.7),
+
+	overlay_color=(0, 0, 0, 0),
+
+	)
+
+	modal.add_widget(Builder.load_string(a))
+
+	modal.open()	
 def show_fees():
 	card = MyMDCard(elevation=50,radius=[30,30,30,30],size=(0.83,0.7))
 	a = MDDataTable(
@@ -811,6 +861,7 @@ from datetime import datetime
 from platform import python_version
 
 class SRAPS_APP(MDApp):
+	load_img = lambda self,img:load_img(img)
 	booklist = lambda self:booklist()
 	about_menu = lambda self: about_menu()
 	update_menu=lambda self:update_menu()
