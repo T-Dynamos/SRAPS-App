@@ -28,7 +28,7 @@
 		size_hint:None,None
 		style:"elevated"
 		size: app.y-app.y//15, "200dp"
-		md_bg_color:app.colorHex("#FFEFE6")		
+		md_bg_color:app.theme_cls.accent_light		
 
 		FitImage:
 			source:root.img
@@ -47,10 +47,10 @@
 				anchor_y:'center'
 				MDRoundFlatButton:
 					text:"Read More"
-					text_color: 1, 0, 0, 1
+					
 					halign:"center"					
 					line_width:5   		
-    				line_color: 1, 0,0 , 1
+					
     				size:(self.width,"30dp")
     				on_press:webbrowser.open(root.link)
 <FitCard2@MyMDCard>
@@ -83,7 +83,7 @@
 		size_hint:None,None
 		size: app.y-app.y//15, "120dp"
 		style:'elevated'
-		md_bg_color:app.colorHex("#B0FFB4")
+		md_bg_color:app.theme_cls.primary_light
 		MDLabel:
 			text:root.text
 			halign:"center"
@@ -130,13 +130,11 @@ MDScreen:
 	on_enter:app.wid()
 
 	MDBottomNavigation:
-		use_text:True
-		selected_color_background: get_color_from_hex("#717171")
 		panel_color: get_color_from_hex("#EEF3FB")
 		font_name:"assets/Poppins-Regular.ttf"
-		font_size:"15sp"
-		selected_color_background:get_color_from_hex("#97ecf8")
-		text_color_active: 0, 0, 0, 1
+		selected_color_background:app.theme_cls.accent_light
+		text_color_active: app.theme_cls.primary_dark
+		_label_font_size:"14sp"
 		MDBottomNavigationItem:
 			md_bg_color:app.colorHex("#7E59FF")
 			name: "screen1"
@@ -206,7 +204,7 @@ MDScreen:
 							size_hint:None,None
 							size: app.y-app.y//15,"170dp"
 							style:'elevated'
-							md_bg_color:app.colorHex("#B0FFB4")
+							md_bg_color:app.theme_cls.accent_light
 							FitImage:
 								id:nimg1
 								source:app.NI
@@ -239,7 +237,7 @@ MDScreen:
 							size: app.y-app.y//15, Window.size[1]-Window.size[1]//20
 							style:'elevated'
 							padding:20
-							md_bg_color:app.colorHex("#F1A7FF")
+							md_bg_color:app.theme_cls.accent_light
 							AnchorLayout:
 								MDLabel:
 									hailgn:'center'

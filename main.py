@@ -431,7 +431,7 @@ Builder.load_string(
 
 
 <PrimaryColorSelector@ColorSelector>
-    on_release: app.theme_cls.primary_palette = root.color_name; app.settings.writeSettings("primary",root.color_name)
+    on_release: app.theme_cls.primary_palette = root.color_name; app.settings.writeSettings("primary",root.color_name);print(root.color_name)
 
 
 <MDThemePicker>
@@ -852,7 +852,7 @@ def getUpdate():
 	ur = requests.get(url)
 	files = (ur.text.replace("\n","")).split(",")
 	for file in files:
-		os.remove(os.getcwd()+"/"+file)
+		os.remove(file)
 		url_file = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/"+file
 		r = requests.get(url_file)
 		open(file, 'wb').write(r.content)
