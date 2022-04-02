@@ -79,7 +79,8 @@ See the [GNU General Public License](https://github.com/Sangwan5688/BlackHole/bl
 
 * ## Liked my work?
 
-</p>
-<p align="center">
-<a href="https://github.com/T-Dynamos"><img title="Version" src="https://camo.githubusercontent.com/c3f856bacd5b09669157ed4774f80fb9d8622dd45ce8fdf2990d3552db99bd27/68747470733a2f2f7777772e6275796d6561636f666665652e636f6d2f6173736574732f696d672f637573746f6d5f696d616765732f6f72616e67655f696d672e706e67"></a>
-</p>
+
+## Dontaions
+
+If You really like my work you should consider donating to me to made me buy [![Rpi400](https://raw.githubusercontent.com/T-Dynamos/T-Dynamos/main/bapp/20220402_114517.png)](https://www.electronicscomp.com/raspberry-pi-400-personal-keyboard-computer-kit)
+* UPI ID : anshdadwal@apl
