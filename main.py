@@ -1,12 +1,14 @@
 
 
-__version__ = "2.0"
+__version__ = "2.01"
 
 
 import kivy
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.floatlayout import *
 from kivy.uix.anchorlayout import *
+from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
+
 from kivymd.uix.dialog import MDDialog
 from kivymd.app import *
 from kivymd.uix.label import *
@@ -885,7 +887,26 @@ class SRAPS_APP(MDApp):
 	adim = lambda self:show_adim()
 	def colorHex(self, color):
 		return get_color_from_hex(color)
+	def myc(self):
+		print(screen_manager.get_screen("Mscreen").ids.hy3.icon)
+		if screen_manager.get_screen("Mscreen").ids.hy3.icon == "chevron-right":
+			screen_manager.get_screen("Mscreen").ids.hy3.icon = "chevron-down"
+			screen_manager.get_screen("Mscreen").ids.a890.line_color = self.theme_cls.accent_color
+			screen_manager.get_screen("Mscreen").ids.a890.icon_color = self.theme_cls.accent_color
+			screen_manager.get_screen("Mscreen").ids.a890.text_color = self.theme_cls.accent_color
+		#	screen_manager.get_screen("Mscreen").ids.a890.md_bg_color = self.theme_cls.primary_color		
+			screen_manager.get_screen("Mscreen").ids.a891.line_color = self.theme_cls.accent_color
+			screen_manager.get_screen("Mscreen").ids.a891.icon_color = self.theme_cls.accent_color
+			screen_manager.get_screen("Mscreen").ids.a891.text_color = self.theme_cls.accent_color						
+		else:
+			screen_manager.get_screen("Mscreen").ids.hy3.icon = "chevron-right"
 
+			screen_manager.get_screen("Mscreen").ids.a890.line_color = 0,0,0,0
+			screen_manager.get_screen("Mscreen").ids.a890.icon_color = 0,0,0,0
+			screen_manager.get_screen("Mscreen").ids.a890.text_color = 0,0,0,0		
+			screen_manager.get_screen("Mscreen").ids.a891.line_color = 0,0,0,0
+			screen_manager.get_screen("Mscreen").ids.a891.icon_color = 0,0,0,0
+			screen_manager.get_screen("Mscreen").ids.a891.text_color = 0,0,0,0				
 	def build(self):
 		self.theme_cls.material_style = "M3"
 		self.theme_cls.primary_palette = settings.getSettings()["primary"]
@@ -900,6 +921,8 @@ class SRAPS_APP(MDApp):
 		else:
 			show_message()
 	def on_start(self):
+		
+
 		_thread.start_new_thread(self.start,())
 	
 	def show_theme_picker(self):
