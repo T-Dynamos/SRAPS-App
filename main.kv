@@ -764,6 +764,14 @@ MDScreen:
 			text:"Homework"
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
+			MyMDCard:
+				size:(app.y-app.y//15,"10dp")
+				radius:[0,0,"30dp","30dp"]
+				md_bg_color:app.theme_cls.accent_light
+			FloatLayout:				
+				AnchorLayout:
+					anchor_y:"top"
+
 		MDBottomNavigationItem:
 			name: "screen2"
 			icon:"book-variant-multiple"
