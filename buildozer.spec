@@ -4,10 +4,10 @@
 title = SRAPS App
 
 # (str) Package name
-package.name = sraps
+package.name = srapsapp
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = com.tdynamos
+package.domain = com.Tdynamos
 
 # (str) Source code where the main.py live
 source.dir = .
