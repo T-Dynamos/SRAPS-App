@@ -433,12 +433,10 @@ Builder.load_string(
 
 
 <AccentColorSelector@ColorSelector>
-    on_release: app.theme_cls.accent_palette = root.color_name; app.settings.writeSettings("accent",root.color_name)
-
+    on_release: app.accent(root.color_name)
 
 <PrimaryColorSelector@ColorSelector>
-    on_release: app.theme_cls.primary_palette = root.color_name; app.settings.writeSettings("primary",root.color_name)
-
+    on_release: app.primary(root.color_name)
 
 <MDThemePicker>
     size_hint: None, None
@@ -448,7 +446,7 @@ Builder.load_string(
         radius:"50dp"
         orientation: "vertical"
 
-		MDToolbar:
+		MDTopAppBar:
 		    title:"Change Theme"
 		    font_name:"assets/Poppins-Bold.ttf"
 		    
@@ -848,6 +846,7 @@ class SRAPS_APP(MDApp):
 	time = lambda self:show_timings()
 	fees = lambda self:show_fees()
 	adim = lambda self:show_adim()
+	title="SRAPS App"
 	def colorHex(self, color):
 		return get_color_from_hex(color)
 	def myc(self):
@@ -886,7 +885,12 @@ class SRAPS_APP(MDApp):
 		
 
 		_thread.start_new_thread(self.start,())
-	
+	def accent(self,color):
+		self.theme_cls.accent_palette = color 
+		settings.writeSettings("accent",f"{color}.{self.theme_cls.primary_palette}")
+	def primary(self,color):
+		self.theme_cls.primary_palette = color 
+		settings.writeSettings("primary",f"{color}.{self.theme_cls.accent_palette}")
 	def show_theme_picker(self):
 	 	  theme_picker()
   	  

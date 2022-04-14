@@ -21,7 +21,7 @@
 	h1:""
 	MyMDCard:
 		size_hint_y: None 
-		size:(app.y-dp(20),"50dp")
+		size:(app.y-dp(15),"50dp")
 		md_bg_color:1,1,1,1
 		AnchorLayout:
 			anchor_y:"top"
@@ -63,7 +63,7 @@
 					text:"Read More"
 					
 					halign:"center"					
-					line_width:"3dp"   		
+					line_width:"2dp"   		
 					
     				size:(self.width,"30dp")
     				on_press:webbrowser.open(root.link)
@@ -75,7 +75,7 @@
 		elevation:10
 		halign:"center"
 		size_hint:None,None
-		size: app.y-app.y//13, "200dp"
+		size: app.y-dp(15), "200dp"
 		style:'outlined'
 		line_color:0,0,0,1
 		orientation:"horizontal"
@@ -90,25 +90,25 @@
 		
 <FitCard@MyMDCard>
 	text:""
-	MyMDCard:
-		radius:"40dp"
-		elevation:40
+
+	radius:"40dp"
+	elevation:40
+	halign:"center"
+	size_hint:None,None
+	size: app.y-dp(15), "150dp"
+	style:'elevated'
+	md_bg_color:app.theme_cls.primary_light
+	MDLabel:
+		text:root.text
 		halign:"center"
-		size_hint:None,None
-		size: app.y-app.y//13, "120dp"
-		style:'elevated'
-		md_bg_color:app.theme_cls.primary_light
-		MDLabel:
-			text:root.text
-			halign:"center"
-			font_name:"assets/Poppins-Bold.ttf"
-			halign:'center'
+		font_name:"assets/Poppins-Bold.ttf"
+		halign:'center'
 <MyImg@MyMDCard>:
 	radius:"60dp"
 	elevation:40
 	halign:"center"
 	size_hint:None,None
-	size: app.y-app.y//13,"170dp"
+	size: app.y-dp(15),"170dp"
 	style:'elevated'
 	md_bg_color:app.colorHex("#B0FFB4")
 	FitImage:
@@ -184,8 +184,8 @@ MDScreen:
 				size_hint_y : 0.5												
 			MyMDCard:
 				radius:"40dp"
-				elevation:30
-				padding: 16
+				
+				padding: dp(0)
 				size_hint: None, None
 				size: app.y, Window.size[1]
 				style:'elevated'
@@ -210,19 +210,22 @@ MDScreen:
 							text:'Latest News'
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
-
-						MyMDCard:
-							radius:"40dp"
-							elevation:40
-							halign:"center"
-							size_hint:None,None
-							size: app.y-app.y//13,"170dp"
-							style:'elevated'
-							md_bg_color:app.theme_cls.accent_light
-							FitImage:
-								id:nimg1
-								source:app.NI
-								radius:[30]
+						AnchorLayout:
+							size_hint_y: None 
+							size_hint_x:None
+							size:(app.y,"170dp")
+							MyMDCard:
+								radius:"40dp"
+								elevation:40
+								halign:"center"
+								size_hint:None,None
+								size: app.y-dp(15),"170dp"
+								style:'elevated'
+								md_bg_color:app.theme_cls.accent_light
+								FitImage:
+									id:nimg1
+									source:app.NI
+									radius:[30]
 						
 
 						MDLabel:
@@ -243,43 +246,36 @@ MDScreen:
 							text:'Education is the most powerful tool which can be used to change the world.'
 							font_name:"assets/Lato-Italic.ttf"
 							font_size:'18sp'
-
-						MyMDCard:
-							radius:"50dp"
-							halign:"center"
-							size_hint:None,None
-							size: app.y-app.y//13, "620dp"
-							style:'elevated'
-							padding:20
-							md_bg_color:app.theme_cls.accent_light
-					
-							MDLabel:
-								hailgn:'center'
-								
-								text:' Shri Ram Ashram Public School, one of the most prestigious schools in Punjab, founded in 1923 at the behest and benediction of Pandit Madan Mohan Malaviya Ji and other national leaders with the sole aim and objective of providing value based quality education. Since then it has been a path breaker in the pursuit of excellence. Its endeavour of integrating with quality is reflected in the outstanding results of X & XII year after year and accolades won in different fields. The school considers education to be a life-long process which should have a strong foundation.The goal of the school is to inculcate in each student a love for learning and a desire to excel at every level. The school also aims at equipping the students with the intellectual and practical skills that are necessary to meet the challenges in the future. We assure you that here your child will become an enlightened citizen .                                   '
-								font_name:'assets/Lato-Italic.ttf'
-								font_size:"19sp"
+						AnchorLayout:
+							size_hint_y: None 
+							size_hint_x:None
+							size:(app.y,"620dp")
+							MyMDCard:
+								radius:"50dp"
+								halign:"center"
+								size_hint:None,None
+								size: app.y-dp(15), "620dp"
+								style:'elevated'
+								padding:20
+								md_bg_color:app.theme_cls.accent_light
+						
+								MDLabel:
+									hailgn:'center'
+									
+									text:' Shri Ram Ashram Public School, one of the most prestigious schools in Punjab, founded in 1923 at the behest and benediction of Pandit Madan Mohan Malaviya Ji and other national leaders with the sole aim and objective of providing value based quality education. Since then it has been a path breaker in the pursuit of excellence. Its endeavour of integrating with quality is reflected in the outstanding results of X & XII year after year and accolades won in different fields. The school considers education to be a life-long process which should have a strong foundation.The goal of the school is to inculcate in each student a love for learning and a desire to excel at every level. The school also aims at equipping the students with the intellectual and practical skills that are necessary to meet the challenges in the future. We assure you that here your child will become an enlightened citizen .                                   '
+									font_name:'assets/Lato-Italic.ttf'
+									font_size:"19sp"
 						MDLabel:
 							text:''
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'			
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'												
-
-						FitCard:
-							text:'"We aim at making every child a human being first, before he/she become an Engineer, Doctor, Philosopher or an Educator.'
+										
+						AnchorLayout:
+							size_hint_y: None 
+							size_hint_x:None
+							size:(app.y,"150dp")
+							FitCard:
+								text:'"We aim at making every child a human being first, before he/she become an Engineer, Doctor, Philosopher or an Educator.'
 
 						MDLabel:
 							text:''
@@ -768,8 +764,8 @@ MDScreen:
 				source : "assets/logo.png"
 				pos_hint : {"center_x":0.5,"center_y":0.85}
 				allow_stretch:True
-				size_hint_x : 0.6
-				size_hint_y : 0.6
+				size_hint_x : "0.5dp"
+				size_hint_y : "0.5dp"
     
 		MDBottomNavigationItem:
 			name: "screen4"
@@ -785,8 +781,10 @@ MDScreen:
 				anchor_y: "top"
 				MyMDCard:
 					size_hint_y: None
-					size:(app.y-app.y//13,"55dp")
+					size:(app.y-dp(15),"55dp")
 					radius:[0,0,dp(30),dp(30)]
+					style:"elevated"
+					elevation:"40dp"
 					md_bg_color:app.theme_cls.accent_light
 					BoxLayout:
 						orientation: 'horizontal'
@@ -796,8 +794,8 @@ MDScreen:
 							MyMDCard:
 								size_hint_y: None
 								size_hint_x: None
-								radius:[0,0,dp(30),dp(30)]
-								size:(to.width-dp(20),"40dp")
+								radius:[0,0,0,dp(30)]
+								size:(to.width-dp(15),"40dp")
 								md_bg_color:1,1,1,1
 								MDLabel:
 									text:"Global"
@@ -811,8 +809,8 @@ MDScreen:
 							MyMDCard:
 								size_hint_y: None
 								size_hint_x: None
-								radius:[0,0,dp(30),dp(30)]							
-								size:(to.width-dp(20),"40dp")
+								radius:[0,0,dp(30),0]							
+								size:(to.width-dp(15),"40dp")
 								md_bg_color:1,1,1,1
 								MDLabel:
 									text:"Class"
@@ -986,7 +984,7 @@ MDScreen:
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
 			MyMDCard:
-				radius:"60dp"
+				radius:"40dp"
 				id:t4
 				height:20
 				elevation:10
@@ -1006,7 +1004,7 @@ MDScreen:
 				theme_text_color:"Custom"
 				text_color:app.theme_cls.accent_color
 			MyMDCard:
-				radius:"60dp"
+				radius:"40dp"
 				elevation:30
 				padding: 16
 				size_hint: None, None
@@ -1020,7 +1018,7 @@ MDScreen:
 						radius:70
 						padding: 16
 						size_hint: None, None
-						size: app.y-app.y//13, "50dp"
+						size: app.y-dp(15), "50dp"
 						elevation:0
 						#style:'elevated'
 						md_bg_color:0,0,0,0
@@ -1042,7 +1040,7 @@ MDScreen:
 						radius:70
 						padding: 16
 						size_hint: None, None
-						size: app.y-app.y//13, "50dp"
+						size: app.y-dp(15), "50dp"
 						elevation:0
 					#	style:'elevated'
 						md_bg_color:0,0,0,0
