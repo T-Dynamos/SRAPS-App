@@ -19,7 +19,7 @@ mkdir /opt > /dev/null 2>&1
 rm -rf /opt/sraps > /dev/null 2>&1
 git clone https://github.com/T-Dynamos/SRAPS-App /opt/sraps
 echo "Installing Modules"
-pip3 install kivy kivymd requests --quiet
+pip3 install kivy https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip requests --quiet
 echo "Settings Shortcuts"
 chmod +x /opt/sraps/linux/run
 ln -s /opt/sraps/linux/run /usr/bin/srapsapp
