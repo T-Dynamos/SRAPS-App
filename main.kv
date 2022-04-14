@@ -1,6 +1,8 @@
 #:import webbrowser  webbrowser
 #: import Window kivy.core.window.Window
 #: import MDBoxLayout kivymd.uix.boxlayout.MDBoxLayout 
+#: import dp kivy.metrics.dp
+
 <BaseShadowWidget>
     size_hint: None, None
     size: 100, 100
@@ -15,24 +17,36 @@
         source: root.img
         radius: [20,]					
 					
-
+<headitem>
+	h1:""
+	MyMDCard:
+		size_hint_y: None 
+		size:(app.y-dp(20),"50dp")
+		md_bg_color:1,1,1,1
+		AnchorLayout:
+			anchor_y:"top"
+			anchor_x: 'left'
+			MDLabel:
+				text:root.h1
+				font_name: 'assets/Poppins-Regular.ttf'
+				size:"20sp"
 <FitImgCard@AnchorLayout>
 	text:""
 	img:""
 	link:""
 	size:(app.y,"300dp")
 	MyMDCard:
-		radius:60
+		radius:"40dp"
 		elevation:30
 		halign:"center"
 		size_hint:None,None
 		style:"elevated"
-		size: app.y-app.y//15, "200dp"
+		size: app.y-app.y//17, "200dp"
 		md_bg_color:app.theme_cls.accent_light		
 
 		FitImage:
 			source:root.img
-			radius:[30,10]
+			radius:"40dp"
 		MDBoxLayout:
 			orientation:"vertical"
 			MDLabel:
@@ -49,7 +63,7 @@
 					text:"Read More"
 					
 					halign:"center"					
-					line_width:5   		
+					line_width:"3dp"   		
 					
     				size:(self.width,"30dp")
     				on_press:webbrowser.open(root.link)
@@ -57,11 +71,11 @@
 	text:""
 	image:""
 	MyMDCard:
-		radius:60
+		radius:"60dp"
 		elevation:10
 		halign:"center"
 		size_hint:None,None
-		size: app.y-app.y//15, "200dp"
+		size: app.y-app.y//13, "200dp"
 		style:'outlined'
 		line_color:0,0,0,1
 		orientation:"horizontal"
@@ -77,11 +91,11 @@
 <FitCard@MyMDCard>
 	text:""
 	MyMDCard:
-		radius:60
+		radius:"40dp"
 		elevation:40
 		halign:"center"
 		size_hint:None,None
-		size: app.y-app.y//15, "120dp"
+		size: app.y-app.y//13, "120dp"
 		style:'elevated'
 		md_bg_color:app.theme_cls.primary_light
 		MDLabel:
@@ -90,11 +104,11 @@
 			font_name:"assets/Poppins-Bold.ttf"
 			halign:'center'
 <MyImg@MyMDCard>:
-	radius:60
+	radius:"60dp"
 	elevation:40
 	halign:"center"
 	size_hint:None,None
-	size: app.y-app.y//15,"170dp"
+	size: app.y-app.y//13,"170dp"
 	style:'elevated'
 	md_bg_color:app.colorHex("#B0FFB4")
 	FitImage:
@@ -145,7 +159,7 @@ MDScreen:
 			_label_font_size: "12sp"
 			inactive_font_size: "10sp"
 			MyMDCard:
-				radius:60
+				radius:"60dp"
 				id:t1
 				height:20
 				elevation:10
@@ -169,7 +183,7 @@ MDScreen:
 				size_hint_x : 0.5
 				size_hint_y : 0.5												
 			MyMDCard:
-				radius:70
+				radius:"40dp"
 				elevation:30
 				padding: 16
 				size_hint: None, None
@@ -198,11 +212,11 @@ MDScreen:
 							font_size:'20sp'
 
 						MyMDCard:
-							radius:60
+							radius:"40dp"
 							elevation:40
 							halign:"center"
 							size_hint:None,None
-							size: app.y-app.y//15,"170dp"
+							size: app.y-app.y//13,"170dp"
 							style:'elevated'
 							md_bg_color:app.theme_cls.accent_light
 							FitImage:
@@ -231,10 +245,10 @@ MDScreen:
 							font_size:'18sp'
 
 						MyMDCard:
-							radius:60
+							radius:"50dp"
 							halign:"center"
 							size_hint:None,None
-							size: app.y-app.y//15, Window.size[1]-Window.size[1]//20
+							size: app.y-app.y//13, "620dp"
 							style:'elevated'
 							padding:20
 							md_bg_color:app.theme_cls.accent_light
@@ -765,12 +779,52 @@ MDScreen:
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
 			MyMDCard:
-				size:(app.y-app.y//15,"10dp")
-				radius:[0,0,"30dp","30dp"]
-				md_bg_color:app.theme_cls.accent_light
-			FloatLayout:				
-				AnchorLayout:
-					anchor_y:"top"
+				md_bg_color:app.theme_cls.primary_light
+				radius:[0,0,dp(30),dp(30)]
+			AnchorLayout:
+				anchor_y: "top"
+				MyMDCard:
+					size_hint_y: None
+					size:(app.y-app.y//13,"55dp")
+					radius:[0,0,dp(30),dp(30)]
+					md_bg_color:app.theme_cls.accent_light
+					BoxLayout:
+						orientation: 'horizontal'
+						AnchorLayout:
+							anchor_y: 'top'
+							id:to
+							MyMDCard:
+								size_hint_y: None
+								size_hint_x: None
+								radius:[0,0,dp(30),dp(30)]
+								size:(to.width-dp(20),"40dp")
+								md_bg_color:1,1,1,1
+								MDLabel:
+									text:"Global"
+									halign: "center"
+									font_name: "assets/Poppins-Bold.ttf"
+
+
+						AnchorLayout:
+							anchor_y: 'top'
+							id:to
+							MyMDCard:
+								size_hint_y: None
+								size_hint_x: None
+								radius:[0,0,dp(30),dp(30)]							
+								size:(to.width-dp(20),"40dp")
+								md_bg_color:1,1,1,1
+								MDLabel:
+									text:"Class"
+									halign: "center"
+									font_name: "assets/Poppins-Bold.ttf"
+				GridLayout:
+					size_hint_y:None 
+					cols:1
+					headitem:
+					#	h1:"Ashramites"
+					headitem:
+
 
 		MDBottomNavigationItem:
 			name: "screen2"
@@ -781,7 +835,7 @@ MDScreen:
 			font_size:"20sp"
 
 			MyMDCard:
-				radius:60
+				radius:"60dp"
 				elevation:0
 				padding:60
 				size_hint: None, None
@@ -840,7 +894,7 @@ MDScreen:
 				on_press : app.table()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :3
+				line_width :"2dp"
 			MDRoundFlatIconButton:
 				text : "School Timings"
 				pos_hint : {"center_x":0.5,"center_y":0.65}
@@ -855,7 +909,7 @@ MDScreen:
 				on_press : app.time()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :3						
+				line_width :"2dp"						
 			MDRoundFlatIconButton:
 				text : "School Fees"
 				pos_hint : {"center_x":0.5,"center_y":0.55}	
@@ -870,7 +924,7 @@ MDScreen:
 				on_press : app.fees()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :3
+				line_width :"2dp"
 			MDRoundFlatIconButton:
 				text : "Admission Process"
 				pos_hint : {"center_x":0.5,"center_y":0.45}				
@@ -886,7 +940,7 @@ MDScreen:
 				on_press : app.adim()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :3						
+				line_width :"2dp"						
 			MDRoundFlatIconButton:
 				text : "Student Strength"
 				pos_hint : {"center_x":0.5,"center_y":0.35}				
@@ -901,7 +955,7 @@ MDScreen:
 				on_press : app.table()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :3						
+				line_width :"2dp"						
 			MDRoundFlatIconButton:
 				text : "Book Lists"
 				pos_hint : {"center_x":0.5,"center_y":0.25}				
@@ -916,7 +970,7 @@ MDScreen:
 				on_press : app.booklist()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :3
+				line_width :"2dp"
 			Image:
 				source : "assets/book.png"
 				pos_hint : {"center_x":0.5,"center_y":0.08}
@@ -932,7 +986,7 @@ MDScreen:
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
 			MyMDCard:
-				radius:60
+				radius:"60dp"
 				id:t4
 				height:20
 				elevation:10
@@ -952,7 +1006,7 @@ MDScreen:
 				theme_text_color:"Custom"
 				text_color:app.theme_cls.accent_color
 			MyMDCard:
-				radius:60
+				radius:"60dp"
 				elevation:30
 				padding: 16
 				size_hint: None, None
@@ -966,7 +1020,7 @@ MDScreen:
 						radius:70
 						padding: 16
 						size_hint: None, None
-						size: app.y-app.y//15, "50dp"
+						size: app.y-app.y//13, "50dp"
 						elevation:0
 						#style:'elevated'
 						md_bg_color:0,0,0,0
@@ -988,7 +1042,7 @@ MDScreen:
 						radius:70
 						padding: 16
 						size_hint: None, None
-						size: app.y-app.y//15, "50dp"
+						size: app.y-app.y//13, "50dp"
 						elevation:0
 					#	style:'elevated'
 						md_bg_color:0,0,0,0

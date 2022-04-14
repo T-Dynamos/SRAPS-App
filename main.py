@@ -56,8 +56,8 @@ import _thread
 from kivymd.uix.dialog import MDDialog
 from functools import partial
 import settings
-from android.runnable import run_on_ui_thread
-from jnius import autoclass
+#from android.runnable import run_on_ui_thread
+#from jnius import autoclass
 from kivymd.uix.behaviors import *
 from kivy.uix.widget import Widget
 from kivy.metrics import dp
@@ -121,12 +121,16 @@ def check_intr():
 	try:
 		requests.get("https://google.com",timeout=1)
 	except Exception as e:
-		print(str(e))
+		loaderS(str(e))
 		return False
 	return True
 class Tab(MDFloatLayout, MDTabsBase):
 	pass
-	
+def loaderS(string):
+	if string:
+		print(f"[SRAPS-App] {string}")
+	else:
+		pass
 def getDb():
 	apiUrl = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/dataDb.py"
 	try:
@@ -165,7 +169,7 @@ def update_menu():
 	KV = """
 #:import _thread _thread
 MyMDCard:
-	radius:50
+	radius:"50dp"
 	elevation:60
 	orientation:"vertical"
 	AnchorLayout:
@@ -183,7 +187,7 @@ MyMDCard:
 		text:"Currently Installed Version "+app.__version__
 		font_name:"assets/Lato-Italic.ttf"
 		font_size:"15sp"
-		hailgn:"center"
+		hailgn:"centre"
 	AnchorLayout:
 		orientation:"vertical"
 		anchor_x:'center'
@@ -194,7 +198,7 @@ MyMDCard:
 			font_name:"assets/Lato-Italic.ttf"
 			font_size:"15sp"
 			halign:"center"
-			line_width:5
+			line_width:"3dp"
 			on_press:upd.source = "assets/load.gif";ud2.text = "Checking ...";_thread.start_new_thread(app.update_a,(upd1,ud2,upd,ud3))
 	"""
 
@@ -213,7 +217,7 @@ def show_message():
 		dialog=Snackbar(text="No Internet!",
 		snackbar_x="10dp",
 
-		radius=[30,30,30,30],
+		radius=[dp(10),dp(10),dp(10),dp(10)],
 		snackbar_y="75dp",
 		size_hint_x=.95)
 		a = lambda self : (Toast("Updating data"),_thread.start_new_thread(update_data,()),dialog.dismiss())
@@ -277,7 +281,7 @@ def booklist():
 	a = """
 MyMDCard:
 	id:hi
-	radius:30
+	radius:"30dp"
 	elevation:60
 	ScrollView:
 		GridLayout:
@@ -433,7 +437,7 @@ Builder.load_string(
 
 
 <PrimaryColorSelector@ColorSelector>
-    on_release: app.theme_cls.primary_palette = root.color_name; app.settings.writeSettings("primary",root.color_name);print(root.color_name)
+    on_release: app.theme_cls.primary_palette = root.color_name; app.settings.writeSettings("primary",root.color_name)
 
 
 <MDThemePicker>
@@ -441,7 +445,7 @@ Builder.load_string(
     size: "284dp", "400dp"
 
     MyMDCard:
-        radius:50
+        radius:"50dp"
         orientation: "vertical"
 
 		MDToolbar:
@@ -539,7 +543,7 @@ MyMDCard:
 			source:"assets/time.jpg"
 			allow_stretch:True
 			keep_ratio :False
-			radius:30
+			radius:"30dp"
 	ScrollView:
 		MDGridLayout:
 			cols:1
@@ -590,48 +594,7 @@ MyMDCard:
 	
 	
 def about_menu():
-	a = """
-MyMDCard:
-	radius:30
-	elevation:50
-	orientation:"vertical"
-	md_bg_color:app.colorHex("#FE3545")
-	AnchorLayout:
-		Image:
-			source:"assets/td-s.png"
-			allow_stretch:True
-			size:(self.width,self.height)
-			keep_ratio :False
-			radius:30
-	ScrollView:
-		GridLayout:
-			cols:1
-			adaptive_height:True
-			spacing:app.spacing*3
-			orientation :"lr-tb"
-			padding:0		
-			MDLabel:
-				text:"We Are Technocractic Dynamos"
-				font_name:"assets/Poppins-Bold.ttf"
-				theme_text_color:"Custom"
-				text_color:1,1,1,1
-				font_size:"20sp"
-			MDLabel:
-				text:"> Technocratic Dynamos , a group made of youths to empower technology. We're dedicated to providing you the very best of an overall experience in an app, with an emphasis on [easy UI], [Lag Free experience ]"
-				font_name:"assets/Poppins-Bold.ttf"
-				text_color:0,0,0,1
-				font_size:"15sp"
-				theme_text_color:"Custom"							
-"""
-	modal = ModalView(
-	background_color=[0,0,0,0],
-	size_hint=(0.8, 0.9),
-	overlay_color=(0, 0, 0, 0),
-
-	)
-
-	modal.add_widget(Builder.load_string(a))
-	modal.open()		
+	pass
 def show_adim():
 	a = """
 MyMDCard:
@@ -875,7 +838,7 @@ class SRAPS_APP(MDApp):
 	python_version = python_version()
 	__version__ = __version__
 	y = y
-	wid = lambda self:print()
+	wid = lambda self:loaderS("Function called")
 	Teachers = Teachers
 	spacing = Window.size[1]//20
 	time = get_part_of_day(datetime.now().hour)
@@ -888,13 +851,12 @@ class SRAPS_APP(MDApp):
 	def colorHex(self, color):
 		return get_color_from_hex(color)
 	def myc(self):
-		print(screen_manager.get_screen("Mscreen").ids.hy3.icon)
 		if screen_manager.get_screen("Mscreen").ids.hy3.icon == "chevron-right":
 			screen_manager.get_screen("Mscreen").ids.hy3.icon = "chevron-down"
 			screen_manager.get_screen("Mscreen").ids.a890.line_color = self.theme_cls.accent_color
 			screen_manager.get_screen("Mscreen").ids.a890.icon_color = self.theme_cls.accent_color
 			screen_manager.get_screen("Mscreen").ids.a890.text_color = self.theme_cls.accent_color
-		#	screen_manager.get_screen("Mscreen").ids.a890.md_bg_color = self.theme_cls.primary_color		
+		
 			screen_manager.get_screen("Mscreen").ids.a891.line_color = self.theme_cls.accent_color
 			screen_manager.get_screen("Mscreen").ids.a891.icon_color = self.theme_cls.accent_color
 			screen_manager.get_screen("Mscreen").ids.a891.text_color = self.theme_cls.accent_color						
@@ -948,7 +910,10 @@ class SRAPS_APP(MDApp):
 	def update_a(self,a,b,c,d):
 		b.text = "Checking ..."
 		url = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/.srapsapp.versionfile"
-		ur = requests.get(url)
+		try:
+			ur = requests.get(url)
+		except Exception as e:
+			Toast("Unexpected Error : "+str(e))
 		if float(ur.text) ==  float (__version__):
 			Toast("Already up Date")
 			d.text = "UP TO DATE"
@@ -965,7 +930,7 @@ class SRAPS_APP(MDApp):
 				d.text = "UP TO DATE"
 				b.text = "Updated Version : "+ur.text.replace("\n","")
 			except Exception as e:
-				print(str(e))
+				loaderS(str(e))
 				Toast("Unexpected Error"+str(e))
 				d.text = "Error"
 				b.text = "Unexpected Error"
