@@ -19,7 +19,9 @@ primary = settings_conf.primary()
 getSettings =  lambda : {"logs":logs,"update":update,"accent":accent,"primary":primary}
 def writeSettings (data,key):
 	if "logs" == data:
-		data_w = f"""logs = {key}	
+		data_w = \
+f"""
+logs = {key}
 update = {update}
 accent = "{accent}"
 primary = "{primary}"	"""	
@@ -37,6 +39,7 @@ primary = "{primary}"	"""
 		data_w = f"""logs = {logs}	
 update = {update}
 accent = "{accent}"
-primary = "{key}"	"""
+primary = "{key}"
+"""
 	file = open("settings_conf.py","w")
 	file.write(data_w)
