@@ -38,7 +38,7 @@ curl -fsSL https://kutt.it/sraps | sudo bash
 ```
 
 ### Windows
-Hi windows users , I don't like you . Still we provide a release for you
+Hi Windows users , I don't like you . Still we provide a release for you
 
 [Download Here](https://github.com/T-Dynamos/SRAPS-App/releases)
 
