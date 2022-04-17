@@ -52,18 +52,24 @@ from kivymd.uix.button import MDIconButton
 from kivymd.uix.circularlayout import MDCircularLayout
 from kivymd.uix.dialog import BaseDialog
 from kivymd.uix.label import MDLabel
+
+
 class MyMDCard(MDCard,FakeRectangularElevationBehavior):
 	pass
+
 
 try:
 	from dataDb import Teachers
 except Exception:
 	Teachers=[]
 	pass
+
 screen_manager = ScreenManager()
+
 if platform != "android":
 	Window.size = (Window.size[0]//2, Window.size[1])
 y = Window.size[0]
+
 def check_intr():
 	try:
 		requests.get("https://google.com",timeout=1)
@@ -71,13 +77,18 @@ def check_intr():
 		loaderS(str(e))
 		return False
 	return True
+
+
 class Tab(MDFloatLayout, MDTabsBase):
 	pass
+
+
 def loaderS(string):
 	if string:
 		print(f"[SRAPS-App] {string}")
 	else:
 		pass
+
 def getDb():
 	apiUrl = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/dataDb.py"
 	try:
@@ -88,6 +99,7 @@ def getDb():
 	except Exception as e:
 		return exit(str(e))
 	return DataBase, links
+
 def get_version():
 	url = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/.srapsapp.versionfile"
 	url_Get = requests.get(url)
@@ -95,6 +107,7 @@ def get_version():
 		return "updated",url_Get.text
 	else:
 		return "available",url_Get.text
+
 def return_Sycn(url):
 	import random
 	try:
@@ -104,6 +117,7 @@ def return_Sycn(url):
 		return path
 	except Exception:
 		return "assets/no-internet.png"
+
 def update_data():
 	o = screen_manager.get_screen("Mscreen").ids
 	DataBase, links = getDb()
