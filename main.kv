@@ -21,7 +21,7 @@
 	h1:""
 	MyMDCard:
 		size_hint_y: None 
-		size:(app.y-dp(15),"50dp")
+		size:(app.y-dp(13),"50dp")
 		md_bg_color:1,1,1,1
 		AnchorLayout:
 			anchor_y:"top"
@@ -75,7 +75,7 @@
 		elevation:10
 		halign:"center"
 		size_hint:None,None
-		size: app.y-dp(15), "200dp"
+		size: app.y-dp(13), "200dp"
 		style:'outlined'
 		line_color:0,0,0,1
 		orientation:"horizontal"
@@ -95,7 +95,7 @@
 	elevation:40
 	halign:"center"
 	size_hint:None,None
-	size: app.y-dp(15), "150dp"
+	size: app.y-dp(13), "150dp"
 	style:'elevated'
 	md_bg_color:app.theme_cls.primary_light
 	MDLabel:
@@ -108,7 +108,7 @@
 	elevation:40
 	halign:"center"
 	size_hint:None,None
-	size: app.y-dp(15),"170dp"
+	size: app.y-dp(13),"170dp"
 	style:'elevated'
 	md_bg_color:app.colorHex("#B0FFB4")
 	FitImage:
@@ -219,7 +219,7 @@ MDScreen:
 								elevation:40
 								halign:"center"
 								size_hint:None,None
-								size: app.y-dp(15),"170dp"
+								size: app.y-dp(13),"170dp"
 								style:'elevated'
 								md_bg_color:app.theme_cls.accent_light
 								FitImage:
@@ -254,7 +254,7 @@ MDScreen:
 								radius:"50dp"
 								halign:"center"
 								size_hint:None,None
-								size: app.y-dp(15), "620dp"
+								size: app.y-dp(13), "620dp"
 								style:'elevated'
 								padding:20
 								md_bg_color:app.theme_cls.accent_light
@@ -775,17 +775,17 @@ MDScreen:
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
 			MyMDCard:
-				md_bg_color:app.theme_cls.primary_light
+				md_bg_color:app.theme_cls.primary_color
 				radius:[0,0,dp(30),dp(30)]
 			AnchorLayout:
 				anchor_y: "top"
 				MyMDCard:
 					size_hint_y: None
-					size:(app.y-dp(15),"55dp")
+					size:(app.y-dp(13),"50dp")
 					radius:[0,0,dp(30),dp(30)]
 					style:"elevated"
-					elevation:"40dp"
-					md_bg_color:app.theme_cls.accent_light
+					elevation:"80dp"
+					md_bg_color:app.theme_cls.accent_dark
 					BoxLayout:
 						orientation: 'horizontal'
 						AnchorLayout:
@@ -794,8 +794,8 @@ MDScreen:
 							MyMDCard:
 								size_hint_y: None
 								size_hint_x: None
-								radius:[0,0,0,dp(30)]
-								size:(to.width-dp(15),"40dp")
+								radius:[0,0,dp(30),dp(30)]
+								size:(to.width-dp(13),"40dp")
 								md_bg_color:1,1,1,1
 								MDLabel:
 									text:"Global"
@@ -809,8 +809,8 @@ MDScreen:
 							MyMDCard:
 								size_hint_y: None
 								size_hint_x: None
-								radius:[0,0,dp(30),0]							
-								size:(to.width-dp(15),"40dp")
+								radius:[0,0,dp(30),dp(30)]							
+								size:(to.width-dp(13),"40dp")
 								md_bg_color:1,1,1,1
 								MDLabel:
 									text:"Class"
@@ -1006,7 +1006,7 @@ MDScreen:
 			MyMDCard:
 				radius:"40dp"
 				elevation:30
-				padding: 16
+				padding:dp(16)
 				size_hint: None, None
 				size: app.y, Window.size[1]
 				style:'elevated'
@@ -1016,9 +1016,9 @@ MDScreen:
 					cols:1
 					MyMDCard:
 						radius:70
-						padding: 16
+						padding:dp(10)
 						size_hint: None, None
-						size: app.y-dp(15), "50dp"
+						size: app.y-dp(10), "50dp"
 						elevation:0
 						#style:'elevated'
 						md_bg_color:0,0,0,0
@@ -1039,8 +1039,9 @@ MDScreen:
 					MyMDCard:
 						radius:70
 						padding: 16
-						size_hint: None, None
-						size: app.y-dp(15), "50dp"
+						size_hint_x:None
+						size_hint_y:None
+						size: app.y-dp(10), "50dp"
 						elevation:0
 					#	style:'elevated'
 						md_bg_color:0,0,0,0

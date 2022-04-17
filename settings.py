@@ -31,12 +31,12 @@ primary = "{primary}"	"""
 	if "accent" == data:
 		data_w = f"""logs = {logs}	
 update = {update}
-accent = "{key}"
-primary = "{primary}"	"""
+accent = "{(key.split("."))[0]}"
+primary = "{(key.split("."))[1]}"	"""
 	if "primary" == data:
 		data_w = f"""logs = {logs}	
 update = {update}
-accent = "{accent}"
-primary = "{key}"	"""
+accent = "{(key.split("."))[1]}"
+primary = "{(key.split("."))[0]}"	"""
 	file = open("settings_conf.py","w")
 	file.write(data_w)
