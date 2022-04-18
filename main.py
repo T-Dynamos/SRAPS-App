@@ -4,133 +4,91 @@ __version__ = "2.01"
 
 
 import kivy
-from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.floatlayout import *
 from kivy.uix.anchorlayout import *
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
 
-from kivymd.uix.dialog import MDDialog
 from kivymd.app import *
 from kivymd.uix.label import *
 from kivy.uix.image import *
 from kivy.uix.label import *
 from kivy.uix.screenmanager import *
 from kivy.lang import Builder
-from kivy.core.text import LabelBase 
 from kivymd.uix.button import *
 from kivymd.uix.screen import *
 from kivymd.uix.textfield import *
 from kivy.core.audio import *
 from kivymd.uix.list import *
-from kivymd.toast import toast as Toast1
 from kivy.uix.scrollview import *
 from kivymd.uix.button import MDFlatButton
-from kivymd.uix.behaviors import RoundedRectangularElevationBehavior
-from kivymd.uix.card import *
+from kivymd.uix.card import MDCard
 from kivymd.uix.gridlayout import MDGridLayout
-from kivymd.uix.dialog import MDDialog
-from kivy.utils import get_color_from_hex
-from kivy.animation import Animation
 from kivy.uix.modalview import ModalView
-from kivy.uix.carousel import Carousel
-import kivymd_extensions.akivymd
-from kivymd.uix.expansionpanel import *
 from kivymd.uix.datatables import MDDataTable
 from kivy.uix.anchorlayout import AnchorLayout
 from kivymd.uix.tab import *
 import requests
-import webbrowser
 import os
-import subprocess
-import sys
-import threading
 from pathlib import Path
 from kivy.clock import Clock
-from functools import partial
-from kivymd.icon_definitions import md_icons
 from kivy.utils import platform
 from kivy.core.window import Window
 from kivymd.uix.snackbar import Snackbar
 import time
 import _thread
-from kivymd.uix.dialog import MDDialog
-from functools import partial
 import settings
-#from android.runnable import run_on_ui_thread
-#from jnius import autoclass
 from kivymd.uix.behaviors import *
-from kivy.uix.widget import Widget
 from kivy.metrics import dp
 from kivymd.uix.fitimage import FitImage
 from kivy import Logger
-from kivy.animation import Animation
-from kivy.clock import Clock
-from kivy.event import EventDispatcher
 from kivy.factory import Factory
-from kivy.lang import Builder
-from kivy.metrics import dp
-from kivy.properties import (
-    BooleanProperty,
-    ColorProperty,
-    ListProperty,
-    NumericProperty,
-    ObjectProperty,
-    OptionProperty,
-    StringProperty,
-)
-from kivy.uix.anchorlayout import AnchorLayout
-from kivy.uix.behaviors import ButtonBehavior, FocusBehavior
-from kivy.graphics.transformation import Matrix
-from kivy.uix.recyclegridlayout import RecycleGridLayout
-from kivy.uix.recycleview.layout import LayoutSelectionBehavior
-from kivy.uix.recycleview.views import RecycleDataViewBehavior
+from kivy.properties import OptionProperty
 from kivy.utils import get_color_from_hex
-from kivy.vector import Vector
 from kivy.uix.scatter import *
 from kivymd.color_definitions import colors, palette
-from kivymd.theming import ThemableBehavior
-from kivymd.toast import toast
-from kivymd.uix.behaviors import (
-    CircularRippleBehavior,
-    FakeRectangularElevationBehavior,
-    SpecificBackgroundColorBehavior,
-)
+from kivymd.uix.behaviors import FakeRectangularElevationBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.circularlayout import MDCircularLayout
 from kivymd.uix.dialog import BaseDialog
 from kivymd.uix.label import MDLabel
-from kivymd.uix.relativelayout import MDRelativeLayout
-from kivymd.uix.textfield import MDTextField
-from kivymd.uix.tooltip import MDTooltip
-from kivy.uix.relativelayout import RelativeLayout 
+
+
 class MyMDCard(MDCard,FakeRectangularElevationBehavior):
 	pass
+
 
 try:
 	from dataDb import Teachers
 except Exception:
 	Teachers=[]
 	pass
+
 screen_manager = ScreenManager()
+
 if platform != "android":
 	Window.size = (Window.size[0]//2, Window.size[1])
 y = Window.size[0]
+
 def check_intr():
-	import requests
 	try:
 		requests.get("https://google.com",timeout=1)
 	except Exception as e:
 		loaderS(str(e))
 		return False
 	return True
+
+
 class Tab(MDFloatLayout, MDTabsBase):
 	pass
+
+
 def loaderS(string):
 	if string:
 		print(f"[SRAPS-App] {string}")
 	else:
 		pass
+
 def getDb():
 	apiUrl = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/dataDb.py"
 	try:
@@ -141,6 +99,7 @@ def getDb():
 	except Exception as e:
 		return exit(str(e))
 	return DataBase, links
+
 def get_version():
 	url = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/.srapsapp.versionfile"
 	url_Get = requests.get(url)
@@ -148,6 +107,7 @@ def get_version():
 		return "updated",url_Get.text
 	else:
 		return "available",url_Get.text
+
 def return_Sycn(url):
 	import random
 	try:
@@ -157,6 +117,7 @@ def return_Sycn(url):
 		return path
 	except Exception:
 		return "assets/no-internet.png"
+
 def update_data():
 	o = screen_manager.get_screen("Mscreen").ids
 	DataBase, links = getDb()
