@@ -7,7 +7,7 @@ import kivy
 from kivymd.uix.floatlayout import *
 from kivy.uix.anchorlayout import *
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
-
+from kivymd.toast import toast as Toast1
 from kivymd.app import *
 from kivymd.uix.label import *
 from kivy.uix.image import *
@@ -52,7 +52,7 @@ from kivymd.uix.button import MDIconButton
 from kivymd.uix.circularlayout import MDCircularLayout
 from kivymd.uix.dialog import BaseDialog
 from kivymd.uix.label import MDLabel
-
+from kivymd.uix.sliverappbar import *
 
 class MyMDCard(MDCard,FakeRectangularElevationBehavior):
 	pass
@@ -124,8 +124,11 @@ def update_data():
 	o.news.text = str(DataBase["News"])		
 	o.nimg1.source = str(DataBase["SliderImages"])
 	add_part(links)
+
 def Toast(string):
+	loaderS(string)
 	Toast1(string)
+
 def update_menu():
 	KV = """
 #:import _thread _thread
@@ -238,6 +241,7 @@ MDLabel:
 		for i in range(1,6):
 			o.fu.add_widget(MDLabel ())	
 		o.fu.add_widget(a)
+		
 def booklist():
 	a = """
 MyMDCard:
@@ -371,13 +375,11 @@ MyMDCard:
 	modal = ModalView(
 	background_color=[0,0,0,0],
 	size_hint=(0.8, 0.8),
-
 	overlay_color=(0, 0, 0, 0),
-
 	)
 
 	modal.add_widget(Builder.load_string(a))
-	modal.open()	
+	modal.open()
 Builder.load_string(
     """
 <Tab@MDFloatLayout+MDTabsBase>
@@ -402,20 +404,17 @@ Builder.load_string(
 <MDThemePicker>
     size_hint: None, None
     size: "284dp", "400dp"
-
-    MyMDCard:
-        radius:"50dp"
-        orientation: "vertical"
+	BoxLayout:
 
 		MDTopAppBar:
 		    title:"Change Theme"
 		    font_name:"assets/Poppins-Bold.ttf"
-		    
+		    radius:"50dp"
 		    
         MDTabs:
             on_tab_switch: root.on_tab_switch(*args)
 
-            Tab:
+			Tab:
                 id: theme_tab
                 text: "Theme"
                 font_name:"assets/Lato-Italic.ttf"
@@ -837,15 +836,9 @@ class SRAPS_APP(MDApp):
 		screen_manager.add_widget(Builder.load_file('main.kv'))
 		screen_manager.current = "Mscreen"
 		return screen_manager
-	def start(self):
-		if check_intr() == True:
-			update_data()
-		else:
-			show_message()
-	def on_start(self):
-		
 
-		_thread.start_new_thread(self.start,())
+	def on_start(self):
+		show_message() if check_intr() == False else update_data()
 	def accent(self,color):
 		self.theme_cls.accent_palette = color 
 		settings.writeSettings("accent",f"{color}.{self.theme_cls.primary_palette}")
