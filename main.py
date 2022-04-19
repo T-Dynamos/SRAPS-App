@@ -62,7 +62,8 @@ try:
 	from dataDb import Teachers
 except Exception:
 	Teachers=[]
-	pass
+	passls
+	
 
 screen_manager = ScreenManager()
 
@@ -122,7 +123,7 @@ def update_data():
 	o = screen_manager.get_screen("Mscreen").ids
 	DataBase, links = getDb()
 	o.news.text = str(DataBase["News"])		
-	o.nimg1.source = str(DataBase["SliderImages"])
+	o.NI.source = str(DataBase["SliderImages"])
 	add_part(links)
 
 def Toast(string):
@@ -404,13 +405,9 @@ Builder.load_string(
 <MDThemePicker>
     size_hint: None, None
     size: "284dp", "400dp"
-	BoxLayout:
+	MyMDCard:
 
-		MDTopAppBar:
-		    title:"Change Theme"
-		    font_name:"assets/Poppins-Bold.ttf"
-		    radius:"50dp"
-		    
+
         MDTabs:
             on_tab_switch: root.on_tab_switch(*args)
 
@@ -832,7 +829,7 @@ class SRAPS_APP(MDApp):
 		self.theme_cls.material_style = "M3"
 		self.theme_cls.primary_palette = settings.getSettings()["primary"]
 		self.theme_cls.accent_palette = settings.getSettings()["accent"]		
-
+		self.theme_cls.theme_style = 'Light'
 		screen_manager.add_widget(Builder.load_file('main.kv'))
 		screen_manager.current = "Mscreen"
 		return screen_manager

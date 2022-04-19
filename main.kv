@@ -160,8 +160,13 @@ MDScreen:
 			MDSliverAppbar:
 				MDSliverAppbarHeader:
 					MDRelativeLayout:
+						AnchorLayout:
+							anchor_x:"left"
+							anchor_y:"top"
+							MDIconButton:
+								icon:"cog"
 						MyMDCard:
-							md_bg_color:app.theme_cls.primary_color
+							md_bg_color:app.theme_cls.primary_light
 							radius:[dp(0),dp(0),dp(10),dp(10)]
 							AnchorLayout:
 								anchor_y:"top"
@@ -172,17 +177,54 @@ MDScreen:
 									size_hint:None,None
 									size:("200dp","200dp")
 						AnchorLayout:
-							anchor_x:"right"
-							anchor_y:"top"
-							Image:
-								source:"assets/co.png"
-								allow_stretch:True
-								keep_ratio:False
-								size_hint:None,None
-								size:(0.6,0.6)
-						AnchorLayout:
-							anchor_x:"left"
-							anchor_y:"top"
+							anchor_y:"bottom"
+							BoxLayout:
+								orientation:"vertical"
+								BoxLayout:
+								
+								BoxLayout:
+									orientation:"horizontal"
+									AnchorLayout:
+										id:aa
+										MyMDCard:
+											ripple_behavior:True
+											style:"elevated"
+											elevation:"20dp"
+											size_hint:None,None
+											size:aa.width-dp(20),aa.height-dp(60)
+											BoxLayout:
+												orientation:"vertical"
+												padding:dp(10)
+												
+												MDLabel:
+													halign:"center"
+													text:"Homework"
+													font_name:"assets/Poppins-Bold.ttf"
+													font_size:"20sp"
+												AnchorLayout:
+													anchor_x:'right'
+													MDIconButton:
+														icon:"chevron-right"
+									AnchorLayout:
+										MyMDCard:
+											ripple_behavior:True
+											style:"elevated"
+											elevation:"20dp"										
+											size_hint:None,None
+											size:aa.width-dp(20),aa.height-dp(60)
+											BoxLayout:
+												orientation:"vertical"
+												padding:dp(10)
+												
+												MDLabel:
+													halign:"center"
+													text:"Essentials"
+													font_name:"assets/Poppins-Bold.ttf"
+													font_size:"20sp"
+												AnchorLayout:
+													anchor_x:'right'
+													MDIconButton:
+														icon:"chevron-right"											
 							Image:
 								source:"assets/sa.png"
 								allow_stretch:True
@@ -218,7 +260,8 @@ MDScreen:
 							style:'elevated'
 							md_bg_color:app.theme_cls.accent_light
 							FitImage:
-								id:nimg1
+								source:app.NI
+								id:NI
 					MDLabel
 						id:news
 						text:app.News
@@ -828,7 +871,7 @@ MDScreen:
 				id:t2
 				height:20
 				elevation:0
-				padding: 16
+				padding: dp(8)
 				size_hint: None, None
 				size: app.y-app.y//5, Window.size[1]
 				style:'filled'
@@ -842,7 +885,7 @@ MDScreen:
 				id:t3
 				pos_hint:{"center_x":0.5,"center_y":1}
 				elevation:0
-				padding: 16				
+				padding: dp(8)				
 				size_hint: None, None
 				size: app.y, Window.size[1]
 				style:'filled'
@@ -970,7 +1013,7 @@ MDScreen:
 				id:t4
 				height:20
 				elevation:10
-				padding: 16
+				padding: dp(8)
 				size_hint: None, None
 				size: app.y, "410dp"
 				style:'elevated'
@@ -998,9 +1041,9 @@ MDScreen:
 					cols:1
 					MyMDCard:
 						radius:70
-						padding:dp(10)
+						padding:dp(8)
 						size_hint: None, None
-						size: app.y-dp(10), "50dp"
+						size: app.y-dp(30), "50dp"
 						elevation:0
 						#style:'elevated'
 						md_bg_color:0,0,0,0
@@ -1020,10 +1063,10 @@ MDScreen:
 							on_active:app.settings.writeSettings("logs","False") if self.active is False else app.settings.writeSettings("logs","True")
 					MyMDCard:
 						radius:70
-						padding: 16
+						padding: dp(8)
 						size_hint_x:None
 						size_hint_y:None
-						size: app.y-dp(10), "50dp"
+						size: app.y-dp(30), "50dp"
 						elevation:0
 						md_bg_color:0,0,0,0
 						MDLabel:
@@ -1039,10 +1082,10 @@ MDScreen:
 							halign:'center'
 							width: dp(30)
 							active:app.update
-							on_active: app.update_b()
+							on_active:pass
 					MyMDCard:
 						radius:70
-						padding: 16
+						padding: dp(8)
 						size_hint: None, None
 						size: app.y, "50dp"
 						elevation:0
@@ -1058,7 +1101,7 @@ MDScreen:
 							on_press:app.show_theme_picker()
 					MyMDCard:
 						radius:70
-						padding: 16
+						padding: dp(8)
 						size_hint: None, None
 						size: app.y, "50dp"
 						elevation:0
@@ -1074,7 +1117,7 @@ MDScreen:
 							on_press:app.update_menu()													
 					MyMDCard:
 						radius:70
-						padding: 16
+						padding: dp(8)
 						size_hint: None, None
 						size: app.y, "50dp"
 						elevation:0
@@ -1090,7 +1133,7 @@ MDScreen:
 							on_press:app.about_menu()
 					MyMDCard:
 						radius:70
-						padding: 16
+						padding: dp(8)
 						size_hint: None, None
 						size: app.y, "50dp"
 						elevation:0
@@ -1108,7 +1151,7 @@ MDScreen:
 							on_press:app.myc()
 					MDBoxLayout:
 						radius:70
-						padding: 16
+						padding: dp(8)
 						spacing:30
 						size_hint: None, None
 						size: app.y, "50dp"

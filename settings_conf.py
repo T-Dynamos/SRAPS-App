@@ -1,4 +1,5 @@
-logs = False      
+
+logs = False
 update = False
-accent = "Amber"
+accent = "Lime"
 primary = "Pink"   
