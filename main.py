@@ -781,7 +781,7 @@ from datetime import datetime
 from platform import python_version
 
 class SRAPS_APP(MDApp):
-	dday = get_part_of_day(datetime(2022,4,21).hour)
+	dday = get_part_of_day(datetime.now().hour)
 	load_img = lambda self,img:load_img(img)
 	booklist = lambda self:booklist()
 	about_menu = lambda self: about_menu()
