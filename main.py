@@ -830,7 +830,10 @@ class SRAPS_APP(MDApp):
 		self.theme_cls.material_style = "M3"
 		self.theme_cls.primary_palette = settings.getSettings()["primary"]
 		self.theme_cls.accent_palette = settings.getSettings()["accent"]		
-		self.theme_cls.theme_style = 'Light'
+		if settings.getSettings()["update"] == True:
+			self.theme_cls.theme_style = 'Dark'
+		else:
+			self.theme_cls.theme_style = 'Light'
 		screen_manager.add_widget(Builder.load_file('main.kv'))
 		screen_manager.current = "Mscreen"
 		return screen_manager
@@ -846,23 +849,13 @@ class SRAPS_APP(MDApp):
 	def show_theme_picker(self):
 	 	  theme_picker()
   	  
-	def theme(self,theme):
-		if theme == "Dark":
-			theme1 = self.theme_cls.primary_dark
-		else:
-			theme1 = self.theme_cls.primary_light
-		a = screen_manager.get_screen("Mscreen").ids
-		a.t1.md_bg_color=theme1
-		a.t2.md_bg_color=theme1
-		a.t3.md_bg_color=theme1
-		a.t4.md_bg_color=theme1
-	def update_b(self):
-		if screen_manager.get_screen("Mscreen").ids.hi.active is True:
-			self.settings.writeSettings("update","True")
-			self.theme("Dark") 
-		else:
+	def theme(self):		
+		if screen_manager.get_screen("Mscreen").ids.hi.active == False:
 			self.settings.writeSettings("update","False")
-			self.theme("Light")
+			self.theme_cls.theme_style = "Light"
+		else:
+			self.settings.writeSettings("update","True")
+			self.theme_cls.theme_style = "Dark"
 	def update_a(self,a,b,c,d):
 		b.text = "Checking ..."
 		url = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/.srapsapp.versionfile"

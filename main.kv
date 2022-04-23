@@ -143,16 +143,14 @@ MDScreen:
 
 	MDBottomNavigation:
 		id:bot
-		panel_color: get_color_from_hex("#EEF3FB")
 		font_name:"assets/Poppins-Regular.ttf"
-		selected_color_background:app.theme_cls.accent_light
-		text_color_active: app.theme_cls.primary_dark
 		_label_font_size:"14sp"
+		icon_color:app.theme_cls.bg_light 
+		active_icon_color:app.theme_cls.bg_light 
 		MDBottomNavigationItem:
 			md_bg_color:app.theme_cls.bg_light
 			name: "screen1"
 			icon:"home"
-			icon_color: 0,0,0,1
 			text:"Home"
 			font_name:"assets/Lato-Italic.ttf"
 			_label_font_size: "12sp"
@@ -835,10 +833,8 @@ MDScreen:
 			text:"Homework"
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
-			MyMDCard:
-				md_bg_color:app.theme_cls.bg_light
-				radius:[0,0,dp(30),dp(30)]
 			MDRelativeLayout:
+				md_bg_color:app.theme_cls.bg_dark
 				AnchorLayout:
 					pos_hint:{"center_x":0.5,"center_y":0.92}
 					MyMDCard:
@@ -847,8 +843,8 @@ MDScreen:
 						size_hint_x:None
 						radius:dp(15)
 						style:"elevated"
-						elevation:"80dp"
-						md_bg_color:app.theme_cls.bg_darkest
+						elevation:"100dp"
+						md_bg_color:app.theme_cls.bg_normal
 						BoxLayout:
 							orientation: 'horizontal'
 							AnchorLayout:
@@ -1054,7 +1050,7 @@ MDScreen:
 				size: app.y, "410dp"
 				style:'elevated'
 				pos_hint:{"center_x":0.5,"center_y":0.75}
-				md_bg_color:app.theme_cls.primary_color 
+				md_bg_color:app.theme_cls.bg_normal
 
 			MDLabel:
 				text:"Settings"
@@ -1062,8 +1058,6 @@ MDScreen:
 				font_size:"30sp"
 				halign:"center"
 				pos_hint:{"center_x":0.5,"center_y":0.90}
-				theme_text_color:"Custom"
-				text_color:app.theme_cls.accent_color
 			MyMDCard:
 				radius:"40dp"
 				elevation:30
@@ -1071,7 +1065,6 @@ MDScreen:
 				size_hint: None, None
 				size: app.y, Window.size[1]
 				style:'elevated'
-				md_bg_color:app.colorHex("#EEF3FB")
 				pos_hint:{"center_x":0.5,"center_y":0.25}
 				MDGridLayout:
 					cols:1
@@ -1118,7 +1111,7 @@ MDScreen:
 							halign:'center'
 							width: dp(30)
 							active:app.update
-							on_active:pass
+							on_active: app.theme()
 					MyMDCard:
 						radius:70
 						padding: dp(8)
