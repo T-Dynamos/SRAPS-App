@@ -873,13 +873,7 @@ MDScreen:
 									MDLabel:
 										text:"Global"
 										halign: "center"
-										font_name: "assets/Poppins-Bold.ttf"																				
-				GridLayout:
-					size_hint_y:None 
-					cols:1
-					headitem:
-					headitem:
-
+										font_name: "assets/Poppins-Bold.ttf"
 
 		MDBottomNavigationItem:
 			name: "ess"
@@ -896,7 +890,7 @@ MDScreen:
 				size_hint: None, None
 				size: app.y, Window.size[1]
 				style:'elevated'
-				md_bg_color:app.colorHex("#EEF3FB")
+				md_bg_color:app.theme_cls.bg_normal
 				pos_hint:{"center_x":0.5,"center_y":0.40}			
 			MyMDCard:
 				radius:80
@@ -908,7 +902,7 @@ MDScreen:
 				size: app.y-app.y//5, Window.size[1]
 				style:'filled'
 				pos_hint:{"center_x":0.5,"center_y":0.70}
-				md_bg_color:app.theme_cls.primary_color 
+				md_bg_color:app.theme_cls.bg_light
 
 
 
@@ -922,7 +916,7 @@ MDScreen:
 				size: app.y, Window.size[1]
 				style:'filled'
 				halign:"center"
-				md_bg_color:app.theme_cls.primary_color 
+				md_bg_color:app.theme_cls.bg_light
 					
 			MDLabel:
 				text:"Essentials"
@@ -949,7 +943,7 @@ MDScreen:
 				on_press : app.table()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :"2dp"
+				line_width :"1dp"
 			MDRoundFlatIconButton:
 				text : "School Timings"
 				pos_hint : {"center_x":0.5,"center_y":0.65}
@@ -964,7 +958,7 @@ MDScreen:
 				on_press : app.time()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :"2dp"						
+				line_width :"1dp"						
 			MDRoundFlatIconButton:
 				text : "School Fees"
 				pos_hint : {"center_x":0.5,"center_y":0.55}	
@@ -979,7 +973,7 @@ MDScreen:
 				on_press : app.fees()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :"2dp"
+				line_width :"1dp"
 			MDRoundFlatIconButton:
 				text : "Admission Process"
 				pos_hint : {"center_x":0.5,"center_y":0.45}				
@@ -995,7 +989,7 @@ MDScreen:
 				on_press : app.adim()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :"2dp"						
+				line_width :"1dp"						
 			MDRoundFlatIconButton:
 				text : "Student Strength"
 				pos_hint : {"center_x":0.5,"center_y":0.35}				
@@ -1010,7 +1004,7 @@ MDScreen:
 				on_press : app.table()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :"2dp"						
+				line_width :"1dp"						
 			MDRoundFlatIconButton:
 				text : "Book Lists"
 				pos_hint : {"center_x":0.5,"center_y":0.25}				
@@ -1025,13 +1019,7 @@ MDScreen:
 				on_press : app.booklist()
 				size_hint_x : 0.7
 				size_hint_y : 0.08
-				line_width :"2dp"
-			Image:
-				source : "assets/book.png"
-				pos_hint : {"center_x":0.5,"center_y":0.08}
-				allow_stretch:True
-				size_hint_x : 0.2
-				size_hint_y : 0.2																
+				line_width :"1dp"
 		MDBottomNavigationItem:
 			md_bg_color:app.colorHex("#7E59FF")
 			name: "screen3"
