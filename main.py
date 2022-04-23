@@ -45,8 +45,8 @@ from kivy.factory import Factory
 from kivy.properties import OptionProperty
 from kivy.utils import get_color_from_hex
 from kivy.uix.scatter import *
-from kivymd.color_definitions import colors, palette
-from kivymd.uix.behaviors import FakeRectangularElevationBehavior
+from kivymd.color_definitions import *
+from kivymd.uix.behaviors import *
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.circularlayout import MDCircularLayout
@@ -781,6 +781,7 @@ from datetime import datetime
 from platform import python_version
 
 class SRAPS_APP(MDApp):
+	dday = get_part_of_day(datetime(2022,4,21).hour)
 	load_img = lambda self,img:load_img(img)
 	booklist = lambda self:booklist()
 	about_menu = lambda self: about_menu()
