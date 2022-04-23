@@ -142,6 +142,7 @@ MDScreen:
 	md_bg_color:app.colorHex("#7E59FF")
 
 	MDBottomNavigation:
+		id:bot
 		panel_color: get_color_from_hex("#EEF3FB")
 		font_name:"assets/Poppins-Regular.ttf"
 		selected_color_background:app.theme_cls.accent_light
@@ -224,6 +225,7 @@ MDScreen:
 											ripple_behavior:True
 											style:"elevated"
 											elevation:"20dp"
+											on_press:bot.switch_tab("homework")
 											size_hint:None,None
 											size:aa.width-dp(20),aa.height-dp(60)
 											BoxLayout:
@@ -238,12 +240,14 @@ MDScreen:
 												AnchorLayout:
 													anchor_x:'right'
 													MDIconButton:
+														on_press:bot.switch_tab("homework")
 														icon:"chevron-right"
 									AnchorLayout:
 										MyMDCard:
 											ripple_behavior:True
 											style:"elevated"
-											elevation:"20dp"										
+											elevation:"20dp"		
+											on_press:bot.switch_tab("ess")								
 											size_hint:None,None
 											size:aa.width-dp(20),aa.height-dp(60)
 											BoxLayout:
@@ -259,6 +263,7 @@ MDScreen:
 													anchor_x:'right'
 													MDIconButton:
 														icon:"chevron-right"
+														on_press:bot.switch_tab("ess")
 
 					GridLayout:
 						cols:1
@@ -824,7 +829,7 @@ MDScreen:
 			
 
 		MDBottomNavigationItem:
-			name: "screen4"
+			name: "homework"
 			icon:"book-open-outline"
 			icon_color:app.colorHex("#011D35")
 			text:"Homework"
@@ -882,7 +887,7 @@ MDScreen:
 
 
 		MDBottomNavigationItem:
-			name: "screen2"
+			name: "ess"
 			icon:"book-variant-multiple"
 			icon_color:app.colorHex("#011D35")
 			text:"Essentials"
