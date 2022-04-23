@@ -836,49 +836,48 @@ MDScreen:
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
 			MyMDCard:
-				md_bg_color:app.theme_cls.primary_color
+				md_bg_color:app.theme_cls.bg_light
 				radius:[0,0,dp(30),dp(30)]
-			AnchorLayout:
-				anchor_y: "top"
-				MyMDCard:
-					size_hint_y: None
-					size:(app.y-dp(13),"50dp")
-					radius:[0,0,dp(30),dp(30)]
-					style:"elevated"
-					elevation:"80dp"
-					md_bg_color:app.theme_cls.accent_dark
-					BoxLayout:
-						orientation: 'horizontal'
-						AnchorLayout:
-							anchor_y: 'top'
-							id:to
-							MyMDCard:
-								size_hint_y: None
-								size_hint_x: None
-								radius:[0,0,dp(30),dp(30)]
-								size:(to.width-dp(13),"40dp")
-								md_bg_color:1,1,1,1
-								ripple_behavior:True
-								MDLabel:
-									text:"Global"
-									halign: "center"
-									font_name: "assets/Poppins-Bold.ttf"
+			MDRelativeLayout:
+				AnchorLayout:
+					pos_hint:{"center_x":0.5,"center_y":0.92}
+					MyMDCard:
+						size_hint_y: None
+						size:(app.y-dp(10),"70dp")
+						size_hint_x:None
+						radius:dp(15)
+						style:"elevated"
+						elevation:"80dp"
+						md_bg_color:app.theme_cls.bg_darkest
+						BoxLayout:
+							orientation: 'horizontal'
+							AnchorLayout:
+								id:to
+								MyMDCard:
+									size_hint_y: None
+									size_hint_x: None
+									radius:dp(15)
+									size:(to.width-dp(13),"45dp")
+									md_bg_color:app.theme_cls.bg_light
+									ripple_behavior:True
+									MDLabel:
+										text:"Global"
+										halign: "center"
+										font_name: "assets/Poppins-Bold.ttf"
 
-
-						AnchorLayout:
-							anchor_y: 'top'
-							id:to
-							MyMDCard:
-								size_hint_y: None
-								size_hint_x: None
-								ripple_behavior:True
-								radius:[0,0,dp(30),dp(30)]							
-								size:(to.width-dp(13),"40dp")
-								md_bg_color:1,1,1,1
-								MDLabel:
-									text:"Class"
-									halign: "center"
-									font_name: "assets/Poppins-Bold.ttf"
+							AnchorLayout:
+								id:to										
+								MyMDCard:
+									size_hint_y: None
+									size_hint_x: None
+									radius:dp(15)
+									size:(to.width-dp(13),"45dp")
+									md_bg_color:app.theme_cls.bg_light
+									ripple_behavior:True
+									MDLabel:
+										text:"Global"
+										halign: "center"
+										font_name: "assets/Poppins-Bold.ttf"																				
 				GridLayout:
 					size_hint_y:None 
 					cols:1
