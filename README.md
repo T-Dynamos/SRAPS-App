@@ -22,12 +22,10 @@
 |![Index](img/1.jpg)|![f](img/2.jpg)|![i](img/3.jpg)
 
 ### Ubuntu ScreenShots
+
 <h1 align="center">
-
-	<img src="img/ub1.png" width="400px"/><br/>
-	<img src="img/ub2.png" width="400px"/><br/>
-
-  
+  <img src="img/ub1.png" width="400px"/><br/>
+  <img src="img/ub2.png" width="400px"/><br/>
 </h1>
 
 * ## Installing
