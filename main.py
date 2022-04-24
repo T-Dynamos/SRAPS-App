@@ -1,6 +1,6 @@
 
 
-__version__ = "2.01"
+__version__ = "2.02"
 
 
 import kivy
@@ -837,9 +837,13 @@ class SRAPS_APP(MDApp):
 		screen_manager.add_widget(Builder.load_file('main.kv'))
 		screen_manager.current = "Mscreen"
 		return screen_manager
-
-	def on_start(self):
+	def start(self):
 		show_message() if check_intr() == False else update_data()
+	def on_start(self):
+		if platform!="android":
+			show_message() if check_intr() == False else update_data()
+		else:
+			_thread.start_new_thread(self.start,())
 	def accent(self,color):
 		self.theme_cls.accent_palette = color 
 		settings.writeSettings("accent",f"{color}.{self.theme_cls.primary_palette}")
@@ -853,9 +857,11 @@ class SRAPS_APP(MDApp):
 		if screen_manager.get_screen("Mscreen").ids.hi.active == False:
 			self.settings.writeSettings("update","False")
 			self.theme_cls.theme_style = "Light"
+			screen_manager.get_screen("Mscreen").ids.rimg.source = "assets/shadow-white.png" 
 		else:
 			self.settings.writeSettings("update","True")
 			self.theme_cls.theme_style = "Dark"
+			screen_manager.get_screen("Mscreen").ids.rimg.source = "assets/shadow-black.png" 
 	def update_a(self,a,b,c,d):
 		b.text = "Checking ..."
 		url = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/.srapsapp.versionfile"

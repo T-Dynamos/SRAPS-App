@@ -207,9 +207,10 @@ MDScreen:
 										keep_ratio:False
 										size:oo.width,oo.height
 									FitImage:
+										id:rimg
 										radius:[0,0,dp(20),dp(20)]
 										invert_y_axis:True
-										source:"assets/shadow-black.png"
+										source:"assets/shadow-black.png" if app.theme_cls.theme_style == "Dark" else "assets/shadow-white.png"
 										allow_stretch:True
 										keep_ratio:False
 										size:oo.width,oo.height
@@ -219,8 +220,7 @@ MDScreen:
 							MDLabel:
 								font_name:"assets/Poppins-Bold.ttf"
 								font_size:"25sp"
-								theme_text_color:"Custom"
-								text_color:1,1,1,1
+								
 								halign:'auto'
 								text:"  Ansh Dadwal"	
 
@@ -236,8 +236,7 @@ MDScreen:
 										MDLabel:
 											font_name:"assets/Poppins-ExtraBold.ttf"
 											font_size:"40sp"
-											theme_text_color:"Custom"
-											text_color:1,1,1,1
+											
 											halign:'auto'
 											text:"  Good "+app.dday	
 																
