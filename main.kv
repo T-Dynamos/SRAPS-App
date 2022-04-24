@@ -14,20 +14,46 @@
 	FitImage:
         source: root.img
         radius: [20,]					
-					
-<headitem>
-	h1:""
-	MyMDCard:
-		size_hint_y: None 
-		size:(app.y-dp(13),"50dp")
-		md_bg_color:1,1,1,1
-		AnchorLayout:
-			anchor_y:"top"
-			anchor_x: 'left'
-			MDLabel:
-				text:root.h1
-				font_name: 'assets/Poppins-Regular.ttf'
-				size:"20sp"
+<DataloaderLabel@AKLabelLoader>
+    size_hint_y: None
+    height: dp(20)
+    theme_text_color: "Primary"
+    halign: "left"
+				
+<HeadItem@AnchorLayout>:
+	avatar:""
+	title:''
+	content:""
+	MyMDCard
+		size_hint:None,None
+		size:app.y-dp(10),dp(120)
+		radius:dp(20)
+		MDBoxLayout:
+			MDFloatLayout:
+				size_hint_x: .3
+				AKImageLoader:
+					size_hint: None,None
+					size: dp(50), dp(50)
+					pos_hint: {"center_x": .5 , "center_y": .5}
+					source: root.avatar
+			MDBoxLayout:
+				orientation: "vertical"
+				size_hint_x: .7
+				padding: dp(10)
+				spacing: dp(10)
+
+				DataloaderLabel:
+					text:  root.title
+					font_name:"assets/Poppins-Bold.ttf"
+					font_size:"20sp"
+
+				MDSeparator:
+
+				DataloaderLabel:
+					text:  root.content
+					font_name:"assets/Poppins-Regular.ttf"
+					font_size:"15sp"
+
 <FitImgCard@AnchorLayout>
 	text:""
 	img:""
@@ -844,7 +870,7 @@ MDScreen:
 						radius:dp(15)
 						style:"elevated"
 						elevation:"100dp"
-						md_bg_color:app.theme_cls.bg_normal
+						md_bg_color:app.theme_cls.bg_darkest
 						BoxLayout:
 							orientation: 'horizontal'
 							AnchorLayout:
@@ -874,7 +900,64 @@ MDScreen:
 										text:"Global"
 										halign: "center"
 										font_name: "assets/Poppins-Bold.ttf"
+				MyMDCard:
+					size_hint:None,None
+					size:app.y,Window.size[1]
+					pos_hint:{"center_x":0.5,"center_y":0.25}
+					md_bg_color:app.theme_cls.bg_dark
+					ScrollView:
+						GridLayout:
+							cols:1
+							size_hint_y:None
+							orientation: "lr-tb"
+							padding:0
+							spacing: "15dp"
+							adaptive_height: True
+							height: self.minimum_height
+							MDLabel:
 
+							AnchorLayout:
+								size_hint:None,None
+								size:app.y-dp(10),dp(120)
+								HeadItem:
+									title:""
+									content:""
+									avatar:""	
+							AnchorLayout:
+								size_hint:None,None
+								size:app.y-dp(10),dp(120)							
+								HeadItem:
+									title:""
+									content:""
+									avatar:""		
+							AnchorLayout:
+								size_hint:None,None
+								size:app.y-dp(10),dp(120)
+								HeadItem:
+									title:""
+									content:""
+									avatar:""	
+							AnchorLayout:
+								size_hint:None,None
+								size:app.y-dp(10),dp(120)							
+								HeadItem:
+									title:""
+									content:""
+									avatar:""
+							AnchorLayout:
+								size_hint:None,None
+								size:app.y-dp(10),dp(120)
+								HeadItem:
+									title:""
+									content:""
+									avatar:""	
+							AnchorLayout:
+								size_hint:None,None
+								size:app.y-dp(10),dp(120)							
+								HeadItem:
+									title:""
+									content:""
+									avatar:""																													
 		MDBottomNavigationItem:
 			name: "ess"
 			icon:"book-variant-multiple"
@@ -902,7 +985,7 @@ MDScreen:
 				size: app.y-app.y//5, Window.size[1]
 				style:'filled'
 				pos_hint:{"center_x":0.5,"center_y":0.70}
-				md_bg_color:app.theme_cls.bg_light
+				md_bg_color:app.theme_cls.bg_darkest
 
 
 
@@ -916,7 +999,7 @@ MDScreen:
 				size: app.y, Window.size[1]
 				style:'filled'
 				halign:"center"
-				md_bg_color:app.theme_cls.bg_light
+				md_bg_color:app.theme_cls.bg_darkest
 					
 			MDLabel:
 				text:"Essentials"

@@ -53,7 +53,7 @@ from kivymd.uix.circularlayout import MDCircularLayout
 from kivymd.uix.dialog import BaseDialog
 from kivymd.uix.label import MDLabel
 from kivymd.uix.sliverappbar import *
-
+from kivymd_extensions.akivymd.uix.loaders import *
 class MyMDCard(MDCard,FakeRectangularElevationBehavior):
 	pass
 
