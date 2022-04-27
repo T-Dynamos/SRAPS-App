@@ -54,6 +54,8 @@ from kivymd.uix.dialog import BaseDialog
 from kivymd.uix.label import MDLabel
 from kivymd.uix.sliverappbar import *
 from kivymd_extensions.akivymd.uix.loaders import *
+if platform == "android":
+	from kivmob import KivMob
 class MyMDCard(MDCard,FakeRectangularElevationBehavior):
 	pass
 
@@ -100,6 +102,27 @@ def getDb():
 	except Exception as e:
 		return exit(str(e))
 	return DataBase, links
+
+def returnR(): 
+	import random 
+	a = [1,2,3]
+	if random.choice(a) == 1:
+		return True
+	else:
+		return False
+
+def loadAD():
+	if platform=="android":
+		ads = KivMob("ca-app-pub-1400437871441093~9758605790")
+		ads.new_interstitial("ca-app-pub-1400437871441093/3864750867")
+		if returnR() == True:
+			loaderS("Add Called")
+			ads.request_interstitial()
+		else:
+			pass
+	else:
+		pass
+
 
 def get_version():
 	url = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/.srapsapp.versionfile"
@@ -781,6 +804,7 @@ from datetime import datetime
 from platform import python_version
 
 class SRAPS_APP(MDApp):
+	show_ad = lambda self:loadAD()
 	dday = get_part_of_day(datetime.now().hour)
 	load_img = lambda self,img:load_img(img)
 	booklist = lambda self:booklist()
