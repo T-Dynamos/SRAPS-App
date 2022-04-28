@@ -123,7 +123,10 @@ def loadAD():
 	else:
 		pass
 
-
+def threadRun(func,args):
+	import threading
+	t = threading.Thread(target=func,args=args)
+	t.start()
 def get_version():
 	url = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/.srapsapp.versionfile"
 	url_Get = requests.get(url)
@@ -151,7 +154,7 @@ def update_data():
 
 def Toast(string):
 	loaderS(string)
-	Toast1(string)
+	Toast1(string,gravity=80)
 
 def update_menu():
 	KV = """
@@ -187,7 +190,7 @@ MyMDCard:
 			font_size:"15sp"
 			halign:"center"
 			line_width:"3dp"
-			on_press:upd.source = "assets/load.gif";ud2.text = "Checking ...";_thread.start_new_thread(app.update_a,(upd1,ud2,upd,ud3))
+			on_press:upd.source = "assets/load.gif";ud2.text = "Checking ...";threadRun(app.update_a,(upd1,ud2,upd,ud3))
 	"""
 
 	
@@ -208,7 +211,7 @@ def show_message():
 		radius=[dp(10),dp(10),dp(10),dp(10)],
 		snackbar_y="75dp",
 		size_hint_x=.95)
-		a = lambda self : (Toast("Updating data"),_thread.start_new_thread(update_data,()),dialog.dismiss())
+		a = lambda self : (Toast("Updating data"),threadRun(update_data,()),dialog.dismiss())
 		b = lambda self : Toast("Internet not connected")
 		show_message_true = lambda self:show_message()
 		c = lambda self : (dialog.dismiss(),Clock.schedule_once(show_message_true,5))
@@ -864,10 +867,7 @@ class SRAPS_APP(MDApp):
 	def start(self):
 		show_message() if check_intr() == False else update_data()
 	def on_start(self):
-		if platform!="android":
-			show_message() if check_intr() == False else update_data()
-		else:
-			_thread.start_new_thread(self.start,())
+		threadRun(self.start,())
 	def accent(self,color):
 		self.theme_cls.accent_palette = color 
 		settings.writeSettings("accent",f"{color}.{self.theme_cls.primary_palette}")
