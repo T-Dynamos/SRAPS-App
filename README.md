@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="img/main.png" width="400px"/><br/>
+  <img src="img/main.png" width="600px"/><br/>
   SRAPS APP
 </h1>
 
@@ -17,21 +17,23 @@
 > Our app has a bunch of useful features 
 
 
-| Front View | Feature	| Feature |
+| Screenshot 1 | Screenshot 2	| Screenshot 3 |
 | --------------  | ------------- | ----------- |
 |![Index](img/1.jpg)|![f](img/2.jpg)|![i](img/3.jpg)
 
 ### Ubuntu ScreenShots
 
-<h1 align="center">
-  <img src="img/ub1.png" width="400px"/><br/>
-  <img src="img/ub2.png" width="400px"/><br/>
-</h1>
+|  Screenshot 1	| Screenshot 2 |
+| --------------  | ------------- | 
+|![Index](img/ub1.png)|![f](img/ub2.png)
+
 
 * ## Installing
+
 > Our app is available for Windows , Linux , Android till now
 
 ### Android 
+
 First of all download the apk file from our offical release
 
 [Download Here](https://github.com/T-Dynamos/SRAPS-App/releases)
@@ -45,6 +47,7 @@ curl -fsSL https://kutt.it/sraps | sudo bash
 ```
 
 ### Windows
+
 Hi Windows users , I don't like you . Still we provide a release for you
 
 [Download Here](https://github.com/T-Dynamos/SRAPS-App/releases)
