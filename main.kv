@@ -21,7 +21,7 @@
 				
 <HeadItem@AnchorLayout>:
 	size_hint:None,None
-	size:app.y-dp(10),dp(120)
+	size:app.y,dp(120)
 	avatar:""
 	title:''
 	content:""
@@ -29,6 +29,7 @@
 		size_hint:None,None
 		size:app.y-dp(10),dp(120)
 		radius:dp(20)
+		md_bg_color:app.theme_cls.bg_light
 		MDBoxLayout:
 			MDFloatLayout:
 				size_hint_x: .3
@@ -569,21 +570,25 @@ MDScreen:
 						size_hint_y: None
 						size:(app.y-dp(10),"70dp")
 						size_hint_x:None
-						radius:dp(15)
+						radius:dp(15),dp(15),0,0
 						style:"elevated"
-						elevation:"100dp"
+						elevation:0
 						md_bg_color:app.theme_cls.bg_darkest
 						BoxLayout:
 							orientation: 'horizontal'
 							AnchorLayout:
-								id:to
+								id:to1
+								anchor_y: 'bottom'
 								MyMDCard:
+									id:to1s
 									size_hint_y: None
 									size_hint_x: None
-									radius:dp(15)
-									size:(to.width-dp(13),"45dp")
-									md_bg_color:app.theme_cls.bg_light
-									ripple_behavior:True
+									radius:dp(15),dp(15),0,0
+									size:(to.width-dp(13),"55dp")
+									md_bg_color:app.theme_cls.bg_dark
+									on_press:app.con("to1")
+									style:"elevated"
+									elevation:0
 									MDLabel:
 										text:"Global"
 										halign: "center"
@@ -592,12 +597,15 @@ MDScreen:
 							AnchorLayout:
 								id:to										
 								MyMDCard:
+									id:tos
 									size_hint_y: None
 									size_hint_x: None
 									radius:dp(15)
+									style:"elevated"
+									elevation:0
 									size:(to.width-dp(13),"45dp")
-									md_bg_color:app.theme_cls.bg_light
-									ripple_behavior:True
+									md_bg_color:app.theme_cls.bg_dark
+									on_press:app.con("to")
 									MDLabel:
 										text:"Global"
 										halign: "center"
@@ -618,13 +626,35 @@ MDScreen:
 							height: self.minimum_height
 							MDLabel:
 							HeadItem:
+								id:test
 								title:""
 								content:""
-								avatar:""								
+								avatar:app.av()								
 							HeadItem:
+								id:test1
 								title:""
 								content:""
-								avatar:""																													
+								avatar:app.av()		
+							HeadItem:
+								id:test2
+								title:""
+								content:""
+								avatar:app.av()								
+							HeadItem:
+								id:test3
+								title:""
+								content:""
+								avatar:app.av()			
+							HeadItem:
+								id:test4
+								title:""
+								content:""
+								avatar:app.av()								
+							HeadItem:
+								id:test5
+								title:""
+								content:""
+								avatar:app.av()																																										
 		MDBottomNavigationItem:
 			name: "ess"
 			icon:"book-variant-multiple"

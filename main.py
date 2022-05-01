@@ -134,7 +134,12 @@ def get_version():
 		return "updated",url_Get.text
 	else:
 		return "available",url_Get.text
-
+def genAvtar():
+	import random
+	no = str(random.randint(10,99))
+	url = f"https://avatars.githubusercontent.com/u/6912{no}51?v=4"
+	print(url)
+	return url
 def return_Sycn(url):
 	import random
 	try:
@@ -819,6 +824,7 @@ from datetime import datetime
 from platform import python_version
 
 class SRAPS_APP(MDApp):
+	av = lambda self:genAvtar()
 	threadRun = lambda self,func,args:threadRun(func, args)
 	show_ad = lambda self:loadAD()
 	dday = get_part_of_day(datetime.now().hour)
@@ -877,7 +883,15 @@ class SRAPS_APP(MDApp):
 		screen_manager.add_widget(Builder.load_file('main.kv'))
 		screen_manager.current = "Mscreen"
 		return screen_manager
+	def kl(self,*args):
+		screen_manager.get_screen("Mscreen").ids.test.avatar = genAvtar()
+		screen_manager.get_screen("Mscreen").ids.test1.avatar = genAvtar()
+		screen_manager.get_screen("Mscreen").ids.test2.avatar = genAvtar()
+		screen_manager.get_screen("Mscreen").ids.test3.avatar = genAvtar()
+		screen_manager.get_screen("Mscreen").ids.test4.avatar = genAvtar()
+		screen_manager.get_screen("Mscreen").ids.test5.avatar = genAvtar()
 	def start(self,*largs):
+		Clock.schedule_interval(self.kl,5)
 		show_message() if check_intr() == False else update_data()
 	def on_start(self):
 		threadRun(self.start,())
@@ -889,7 +903,38 @@ class SRAPS_APP(MDApp):
 		settings.writeSettings("primary",f"{color}.{self.theme_cls.accent_palette}")
 	def show_theme_picker(self):
 	 	  theme_picker()
-  	  
+	def con(self,so):
+		o = screen_manager.get_screen("Mscreen").ids
+		if so == "to1":
+			if o.to1.anchor_y == "bottom":
+				o.to.anchor_y = "bottom"
+				o.to1.anchor_y = "center"
+				o.to1s.size = (o.to.width-dp(13),"45dp")
+				o.tos.size = (o.to.width-dp(13),"55dp")
+				o.to1s.radius=dp(15)
+				o.tos.radius=dp(15),dp(15),0,0 	
+			else:
+				o.to1.anchor_y = "bottom"
+				o.to1s.radius=dp(15),dp(15),0,0 
+				o.to.anchor_y = "center"
+				o.tos.size = (o.to.width-dp(13),"45dp")
+				o.to1s.size = (o.to.width-dp(13),"55dp")
+				o.tos.radius=dp(15)
+		else:
+			if o.to.anchor_y == "bottom":
+				o.to1.anchor_y = "bottom"
+				o.to.anchor_y = "center"
+				o.tos.size = (o.to.width-dp(13),"45dp")
+				o.to1s.size = (o.to.width-dp(13),"55dp")
+				o.tos.radius=dp(15)	
+				o.to1s.radius=dp(15),dp(15),0,0 
+			else:
+				o.to1.anchor_y = "center"
+				o.to.anchor_y = "bottom"  
+				o.to1s.radius=dp(15)
+				o.tos.size = (o.to.width-dp(13),"55dp")	
+				o.to1s.size = (o.to.width-dp(13),"45dp")
+				o.tos.radius=dp(15),dp(15),0,0				
 	def theme(self):		
 		if screen_manager.get_screen("Mscreen").ids.hi.active == False:
 			self.settings.writeSettings("update","False")
