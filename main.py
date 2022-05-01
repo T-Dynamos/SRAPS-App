@@ -7,7 +7,7 @@ import kivy
 from kivymd.uix.floatlayout import *
 from kivy.uix.anchorlayout import *
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
-from kivymd.toast import toast as Toast1
+from kivymd.toast import toast as Toast2
 from kivymd.app import *
 from kivymd.uix.label import *
 from kivy.uix.image import *
@@ -54,6 +54,8 @@ from kivymd.uix.dialog import BaseDialog
 from kivymd.uix.label import MDLabel
 from kivymd.uix.sliverappbar import *
 from kivymd_extensions.akivymd.uix.loaders import *
+from functools import partial
+
 if platform == "android":
 	from kivmob import KivMob
 class MyMDCard(MDCard,FakeRectangularElevationBehavior):
@@ -124,9 +126,7 @@ def loadAD():
 		pass
 
 def threadRun(func,args):
-	import threading
-	t = threading.Thread(target=func,args=args)
-	t.start()
+	Clock.schedule_once(partial(func,args))
 def get_version():
 	url = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/.srapsapp.versionfile"
 	url_Get = requests.get(url)
@@ -151,34 +151,46 @@ def update_data():
 	o.news.text = str(DataBase["News"])		
 	o.NI.source = str(DataBase["SliderImages"])
 	add_part(links)
+	
+def Toast1(string,*largs):
+	Toast2(string)
 
 def Toast(string):
 	loaderS(string)
-	Toast1(string,gravity=80)
+	if platform=="android":
+		Toast2(string,gravity=80)
+	else:
+		threadRun(Toast1,string)		
 
 def update_menu():
 	KV = """
 #:import _thread _thread
 MyMDCard:
-	radius:"50dp"
-	elevation:60
+	radius:"30dp"
+	elevation:"50dp"
 	orientation:"vertical"
-	AnchorLayout:
-		id:upd1		
-		anchor_x:'center'
-		anchor_y:'bottom'
-		Image:
-			id:upd
-			source:"assets/system-update.png"
-			size:(0.9,0.9)
-			halign:"center"
-			anim_delay:0.05
+	MDRelativeLayout:
+		AnchorLayout:
+			anchor_x:"left"
+			anchor_y:"top"
+			MDIconButton:
+				icon:"chevron-left"
+		AnchorLayout:
+			id:upd1		
+			Image:
+				id:upd
+				source:"assets/update.png"
+				size:(0.9,0.9)
+				halign:"center"
+				size_hint:None,None
+				size:"70dp","70dp"
+				anim_delay:0.05
 	MDLabel:
 		id:ud2
 		text:"Currently Installed Version "+app.__version__
 		font_name:"assets/Lato-Italic.ttf"
 		font_size:"15sp"
-		hailgn:"centre"
+		halign:"center"
 	AnchorLayout:
 		orientation:"vertical"
 		anchor_x:'center'
@@ -189,8 +201,8 @@ MyMDCard:
 			font_name:"assets/Lato-Italic.ttf"
 			font_size:"15sp"
 			halign:"center"
-			line_width:"3dp"
-			on_press:upd.source = "assets/load.gif";ud2.text = "Checking ...";threadRun(app.update_a,(upd1,ud2,upd,ud3))
+			line_width:"1dp"
+			on_press:upd.source = "assets/search.png";ud2.text = "Checking ...";_thread.start_new_thread(app.update_a,(upd1,ud2,upd,ud3))
 	"""
 
 	
@@ -807,6 +819,7 @@ from datetime import datetime
 from platform import python_version
 
 class SRAPS_APP(MDApp):
+	threadRun = lambda self,func,args:threadRun(func, args)
 	show_ad = lambda self:loadAD()
 	dday = get_part_of_day(datetime.now().hour)
 	load_img = lambda self,img:load_img(img)
@@ -864,7 +877,7 @@ class SRAPS_APP(MDApp):
 		screen_manager.add_widget(Builder.load_file('main.kv'))
 		screen_manager.current = "Mscreen"
 		return screen_manager
-	def start(self):
+	def start(self,*largs):
 		show_message() if check_intr() == False else update_data()
 	def on_start(self):
 		threadRun(self.start,())
@@ -908,6 +921,7 @@ class SRAPS_APP(MDApp):
 				Toast("Done Updating")
 				d.text = "UP TO DATE"
 				b.text = "Updated Version : "+ur.text.replace("\n","")
+				c.source = "assets/update.png"
 			except Exception as e:
 				loaderS(str(e))
 				Toast("Unexpected Error"+str(e))
