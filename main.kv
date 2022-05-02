@@ -221,29 +221,33 @@ MDScreen:
 										size:oo.width,oo.height
 
 						AnchorLayout:
-							anchor_x:"left"
+							pos_hint:{"center_x":0.5,"center_y":0.6}
+							anchor_y: 'top'
+							size_hint:None,None 
+							size:app.y,"300dp"
 							MDLabel:
 								font_name:"assets/Poppins-Bold.ttf"
-								font_size:"25sp"
-								
+								font_size:"25sp"								
 								halign:'auto'
 								text:"  Ansh Dadwal"	
+						AnchorLayout:
+							pos_hint:{"center_x":0.5,"center_y":0.8}
+							orientation:"vertical"
+							size_hint:None,None 
+							size:app.y,"300dp"
 
+							MDLabel:
+								font_name:"assets/Poppins-ExtraBold.ttf"
+								font_size:"40sp"
+								halign:'auto'
+								text:"  Good "+app.dday	
 						AnchorLayout:
 							anchor_y:"bottom"
 							BoxLayout:
 								orientation:"vertical"
 								BoxLayout:
 									orientation:"vertical"
-									AnchorLayout:
-										anchor_y:"bottom"
-										orientation:"vertical"
-										MDLabel:
-											font_name:"assets/Poppins-ExtraBold.ttf"
-											font_size:"40sp"
-											
-											halign:'auto'
-											text:"  Good "+app.dday	
+
 																
 								BoxLayout:
 									orientation:"horizontal"
@@ -586,7 +590,7 @@ MDScreen:
 									radius:dp(15),dp(15),0,0
 									size:(to.width-dp(13),"55dp")
 									md_bg_color:app.theme_cls.bg_dark
-									on_press:app.con("to1")
+									on_press:app.con("to1");app.kl()
 									style:"elevated"
 									elevation:0
 									MDLabel:
@@ -605,7 +609,7 @@ MDScreen:
 									elevation:0
 									size:(to.width-dp(13),"45dp")
 									md_bg_color:app.theme_cls.bg_dark
-									on_press:app.con("to")
+									on_press:app.con("to");app.kl()
 									MDLabel:
 										text:"Global"
 										halign: "center"

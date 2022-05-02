@@ -127,6 +127,7 @@ def loadAD():
 
 def threadRun(func,args):
 	Clock.schedule_once(partial(func,args))
+
 def get_version():
 	url = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/.srapsapp.versionfile"
 	url_Get = requests.get(url)
@@ -134,12 +135,13 @@ def get_version():
 		return "updated",url_Get.text
 	else:
 		return "available",url_Get.text
+
 def genAvtar():
 	import random
 	no = str(random.randint(10,99))
 	url = f"https://avatars.githubusercontent.com/u/6912{no}51?v=4"
-	print(url)
 	return url
+
 def return_Sycn(url):
 	import random
 	try:
@@ -150,7 +152,7 @@ def return_Sycn(url):
 	except Exception:
 		return "assets/no-internet.png"
 
-def update_data():
+def update_data(*largs):
 	o = screen_manager.get_screen("Mscreen").ids
 	DataBase, links = getDb()
 	o.news.text = str(DataBase["News"])		
@@ -891,7 +893,6 @@ class SRAPS_APP(MDApp):
 		screen_manager.get_screen("Mscreen").ids.test4.avatar = genAvtar()
 		screen_manager.get_screen("Mscreen").ids.test5.avatar = genAvtar()
 	def start(self,*largs):
-		Clock.schedule_interval(self.kl,5)
 		show_message() if check_intr() == False else update_data()
 	def on_start(self):
 		threadRun(self.start,())
