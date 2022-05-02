@@ -311,7 +311,6 @@ MDScreen:
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
 						
-
 						MDLabel:
 							text:'Latest News'
 							font_name:"assets/Poppins-Bold.ttf"
@@ -332,14 +331,12 @@ MDScreen:
 									radius:"40dp"
 									id:NI
 									source:app.NI
-									
+
 						MDLabel
 							id:news
 							text:app.News
 							font_name:"assets/Lato-Italic.ttf"
 							font_size:'18sp'
-
-
 
 						MDLabel:
 							text:'About Us'
@@ -494,20 +491,16 @@ MDScreen:
 							
 							FitImgCard:
 								img:"assets/ncc-1.jpg"
-								
 								text:"NCC"
-								
 								link:"http://www.shriramashramps.org/ncc"
 						AnchorLayout:
 							size_hint: (None, None)
 							size:app.y,dp(200)
-
 							FitImgCard:
 								img:"assets/music-1.jpg"
-								
 								text:"Music & Orchestra"
-								
 								link:"http://www.shriramashramps.org/music"	
+
 						AnchorLayout:
 							size_hint: (None, None)
 							size:app.y,dp(200)
@@ -556,8 +549,6 @@ MDScreen:
 								img:"assets/medical-1.jpg"
 								text:"Medical"		
 								link:"http://www.shriramashramps.org/medical"
-
-			
 
 		MDBottomNavigationItem:
 			name: "homework"
@@ -659,6 +650,7 @@ MDScreen:
 								title:""
 								content:""
 								avatar:app.av()																																										
+
 		MDBottomNavigationItem:
 			name: "ess"
 			icon:"book-variant-multiple"
@@ -688,8 +680,6 @@ MDScreen:
 				pos_hint:{"center_x":0.5,"center_y":0.70}
 				md_bg_color:app.theme_cls.bg_darkest
 
-
-
 			MyMDCard:
 				radius:120
 				id:t3
@@ -701,12 +691,11 @@ MDScreen:
 				style:'filled'
 				halign:"center"
 				md_bg_color:app.theme_cls.bg_darkest
-					
+
 			MDLabel:
 				text:"Essentials"
 				font_name:"assets/Poppins-ExtraBold.ttf"
 				halign:"center"
-
 				font_size:"30sp"
 				pos_hint:{"center_x":0.5,"center_y":0.90}
 				theme_text_color:"Custom"
@@ -940,7 +929,6 @@ MDScreen:
 						elevation:0
 						ripple_behavior:True
 						on_press:app.myc()					
-						#style:'elevated'
 						md_bg_color:0,0,0,0
 						MDLabel:
 							text:"More"
@@ -951,13 +939,12 @@ MDScreen:
 							icon:"chevron-right"
 							on_press:app.myc()
 					MDBoxLayout:
-						radius:70
+						id:hy4		
+						radius:(70,)
 						padding: dp(8)
 						spacing:30
 						size_hint: None, None
 						size: app.y, "50dp"
-
-						id:hy4		
 						orientation:"horizontal"
 						MDRoundFlatButton:
 							id:a890
@@ -977,14 +964,12 @@ MDScreen:
 							line_width:2							
 							text:"Rate Us"
 							icon:"share"																
-																
-					
+
 			MDLabel:
 				pos_hint:{"center_x":0.5,"center_y":0.10}
 				halign:"center"
 				text:" Application v"+app.__version__+" Running on Python v"+app.python_version
 				theme_text_color:"Hint" 
-
-
 				font_name:"assets/Poppins-Regular.ttf"
 				font_size:"15sp"
+
