@@ -22,20 +22,17 @@ from kivymd.uix.list import *
 from kivy.uix.scrollview import *
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.card import MDCard
-from kivymd.uix.gridlayout import MDGridLayout
 from kivy.uix.modalview import ModalView
 from kivymd.uix.datatables import MDDataTable
 from kivy.uix.anchorlayout import AnchorLayout
 from kivymd.uix.tab import *
 import requests
 import os
-from pathlib import Path
 from kivy.clock import Clock
 from kivy.utils import platform
 from kivy.core.window import Window
 from kivymd.uix.snackbar import Snackbar
 import time
-import _thread
 import settings
 from kivymd.uix.behaviors import *
 from kivy.metrics import dp
@@ -47,7 +44,6 @@ from kivy.utils import get_color_from_hex
 from kivy.uix.scatter import *
 from kivymd.color_definitions import *
 from kivymd.uix.behaviors import *
-from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.circularlayout import MDCircularLayout
 from kivymd.uix.dialog import BaseDialog
@@ -174,7 +170,7 @@ def update_menu():
 #:import _thread _thread
 MyMDCard:
 	radius:"30dp"
-	elevation:"50dp"
+	elevation:18
 	orientation:"vertical"
 	MDRelativeLayout:
 		AnchorLayout:
@@ -224,7 +220,7 @@ MyMDCard:
 	modal.add_widget(Builder.load_string(KV))
 	modal.open()	
 def show_message():
-		dialog=Snackbar(text="No Internet!",
+		dialog=Snackbar(text="No internet!",
 		snackbar_x="10dp",
 
 		radius=[dp(10),dp(10),dp(10),dp(10)],
@@ -233,15 +229,15 @@ def show_message():
 		a = lambda self : (Toast("Updating data"),threadRun(update_data,()),dialog.dismiss())
 		b = lambda self : Toast("Internet not connected")
 		show_message_true = lambda self:show_message()
-		c = lambda self : (dialog.dismiss(),Clock.schedule_once(show_message_true,5))
+		c = lambda self : (dialog.dismiss(),Clock.schedule_once(show_message_true,18))
 		d = lambda self : a(True) if check_intr() is True else b(True)
 		dialog.buttons = [
-		MDFlatButton(text="Retry",
+		MDFlatButton(text="RETRY",
 			font_name="assets/Poppins-Regular.ttf",
 			theme_text_color="Custom",
 			text_color=[1,1,1,1],
 			on_press = d), 
-		MDFlatButton (text="Cancel",
+		MDFlatButton (text="CANCEL",
 			font_name="assets/Poppins-Regular.ttf",
 			theme_text_color="Custom",
 			text_color=[1,1,1,1],
@@ -293,9 +289,9 @@ def booklist():
 MyMDCard:
 	id:hi
 	radius:"30dp"
-	elevation:60
+	elevation:18
 	ScrollView:
-		GridLayout:
+		MDGridLayout:
 			cols:1
 			adaptive_height:True
 			orientation:"lr-tb"
@@ -415,13 +411,11 @@ MyMDCard:
    				 line_width:3
    				 size:(hi.width-hi.width//10,"50dp")
 			MDLabel:
-			MDLabel:
-			MDLabel:
 """
 	modal = ModalView(
-	background_color=[0,0,0,0],
-	size_hint=(0.8, 0.8),
-	overlay_color=(0, 0, 0, 0),
+        background_color=[0,0,0,0],
+        size_hint=(0.8, 0.8),
+        overlay_color=(0, 0, 0, 0),
 	)
 
 	modal.add_widget(Builder.load_string(a))
@@ -452,13 +446,13 @@ Builder.load_string(
     size: "284dp", "400dp"
 	MyMDCard:
 
-
         MDTabs:
+            tab_hint_x: True
             on_tab_switch: root.on_tab_switch(*args)
 
 			Tab:
                 id: theme_tab
-                text: "Theme"
+                title: "Theme"
                 font_name:"assets/Lato-Italic.ttf"
 
                 MDGridLayout:
@@ -476,7 +470,7 @@ Builder.load_string(
                     on_release: root.dismiss()
 
             Tab:
-                text: "Accent"
+                title: "Accent"
                 font_name:"assets/Lato-Italic.ttf"
 
                 MDGridLayout:
@@ -533,7 +527,7 @@ def show_timings():
 
 	a = """
 MyMDCard:
-	radius:[30]
+	radius:[30,]
 	size:(0.85,0.85)
 	elevation:50
 	orientation:"vertical"
@@ -577,16 +571,11 @@ MyMDCard:
 				font_name:"assets/Poppins-Regular.ttf"
 			MDLabel:
 				text:""
-
-
-				
 		"""
 	modal = ModalView(
-	background_color=[0,0,0,0],
-	size_hint=(0.8, 0.8),
-
-	overlay_color=(0, 0, 0, 0),
-
+        background_color=[0,0,0,0],
+        size_hint=(0.8, 0.8),
+        overlay_color=(0, 0, 0, 0),
 	)
 
 	modal.add_widget(Builder.load_string(a))
@@ -595,6 +584,7 @@ MyMDCard:
 	
 def about_menu():
 	pass
+
 def show_adim():
 	a = """
 MyMDCard:
@@ -682,12 +672,11 @@ MyMDCard:
 				font_name:"assets/Poppins-Bold.ttf"
 				font_size:"15sp"						
 	"""
+
 	modal = ModalView(
-	background_color=[0,0,0,0],
-	size_hint=(0.8, 0.8),
-
-	overlay_color=(0, 0, 0, 0),
-
+        background_color=[0,0,0,0],
+        size_hint=(0.8, 0.8),
+        overlay_color=(0, 0, 0, 0),
 	)
 
 	modal.add_widget(Builder.load_string(a))
@@ -697,7 +686,7 @@ def load_img(img):
 MyMDCard:
 	id:f
 	raidus:30
-	elevation:60
+	elevation:18
 	orientation:"vertical"
 	MDLabel:
 	MDLabel:
@@ -729,18 +718,16 @@ MyMDCard:
 			icon:"whatsapp"		 	
 """	
 	modal = ModalView(
-	background_color=[0,0,0,0],
-	size_hint=(0.83, 0.7),
-
-	overlay_color=(0, 0, 0, 0),
-
+        background_color=[0,0,0,0],
+        size_hint=(0.83, 0.7),
+        overlay_color=(0, 0, 0, 0),
 	)
 
 	modal.add_widget(Builder.load_string(a))
 
 	modal.open()	
 def show_fees():
-	card = MyMDCard(elevation=50,radius=[30,30,30,30],size=(0.83,0.7))
+	card = MyMDCard(elevation=18,radius=[30,30,30,30],size=(0.83,0.7))
 	a = MDDataTable(
 	size=(0.8,0.8),
 	use_pagination=True,
@@ -764,18 +751,16 @@ def show_fees():
 	)
 	card.add_widget(a)
 	modal = ModalView(
-	background_color=[0,0,0,0],
-	size_hint=(0.83, 0.7),
-
-	overlay_color=(0, 0, 0, 0),
-
+        background_color=[0,0,0,0],
+        size_hint=(0.83, 0.7),
+        overlay_color=(0, 0, 0, 0),
 	)
 
 	modal.add_widget(card)
 
 	modal.open()	
 def show_teachers():
-	card = MyMDCard(elevation=50, radius=[30],size=(1,1))
+	card = MyMDCard(elevation=18, radius=[30],size=(1,1))
 	f = MDDataTable(
 	size=(0.8,0.8),
 	use_pagination=True,
@@ -792,11 +777,9 @@ def show_teachers():
 
 	card.add_widget(f)
 	modal = ModalView(
-	background_color=[0,0,0,0],
-	size_hint=(0.95, 0.95),
-
-	overlay_color=(0, 0, 0, 0),
-
+        background_color=[0,0,0,0],
+        size_hint=(0.95, 0.95),
+        overlay_color=(0, 0, 0, 0),
 	)
 
 	modal.add_widget(card)
