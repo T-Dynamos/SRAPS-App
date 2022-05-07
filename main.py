@@ -51,6 +51,9 @@ from kivymd.uix.label import MDLabel
 from kivymd.uix.sliverappbar import *
 from kivymd_extensions.akivymd.uix.loaders import *
 from functools import partial
+from kivy.loader import Loader
+
+Loader.loading_image = 'assets/loading.gif'
 
 if platform == "android":
 	from kivmob import KivMob
