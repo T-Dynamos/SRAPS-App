@@ -1,3 +1,6 @@
+
+__version__ = "2.02"
+
 import app
 
 try:
