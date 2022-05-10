@@ -19,7 +19,7 @@
     theme_text_color: "Primary"
     halign: "left"
 				
-<HeadItem@AnchorLayout>:
+<HeadItem>:
 	size_hint:None,None
 	size:app.y,dp(120)
 	avatar:""
@@ -167,6 +167,8 @@
 	elevation: 10
 
 	radius: [36, ]
+
+
 #: import ew kivy.uix.effectwidget
 MDScreen:
 	name : "Mscreen"
@@ -557,59 +559,60 @@ MDScreen:
 			text:"Homework"
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
-			MDRelativeLayout:
-				md_bg_color:app.theme_cls.bg_dark
-				AnchorLayout:
-					pos_hint:{"center_x":0.5,"center_y":0.92}
-					MyMDCard:
-						size_hint_y: None
-						size:(app.y-dp(10),"70dp")
-						size_hint_x:None
-						radius:dp(15),dp(15),0,0
-						style:"elevated"
-						elevation:0
-						md_bg_color:app.theme_cls.bg_darkest
-						BoxLayout:
-							orientation: 'horizontal'
-							AnchorLayout:
-								id:to1
-								anchor_y: 'bottom'
-								MyMDCard:
-									id:to1s
-									size_hint_y: None
-									size_hint_x: None
-									radius:dp(15),dp(15),0,0
-									size:(to.width-dp(13),"55dp")
-									md_bg_color:app.theme_cls.bg_dark
-									on_press:app.con("to1");app.kl()
-									style:"elevated"
-									elevation:0
-									MDLabel:
-										text:"Global"
-										halign: "center"
-										font_name: "assets/Poppins-Bold.ttf"
+	        MDTabs:
+	        	font_name:"assets/Poppins-Regular.ttf"
+	        	tab_hint_x: True
+	        	
+				Tab:
+					icon:"earth"
+	                title: "Global"
+	                id:g_tab
+					ScrollView:
+						GridLayout:
+							cols:1
+							size_hint_y:None
+							orientation: "lr-tb"
+							padding:0
+							spacing: "15dp"
+							adaptive_height: True
+							height: self.minimum_height
+							MDLabel:	 
+							HeadItem:
+								id:test
+								title:""
+								content:""
+								avatar:app.av()								
+							HeadItem:
+								id:test1
+								title:""
+								content:""
+								avatar:app.av()		
+							HeadItem:
+								id:test2
+								title:""
+								content:""
+								avatar:app.av()								
+							HeadItem:
+								id:test3
+								title:""
+								content:""
+								avatar:app.av()			
+							HeadItem:
+								id:test4
+								title:""
+								content:""
+								avatar:app.av()								
+							HeadItem:
+								id:test5
+								title:""
+								content:""
+								avatar:app.av()																																										
 
-							AnchorLayout:
-								id:to										
-								MyMDCard:
-									id:tos
-									size_hint_y: None
-									size_hint_x: None
-									radius:dp(15)
-									style:"elevated"
-									elevation:0
-									size:(to.width-dp(13),"45dp")
-									md_bg_color:app.theme_cls.bg_dark
-									on_press:app.con("to");app.kl()
-									MDLabel:
-										text:"Global"
-										halign: "center"
-										font_name: "assets/Poppins-Bold.ttf"
-				MyMDCard:
-					size_hint:None,None
-					size:app.y,Window.size[1]
-					pos_hint:{"center_x":0.5,"center_y":0.25}
-					md_bg_color:app.theme_cls.bg_dark
+
+	            Tab:
+	            	id:c_tab
+	            	icon:"account-school"
+	            	title:"Class"
 					ScrollView:
 						GridLayout:
 							cols:1
@@ -650,6 +653,9 @@ MDScreen:
 								title:""
 								content:""
 								avatar:app.av()																																										
+							
+
+																																							
 
 		MDBottomNavigationItem:
 			name: "ess"
