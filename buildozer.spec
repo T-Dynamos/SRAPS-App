@@ -7,7 +7,7 @@ title = SRAPS App
 package.name = srapsapp
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = com.Tdynamos
+package.domain = com.tdynamos
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -22,7 +22,7 @@ source.dir = .
 source.exclude_exts = spec
 
 # (list) List of directory to exclude (let empty to not exclude anything)
-source.exclude_dirs =  bin,img
+source.exclude_dirs =  bin,img,linux
 
 # (list) List of exclusions using pattern matching
 #source.exclude_patterns = license,images/*/*.jpg
@@ -36,7 +36,7 @@ version.filename = main.py
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = kivy==2.1.0, python3==3.10.4,https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip, requests,pillow,charset_normalizer,chardet,idna,urllib3,certifi,kivymd_extensions,kivymd_extensions.akivymd, kivmob
+requirements = kivy==2.1.0,https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip, requests,pillow,charset_normalizer,chardet,idna,urllib3,certifi,kivymd_extensions,kivymd_extensions.akivymd, kivmob
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
