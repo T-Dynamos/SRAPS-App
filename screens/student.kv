@@ -40,21 +40,19 @@
 					source: root.avatar
 			MDBoxLayout:
 				orientation: "vertical"
-				size_hint_x: .7
-				padding: dp(10)
-				spacing: dp(10)
-
+				padding:dp(32)
+				spacing:dp(15)
 				DataloaderLabel:
 					text:  root.title
 					font_name:"assets/Poppins-Bold.ttf"
-					font_size:"20sp"
+					font_size:"15sp"
 
 				MDSeparator:
 
 				DataloaderLabel:
 					text:  root.content
 					font_name:"assets/Poppins-Regular.ttf"
-					font_size:"15sp"
+					font_size:"10sp"
 
 <FitImgCard@AnchorLayout>
 	text:""
@@ -131,7 +129,8 @@
 		font_name:"assets/Poppins-Bold.ttf"
 		halign:'center'
 		theme_text_color:"Custom"
-		text_color:0,0,0,1		
+		text_color:0,0,0,1
+				
 <MyImg@MyMDCard>:
 	radius:"60dp"
 	elevation:40
@@ -314,7 +313,7 @@ MDScreen:
 							font_size:'20sp'
 						
 						MDLabel:
-							text:'Latest News'
+							text:'  Latest News'
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
 						AnchorLayout:
@@ -341,13 +340,13 @@ MDScreen:
 							font_size:'18sp'
 
 						MDLabel:
-							text:'About Us'
+							text:'  About Us'
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
 
 
 						MDLabel:
-							text:'Education is the most powerful tool which can be used to change the world.'
+							text:'  Education is the most powerful tool which can be used to change the world.'
 							font_name:"assets/Lato-Italic.ttf"
 							font_size:'18sp'
 						AnchorLayout:
@@ -358,7 +357,7 @@ MDScreen:
 								radius:"50dp"
 								halign:"center"
 								size_hint:None,None
-								size: app.y-dp(13), "620dp"
+								size: app.y-dp(13), "570dp"
 								style:'elevated'
 								padding:20
 								md_bg_color:app.theme_cls.accent_light
@@ -367,7 +366,7 @@ MDScreen:
 									hailgn:'center'
 									text:' Shri Ram Ashram Public School, one of the most prestigious schools in Punjab, founded in 1923 at the behest and benediction of Pandit Madan Mohan Malaviya Ji and other national leaders with the sole aim and objective of providing value based quality education. Since then it has been a path breaker in the pursuit of excellence. Its endeavour of integrating with quality is reflected in the outstanding results of X & XII year after year and accolades won in different fields. The school considers education to be a life-long process which should have a strong foundation.The goal of the school is to inculcate in each student a love for learning and a desire to excel at every level. The school also aims at equipping the students with the intellectual and practical skills that are necessary to meet the challenges in the future. We assure you that here your child will become an enlightened citizen .                                   '
 									font_name:'assets/Lato-Italic.ttf'
-									font_size:"19sp"
+									font_size:"15sp"
 									theme_text_color:"Custom"
 									text_color:0,0,0,1			
 										
@@ -376,14 +375,14 @@ MDScreen:
 							size_hint_x:None
 							size:(app.y,"150dp")
 							FitCard:
-								text:'"We aim at making every child a human being first, before he/she become an Engineer, Doctor, Philosopher or an Educator.'
+								text:'"  We aim at making every child a human being first, before he/she become an Engineer, Doctor, Philosopher or an Educator.'
 
 						MDLabel:
 							text:''
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
 						MDLabel:
-							text:'Our Vision'
+							text:'  Our Vision'
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
 						MDLabel:
@@ -396,7 +395,7 @@ MDScreen:
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
 						MDLabel:
-							text:'To blend Indian customs and traditions with the global standards of education and facilitate value based quality education to maximum number of children of our society within their affordable resources.'
+							text:'  To blend Indian customs and traditions with the global standards of education and facilitate value based quality education to maximum number of children of our society within their affordable resources.'
 							font_name:"assets/Lato-Italic.ttf"
 							font_size:'18sp'
 						MDLabel:
@@ -409,7 +408,7 @@ MDScreen:
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
 						MDLabel:
-							text:'Our Mission'
+							text:'  Our Mission'
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
 						MDLabel:
@@ -422,7 +421,7 @@ MDScreen:
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
 						MDLabel:
-							text:'To blend Indian customs and traditions with the global standards of education and facilitate value based quality education to maximum number of children of our society within their affordable resources.'
+							text:'  To blend Indian customs and traditions with the global standards of education and facilitate value based quality education to maximum number of children of our society within their affordable resources.'
 							font_name:"assets/Lato-Italic.ttf"
 							font_size:'18sp'
 						MDLabel:
@@ -437,7 +436,7 @@ MDScreen:
 					
 								
 						MDLabel:
-							text:'Our Features'
+							text:'  Our Features'
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'20sp'
 						AnchorLayout:
@@ -569,6 +568,7 @@ MDScreen:
 	                id:g_tab
 					ScrollView:
 						GridLayout:
+							id:global_noti
 							cols:1
 							size_hint_y:None
 							orientation: "lr-tb"
@@ -576,37 +576,7 @@ MDScreen:
 							spacing: "15dp"
 							adaptive_height: True
 							height: self.minimum_height
-							MDLabel:	 
-							HeadItem:
-								id:test
-								title:""
-								content:""
-								avatar:app.av()								
-							HeadItem:
-								id:test1
-								title:""
-								content:""
-								avatar:app.av()		
-							HeadItem:
-								id:test2
-								title:""
-								content:""
-								avatar:app.av()								
-							HeadItem:
-								id:test3
-								title:""
-								content:""
-								avatar:app.av()			
-							HeadItem:
-								id:test4
-								title:""
-								content:""
-								avatar:app.av()								
-							HeadItem:
-								id:test5
-								title:""
-								content:""
-								avatar:app.av()																																										
+							MDLabel:																																									
 
 
 	            Tab:

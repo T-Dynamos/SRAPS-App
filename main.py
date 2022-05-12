@@ -164,13 +164,28 @@ def return_Sycn(url):
 	except Exception:
 		return "assets/no-internet.png"
 
+def showShort(words):
+	  if len(words.split(" ")) >= 10:
+	  	return words[:-(len(words.split(" "))-10)]+" ..."
+	  else:
+	  	return words
+
+
 def update_data(*largs):
 	o = screen_manager.get_screen("Mscreen").ids
 	DataBase, links = getDb()
 	o.news.text = str(DataBase["News"])		
 	o.NI.source = str(DataBase["SliderImages"])
 	add_part(links)
-	
+	for i in (requests.get("http://srapsapp.herokuapp.com/getGlobalNotification?pass=sraps").text).split("\n"):
+		inf = i.replace("\n","")
+		if inf != "":
+			o.global_noti.add_widget(Builder.load_string(f"""
+HeadItem:
+	title:"{str(inf.split("`")[0])}"
+	content:"{str(inf.split("`")[-1])}"
+	avatar:'assets/logo.png'
+	"""))
 def Toast1(string,*largs):
 	Toast2(string)
 
