@@ -21,13 +21,13 @@
 				
 <HeadItem>:
 	size_hint:None,None
-	size:app.y,dp(120)
+	size:app.y-dp(20),dp(120)
 	avatar:""
 	title:''
 	content:""
 	MyMDCard
 		size_hint:None,None
-		size:app.y-dp(10),dp(120)
+		size:app.y-dp(20),dp(120)
 		radius:dp(20)
 		md_bg_color:app.theme_cls.bg_light
 		MDBoxLayout:
@@ -67,7 +67,7 @@
 		size_hint:None,None
 		style:"elevated"
 		size: app.y-app.y//17, "200dp"
-		md_bg_color:app.theme_cls.accent_light		
+		md_bg_color:app.theme_cls.accent_color
 
 		FitImage:
 			source:root.img
@@ -303,8 +303,7 @@ MDScreen:
 						size_hint_y:None
 						id:fu
 						orientation: "lr-tb"
-						padding: "1dp"
-						spacing: "35dp"
+						spacing: "25dp"
 						adaptive_height: True
 						height: self.minimum_height
 						MDLabel:
@@ -327,7 +326,7 @@ MDScreen:
 								size_hint:None,None
 								size: app.y-dp(13),"170dp"
 								style:'elevated'
-								md_bg_color:app.theme_cls.accent_light
+								md_bg_color:app.theme_cls.accent_color
 								FitImage:
 									radius:"40dp"
 									id:NI
@@ -335,29 +334,20 @@ MDScreen:
 
 						MDLabel
 							id:news
-							text:app.News
+							text:" "+app.News
 							font_name:"assets/Lato-Italic.ttf"
 							font_size:'18sp'
-
 						MDLabel:
-							text:'  About Us'
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
 
-
-						MDLabel:
-							text:'  Education is the most powerful tool which can be used to change the world.'
-							font_name:"assets/Lato-Italic.ttf"
-							font_size:'18sp'
 						AnchorLayout:
 							size_hint_y: None 
 							size_hint_x:None
-							size:(app.y,"620dp")
+							size:(app.y,"430dp")
 							MyMDCard:
 								radius:"50dp"
 								halign:"center"
 								size_hint:None,None
-								size: app.y-dp(13), "570dp"
+								size: app.y-dp(13), "430dp"
 								style:'elevated'
 								padding:20
 								md_bg_color:app.theme_cls.accent_light
@@ -375,70 +365,9 @@ MDScreen:
 							size_hint_x:None
 							size:(app.y,"150dp")
 							FitCard:
-								text:'"  We aim at making every child a human being first, before he/she become an Engineer, Doctor, Philosopher or an Educator.'
+								text:'We aim at making every child a human being first, before he/she become an Engineer, Doctor, Philosopher or an Educator .'
 
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-						MDLabel:
-							text:'  Our Vision'
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
 
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-						MDLabel:
-							text:'  To blend Indian customs and traditions with the global standards of education and facilitate value based quality education to maximum number of children of our society within their affordable resources.'
-							font_name:"assets/Lato-Italic.ttf"
-							font_size:'18sp'
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-						MDLabel:
-							text:'  Our Mission'
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-						MDLabel:
-							text:'  To blend Indian customs and traditions with the global standards of education and facilitate value based quality education to maximum number of children of our society within their affordable resources.'
-							font_name:"assets/Lato-Italic.ttf"
-							font_size:'18sp'
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-
-						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
-					
-								
-						MDLabel:
-							text:'  Our Features'
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
 						AnchorLayout:
 							size_hint: (None, None)
 							size:app.y,dp(200)
@@ -572,7 +501,7 @@ MDScreen:
 							cols:1
 							size_hint_y:None
 							orientation: "lr-tb"
-							padding:0
+							padding:dp(10)
 							spacing: "15dp"
 							adaptive_height: True
 							height: self.minimum_height
@@ -588,7 +517,7 @@ MDScreen:
 							cols:1
 							size_hint_y:None
 							orientation: "lr-tb"
-							padding:0
+							padding:dp(10)
 							spacing: "15dp"
 							adaptive_height: True
 							height: self.minimum_height
@@ -806,12 +735,10 @@ MDScreen:
 				MDGridLayout:
 					cols:1
 					MyMDCard:
-						radius:70
 						padding:dp(8)
 						size_hint: None, None
 						size: app.y-dp(30), "50dp"
-						elevation:0
-						#style:'elevated'
+
 						md_bg_color:0,0,0,0
 						MDLabel:
 							text:"Save Debug logs"
@@ -833,8 +760,6 @@ MDScreen:
 						size_hint_x:None
 						size_hint_y:None
 						size: app.y-dp(30), "50dp"
-						elevation:0
-						md_bg_color:0,0,0,0
 						MDLabel:
 							text:"Dark Mode"
 							font_name:"assets/Poppins-Regular.ttf"
@@ -855,9 +780,7 @@ MDScreen:
 						size_hint: None, None
 						size: app.y, "50dp"
 						elevation:0
-						ripple_behavior:True
-						on_press:app.show_theme_picker()					
-						md_bg_color:0,0,0,0
+						on_press:app.show_theme_picker()	
 						MDLabel:
 							text:"Change Theme"
 							font_name:"assets/Poppins-Regular.ttf"
@@ -871,9 +794,7 @@ MDScreen:
 						size_hint: None, None
 						size: app.y, "50dp"
 						elevation:0
-						ripple_behavior:True
-						on_press:app.update_menu()					
-						md_bg_color:0,0,0,0
+						on_press:app.update_menu()	
 						MDLabel:
 							text:"Check For Update"
 							font_name:"assets/Poppins-Regular.ttf"
@@ -887,9 +808,7 @@ MDScreen:
 						size_hint: None, None
 						size: app.y, "50dp"
 						elevation:0
-						ripple_behavior:True
-						on_press:app.about_menu()					
-						md_bg_color:0,0,0,0
+						on_press:app.about_menu()	
 						MDLabel:
 							text:"About Us"
 							font_name:"assets/Poppins-Regular.ttf"
@@ -903,9 +822,7 @@ MDScreen:
 						size_hint: None, None
 						size: app.y, "50dp"
 						elevation:0
-						ripple_behavior:True
-						on_press:app.myc()					
-						md_bg_color:0,0,0,0
+						on_press:app.myc()	
 						MDLabel:
 							text:"More"
 							font_name:"assets/Poppins-Regular.ttf"
@@ -914,7 +831,7 @@ MDScreen:
 							id:hy3
 							icon:"chevron-right"
 							on_press:app.myc()
-					MDBoxLayout:
+					MyMDCard:
 						id:hy4		
 						radius:(70,)
 						padding: dp(8)
@@ -922,24 +839,30 @@ MDScreen:
 						size_hint: None, None
 						size: app.y, "50dp"
 						orientation:"horizontal"
-						MDRoundFlatButton:
-							id:a890
-							size:(self.width,self.height)
-							text:"Share App"
-							icon:"share"
-							icon_color:0,0,0,0
-							text_color:0,0,0,0
-							line_color:0,0,0,0
-							line_width:2
-						MDRoundFlatButton:
-							id:a891
-							size:(self.width,self.height)
-							icon_color:0,0,0,0
-							text_color:0,0,0,0
-							line_color:0,0,0,0
-							line_width:2							
-							text:"Rate Us"
-							icon:"share"																
+						AnchorLayout:
+							id:ok
+							orientation:"horizontal"
+							MDRoundFlatButton:
+								id:a890
+								size:(ok.width-dp(10),ok.height)
+								text:"Share App"
+								icon:"share"
+								icon_color:0,0,0,0
+								text_color:0,0,0,0
+								line_color:0,0,0,0
+								line_width:1
+						AnchorLayout:
+							id:ok2
+							orientation:"horizontal"
+							MDRoundFlatButton:
+								id:a891
+								size:(ok2.width-dp(10),ok2.height)
+								icon_color:0,0,0,0
+								text_color:0,0,0,0
+								line_color:0,0,0,0
+								line_width:1							
+								text:"Rate Us"
+								icon:"share"																
 
 			MDLabel:
 				pos_hint:{"center_x":0.5,"center_y":0.10}

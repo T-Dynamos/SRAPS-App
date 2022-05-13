@@ -47,7 +47,7 @@ from kivymd.uix.behaviors import *
 from kivymd.uix.button import MDIconButton
 from kivymd.uix.circularlayout import MDCircularLayout
 from kivymd.uix.dialog import BaseDialog
-from kivymd.uix.label import MDLabel
+from kivymd.uix.label import *
 from kivymd.uix.sliverappbar import *
 from kivymd_extensions.akivymd.uix.loaders import *
 from functools import partial
@@ -200,6 +200,7 @@ def update_menu():
 	KV = """
 #:import _thread _thread
 MyMDCard:
+
 	radius:"30dp"
 	elevation:18
 	orientation:"vertical"
@@ -208,6 +209,7 @@ MyMDCard:
 			anchor_x:"left"
 			anchor_y:"top"
 			MDIconButton:
+				on_press:model.dismiss()
 				icon:"chevron-left"
 		AnchorLayout:
 			id:upd1		
@@ -237,18 +239,59 @@ MyMDCard:
 			halign:"center"
 			line_width:"1dp"
 			on_press:upd.source = "assets/search.png";ud2.text = "Checking ...";_thread.start_new_thread(app.update_a,(upd1,ud2,upd,ud3))
+	
 	"""
 
 	
-	modal = ModalView(
-	background_color=[0,0,0,0],
-	size_hint=(0.7, 0.5),
+	modal = Builder.load_string("""
+ModalView:
+	id:model
+	background_color:[0,0,0,0]
+	size_hint:(0.7, 0.5)
+	overlay_color:(0, 0, 0, 0)
+	
+	MyMDCard:
 
-	overlay_color=(0, 0, 0, 0),
-
-	)
-
-	modal.add_widget(Builder.load_string(KV))
+		radius:"30dp"
+		elevation:18
+		orientation:"vertical"
+		MDRelativeLayout:
+			AnchorLayout:
+				anchor_x:"left"
+				anchor_y:"top"
+				MDIconButton:
+					on_press:model.dismiss()
+					icon:"close"
+			AnchorLayout:
+				id:upd1		
+				Image:
+					id:upd
+					source:"assets/update.png"
+					size:(0.9,0.9)
+					halign:"center"
+					size_hint:None,None
+					size:"70dp","70dp"
+					anim_delay:0.05
+		MDLabel:
+			id:ud2
+			text:"Currently Installed Version "+app.__version__
+			font_name:"assets/Lato-Italic.ttf"
+			font_size:"15sp"
+			halign:"center"
+		AnchorLayout:
+			orientation:"vertical"
+			anchor_x:'center'
+			anchor_y:'center'
+			MDRoundFlatButton:
+				id:ud3
+				text:"Check for Update"
+				font_name:"assets/Lato-Italic.ttf"
+				font_size:"15sp"
+				halign:"center"
+				line_width:"1dp"
+				on_press:upd.source = "assets/search.png";ud2.text = "Checking ...";_thread.start_new_thread(app.update_a,(upd1,ud2,upd,ud3))
+		
+	""")
 	modal.open()	
 def show_message():
 		dialog=Snackbar(text="No internet!",
@@ -260,14 +303,15 @@ def show_message():
 		a = lambda self : (Toast("Updating data"),threadRun(update_data,()),dialog.dismiss())
 		b = lambda self : Toast("Internet not connected")
 		show_message_true = lambda self:show_message()
-		c = lambda self : (dialog.dismiss(),Clock.schedule_once(show_message_true,18))
-		d = lambda self : a(True) if check_intr() is True else b(True)
+		c = lambda self : (dialog.dismiss(),Clock.schedule_once(show_message_true,5))
+		d = lambda *largs : a(True) if check_intr() is True else b(True)
+		e = lambda self:threadRun(d,())
 		dialog.buttons = [
 		MDFlatButton(text="RETRY",
 			font_name="assets/Poppins-Regular.ttf",
 			theme_text_color="Custom",
 			text_color=[1,1,1,1],
-			on_press = d), 
+			on_press = e), 
 		MDFlatButton (text="CANCEL",
 			font_name="assets/Poppins-Regular.ttf",
 			theme_text_color="Custom",
