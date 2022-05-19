@@ -1,0 +1,89 @@
+MDScreen:
+	name:"Sscreen"
+
+	MDLabel:
+		pos_hint:{"center_x":0.5,"center_y":0.85}
+		text:"Welcome to SRAPS App!"
+		font_name:"assets/Poppins-Regular.ttf"
+		font_size:"35sp"
+		halign:"center"
+	AnchorLayout:
+		Image:
+			source:"assets/wel.png"
+			size_hint:None,None
+			keep_ratio:True
+			allow_stretch:True
+			size:"350dp","300dp"
+	RelativeLayout:
+		MyMDCard:
+			md_bg_color:app.theme_cls.primary_light
+			pos_hint:{"center_x":0.5,"center_y":0.08}
+			style:"elevated"
+			size_hint:None,None
+			size:app.y-dp(20),dp(60)
+			radius:dp(20)
+			ripple_behavior:True
+			on_press:app.screen_manager.current = "Sscreen1"
+			RelativeLayout:
+				MDLabel:
+					font_name:"assets/Poppins-Regular.ttf"
+					font_size:"20sp"
+					halign:"center"				
+					text:"Take a Tour"
+				MDIconButton:
+					pos_hint:{"center_x":0.85,"center_y":0.5}
+					icon:"arrow-right"
+
+~~~
+
+
+MDScreen:
+	name:"Sscreen1"
+	MDLabel:
+		pos_hint:{"center_x":0.5,"center_y":0.85}
+		text:"Who are you?"
+		font_name:"assets/Poppins-Regular.ttf"
+		font_size:"35sp"
+		halign:"center"
+	RelativeLayout:
+		MyMDCard:
+			md_bg_color:app.theme_cls.primary_light
+			pos_hint:{"center_x":0.5,"center_y":0.54}
+			style:"elevated"
+			size_hint:None,None
+			size:app.y-dp(20),dp(60)
+			radius:dp(20)
+			ripple_behavior:True
+			RelativeLayout:
+				MDLabel:
+					font_name:"assets/Poppins-Regular.ttf"
+					font_size:"20sp"
+					halign:"center"				
+					text:"I am a Student"
+				MDIconButton:
+					pos_hint:{"center_x":0.85,"center_y":0.5}
+					icon:"arrow-right"
+				MDIconButton:
+					pos_hint:{"center_x":0.1,"center_y":0.5}
+					icon:"account-school"					
+	RelativeLayout:
+		MyMDCard:
+			md_bg_color:app.theme_cls.accent_light
+			pos_hint:{"center_x":0.5,"center_y":0.42}
+			style:"elevated"
+			size_hint:None,None
+			size:app.y-dp(20),dp(60)
+			radius:dp(20)
+			ripple_behavior:True
+			RelativeLayout:
+				MDLabel:
+					font_name:"assets/Poppins-Regular.ttf"
+					font_size:"20sp"
+					halign:"center"				
+					text:"I am a Teacher"
+				MDIconButton:
+					pos_hint:{"center_x":0.85,"center_y":0.5}
+					icon:"arrow-right"
+				MDIconButton:
+					pos_hint:{"center_x":0.1,"center_y":0.5}
+					icon:"account-school-outline"						

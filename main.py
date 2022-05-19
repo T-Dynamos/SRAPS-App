@@ -1082,4 +1082,18 @@ class SRAPS_APP_TEACHER(MDApp):
 		self.theme_cls.primary_palette = color 
 		settings.writeSettings("primary",f"{color}.{self.theme_cls.accent_palette}")
 
-SRAPS_APP_STUDENT().run()
+
+class SRAPS_APP_STARTUP(MDApp):
+	y=y
+	screen_manager=screen_manager
+	def build(self):
+
+		self.title="SRAPS App"
+		self.theme_cls.material_style = "M3"
+		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[0]))
+		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[-1]))		
+		screen_manager.current = "Sscreen"
+		return screen_manager
+
+
+SRAPS_APP_STARTUP().run()
