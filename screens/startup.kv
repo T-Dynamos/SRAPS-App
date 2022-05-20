@@ -48,12 +48,13 @@ MDScreen:
 	RelativeLayout:
 		MyMDCard:
 			md_bg_color:app.theme_cls.primary_light
-			pos_hint:{"center_x":0.5,"center_y":0.54}
+			pos_hint:{"center_x":0.5,"center_y":0.6}
 			style:"elevated"
 			size_hint:None,None
 			size:app.y-dp(20),dp(60)
 			radius:dp(20)
 			ripple_behavior:True
+			on_press:app.screen_manager.current = "Sscreen2"	
 			RelativeLayout:
 				MDLabel:
 					font_name:"assets/Poppins-Regular.ttf"
@@ -69,7 +70,7 @@ MDScreen:
 	RelativeLayout:
 		MyMDCard:
 			md_bg_color:app.theme_cls.accent_light
-			pos_hint:{"center_x":0.5,"center_y":0.42}
+			pos_hint:{"center_x":0.5,"center_y":0.48}
 			style:"elevated"
 			size_hint:None,None
 			size:app.y-dp(20),dp(60)
@@ -86,4 +87,69 @@ MDScreen:
 					icon:"arrow-right"
 				MDIconButton:
 					pos_hint:{"center_x":0.1,"center_y":0.5}
-					icon:"account-school-outline"						
+					icon:"account-school-outline"	
+	RelativeLayout:
+		AnchorLayout:
+			pos_hint:{"center_x":0.5,"center_y":0.32}
+			anchor_y:"bottom"
+			Image:
+				source:"assets/wel2.png"
+				size_hint:None,None
+				keep_ratio:True
+				allow_stretch:True
+				size:"400dp","400dp"
+	RelativeLayout:
+		AnchorLayout:
+			anchor_y:"top"
+			anchor_x:"left"
+			MDIconButton:
+				icon:"chevron-left"		
+				on_press:app.screen_manager.current = "Sscreen"	
+
+~~~
+
+MDScreen:
+	name:"Sscreen2"
+	MDLabel:
+		pos_hint:{"center_x":0.5,"center_y":0.85}
+		text:"What's your Admission No.?"
+		font_name:"assets/Poppins-Regular.ttf"
+		font_size:"25sp"
+		halign:"center"	
+	RelativeLayout:
+		AnchorLayout:
+			anchor_y:"top"
+			anchor_x:"left"
+			MDIconButton:
+				icon:"chevron-left"		
+				on_press:app.screen_manager.current = "Sscreen1"	
+	RelativeLayout:
+		AnchorLayout:
+			pos_hint:{"center_x":0.5,"center_y":0.35}
+			anchor_y:"bottom"
+			Image:
+				source:"assets/wel3.png"
+				size_hint:None,None
+				keep_ratio:True
+				allow_stretch:True
+				size:"400dp","400dp"	
+	MDBoxLayout:
+		pos_hint:{"center_x":0.5,"center_y":0.65}
+		size_hint:None,None
+		size:dp(200),"50dp"
+		MDTextField:
+			id:admno
+			hint_text:"Admission Number"	
+			mode: "rectangle"
+			max_text_length: 4
+			font_name:"assets/Poppins-Regular.ttf"
+			font_name_hint_text:"assets/Poppins-Regular.ttf"
+	MDRoundFlatButton:
+		size_hint:None,None
+		size:dp(150),"50dp"
+		pos_hint:{"center_x":0.5,"center_y":0.55}
+		text:"Search"
+		md_bg_color:app.theme_cls.accent_light
+		line_color:app.theme_cls.accent_light
+		on_press:app.get_admno()
+												

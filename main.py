@@ -251,7 +251,7 @@ ModalView:
 	overlay_color:(0, 0, 0, 0)
 	
 	MyMDCard:
-
+modalmodal
 		radius:"30dp"
 		elevation:18
 		orientation:"vertical"
@@ -1085,15 +1085,47 @@ class SRAPS_APP_TEACHER(MDApp):
 
 class SRAPS_APP_STARTUP(MDApp):
 	y=y
+	x=Window.size[1]
 	screen_manager=screen_manager
 	def build(self):
 
 		self.title="SRAPS App"
 		self.theme_cls.material_style = "M3"
 		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[0]))
+		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[-2]))
 		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[-1]))		
 		screen_manager.current = "Sscreen"
 		return screen_manager
 
+	def get_admno(self):
+		modal = Builder.load_string("""
+ModalView:
+	id:model
+	background_color:[0,0,0,0]
+	size_hint:None,None
+	size:app.y,app.x
+	overlay_color:(0, 0, 0, 0)
+	MDBoxLayout:
+		md_bg_color:0,0,0,0.7
+		size_hint:None,None
+		size:app.y,app.x
+		
+		RelativeLayout:
+			MDLabel:
+				pos_hint:{"center_x":0.5,"center_y":0.76}
+				text:"Searching "+app.screen_manager.get_screen("Sscreen2").ids.admno.text
+				font_name:"assets/Poppins-Regular.ttf"
+				font_size:"25sp"
+				halign:"center"
+				theme_text_color:"Custom"
+				text_color:app.theme_cls.primary_light
+			MDSpinner:
+				pos_hint:{"center_x":0.5,"center_y":0.38}
+				size_hint: None, None
+				size: dp(40), dp(40)
+				pos_hint: {'center_x': .5, 'center_y': .5}
+				palette:[app.theme_cls.primary_light,app.theme_cls.accent_light,app.theme_cls.primary_light,app.theme_cls.accent_light]
 
+	""")
+		modal.open()
 SRAPS_APP_STARTUP().run()
