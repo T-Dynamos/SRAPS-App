@@ -1,6 +1,6 @@
 MDScreen:
 	name:"Sscreen"
-
+	md_bg_color:1,1,1,1
 	MDLabel:
 		pos_hint:{"center_x":0.5,"center_y":0.85}
 		text:"Welcome to SRAPS App!"
@@ -9,7 +9,7 @@ MDScreen:
 		halign:"center"
 	AnchorLayout:
 		Image:
-			source:"assets/wel.png"
+			source:"assets/wel.jpg"
 			size_hint:None,None
 			keep_ratio:True
 			allow_stretch:True
@@ -38,6 +38,7 @@ MDScreen:
 
 
 MDScreen:
+	md_bg_color:1,1,1,1
 	name:"Sscreen1"
 	MDLabel:
 		pos_hint:{"center_x":0.5,"center_y":0.85}
@@ -48,7 +49,7 @@ MDScreen:
 	RelativeLayout:
 		MyMDCard:
 			md_bg_color:app.theme_cls.primary_light
-			pos_hint:{"center_x":0.5,"center_y":0.6}
+			pos_hint:{"center_x":0.5,"center_y":0.65}
 			style:"elevated"
 			size_hint:None,None
 			size:app.y-dp(20),dp(60)
@@ -70,7 +71,7 @@ MDScreen:
 	RelativeLayout:
 		MyMDCard:
 			md_bg_color:app.theme_cls.accent_light
-			pos_hint:{"center_x":0.5,"center_y":0.48}
+			pos_hint:{"center_x":0.5,"center_y":0.53}
 			style:"elevated"
 			size_hint:None,None
 			size:app.y-dp(20),dp(60)
@@ -90,14 +91,14 @@ MDScreen:
 					icon:"account-school-outline"	
 	RelativeLayout:
 		AnchorLayout:
-			pos_hint:{"center_x":0.5,"center_y":0.32}
+			pos_hint:{"center_x":0.5,"center_y":0.5}
 			anchor_y:"bottom"
 			Image:
-				source:"assets/wel2.png"
+				source:"assets/wel3.jpg"
 				size_hint:None,None
 				keep_ratio:True
 				allow_stretch:True
-				size:"400dp","400dp"
+				size:"300dp","300dp"
 	RelativeLayout:
 		AnchorLayout:
 			anchor_y:"top"
@@ -110,12 +111,14 @@ MDScreen:
 
 MDScreen:
 	name:"Sscreen2"
+	md_bg_color:1,1,1,1
 	MDLabel:
 		pos_hint:{"center_x":0.5,"center_y":0.85}
 		text:"What's your Admission No.?"
 		font_name:"assets/Poppins-Regular.ttf"
 		font_size:"25sp"
-		halign:"center"	
+		halign:"center"
+		
 	RelativeLayout:
 		AnchorLayout:
 			anchor_y:"top"
@@ -125,14 +128,22 @@ MDScreen:
 				on_press:app.screen_manager.current = "Sscreen1"	
 	RelativeLayout:
 		AnchorLayout:
-			pos_hint:{"center_x":0.5,"center_y":0.35}
+			pos_hint:{"center_x":0.5,"center_y":0.44}
 			anchor_y:"bottom"
 			Image:
-				source:"assets/wel3.png"
+				source:"assets/wel2.jpg"
 				size_hint:None,None
 				keep_ratio:True
 				allow_stretch:True
-				size:"400dp","400dp"	
+				size:"300dp","300dp"
+		MDRoundFlatButton:
+			size_hint:None,None
+			size:dp(150),"50dp"
+			pos_hint:{"center_x":0.5,"center_y":0.55}
+			text:"Search"
+			md_bg_color:app.theme_cls.accent_light
+			line_color:app.theme_cls.accent_light
+			on_press:app.get_admno()		
 	MDBoxLayout:
 		pos_hint:{"center_x":0.5,"center_y":0.65}
 		size_hint:None,None
@@ -144,12 +155,5 @@ MDScreen:
 			max_text_length: 4
 			font_name:"assets/Poppins-Regular.ttf"
 			font_name_hint_text:"assets/Poppins-Regular.ttf"
-	MDRoundFlatButton:
-		size_hint:None,None
-		size:dp(150),"50dp"
-		pos_hint:{"center_x":0.5,"center_y":0.55}
-		text:"Search"
-		md_bg_color:app.theme_cls.accent_light
-		line_color:app.theme_cls.accent_light
-		on_press:app.get_admno()
+
 												
