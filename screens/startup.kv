@@ -68,7 +68,24 @@ MDScreen:
 				MDIconButton:
 					pos_hint:{"center_x":0.1,"center_y":0.5}
 					icon:"account-school"					
+
+	
+		AnchorLayout:
+			pos_hint:{"center_x":0.5,"center_y":0.5}
+			anchor_y:"bottom"
+			Image:
+				source:"assets/wel3.jpg"
+				size_hint:None,None
+				keep_ratio:True
+				allow_stretch:True
+				size:"300dp","300dp"
 	RelativeLayout:
+		AnchorLayout:
+			anchor_y:"top"
+			anchor_x:"left"
+			MDIconButton:
+				icon:"chevron-left"		
+				on_press:app.screen_manager.current = "Sscreen"	
 		MyMDCard:
 			md_bg_color:app.theme_cls.accent_light
 			pos_hint:{"center_x":0.5,"center_y":0.53}
@@ -89,24 +106,6 @@ MDScreen:
 				MDIconButton:
 					pos_hint:{"center_x":0.1,"center_y":0.5}
 					icon:"account-school-outline"	
-	RelativeLayout:
-		AnchorLayout:
-			pos_hint:{"center_x":0.5,"center_y":0.5}
-			anchor_y:"bottom"
-			Image:
-				source:"assets/wel3.jpg"
-				size_hint:None,None
-				keep_ratio:True
-				allow_stretch:True
-				size:"300dp","300dp"
-	RelativeLayout:
-		AnchorLayout:
-			anchor_y:"top"
-			anchor_x:"left"
-			MDIconButton:
-				icon:"chevron-left"		
-				on_press:app.screen_manager.current = "Sscreen"	
-
 ~~~
 
 MDScreen:

@@ -7,6 +7,27 @@
     elevation: 36
     pos_hint: {'center_x': .5}	
     
+<IconRound@MyMDCard>:
+	icon:""
+	text:""
+	radius:"50dp"
+	elevation:"20dp"
+	size_hint:None,None
+	size:dp(150),dp(120)
+	ripple_behavior:True
+	md_bg_color:app.theme_cls.bg_darkest
+	RelativeLayout:
+		AnchorLayout:
+			MDIconButton:
+				icon:root.icon
+				on_press:root.on_press
+				icon_color:1,1,1,1
+		MDLabel:
+			halign:"center"
+			pos_hint:{"center_x":0.5,"center_y":0.25}
+			text:root.text
+			font_name:"assets/Poppins-Regular.ttf"
+			font_size:"15sp"
 
 <MyLayout@MDSwiperItem>:
 	img:""
@@ -563,141 +584,54 @@ MDScreen:
 			text:"Essentials"
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
-
-			MyMDCard:
-				radius:"60dp"
-				elevation:0
-				padding:60
-				size_hint: None, None
-				size: app.y, Window.size[1]
-				style:'elevated'
-				md_bg_color:app.theme_cls.bg_normal
-				pos_hint:{"center_x":0.5,"center_y":0.40}			
-			MyMDCard:
-				radius:80
-				id:t2
-				height:20
-				elevation:0
-				padding: dp(8)
-				size_hint: None, None
-				size: app.y-app.y//5, Window.size[1]
-				style:'filled'
-				pos_hint:{"center_x":0.5,"center_y":0.70}
-				md_bg_color:app.theme_cls.bg_darkest
-
-			MyMDCard:
-				radius:120
-				id:t3
-				pos_hint:{"center_x":0.5,"center_y":1}
-				elevation:0
-				padding: dp(8)				
-				size_hint: None, None
-				size: app.y, Window.size[1]
-				style:'filled'
-				halign:"center"
-				md_bg_color:app.theme_cls.bg_darkest
-
 			MDLabel:
 				text:"Essentials"
 				font_name:"assets/Poppins-ExtraBold.ttf"
 				halign:"center"
 				font_size:"30sp"
-				pos_hint:{"center_x":0.5,"center_y":0.90}
+				pos_hint:{"center_x":0.5,"center_y":0.95}
 				theme_text_color:"Custom"
 				text_color:app.theme_cls.accent_color
-
-			MDRoundFlatIconButton:
-				text : "School Faculty"
-				valign:"center"
-				pos_hint : {"center_x":0.5,"center_y":0.75}				
-				icon : "human-queue"
-				line_width :2
-				font_name : "assets/Poppins-Regular.ttf"
-				icon_color:app.theme_cls.accent_color
-				theme_text_color:"Custom"
-				text_color:app.theme_cls.accent_color
-				line_color:app.theme_cls.accent_color
-				font_size : "20sp"
-				on_press : app.table();app.show_ad()
-				size_hint_x : 0.7
-				size_hint_y : 0.08
-				line_width :"1dp"
-			MDRoundFlatIconButton:
-				text : "School Timings"
-				pos_hint : {"center_x":0.5,"center_y":0.65}
-				icon : "timetable"
-				line_width :2
-				font_name : "assets/Poppins-Regular.ttf"
-				icon_color:app.theme_cls.accent_color
-				theme_text_color:"Custom"
-				text_color:app.theme_cls.accent_color
-				line_color:app.theme_cls.accent_color				
-				font_size : "20sp"
-				on_press : app.time();app.show_ad()
-				size_hint_x : 0.7
-				size_hint_y : 0.08
-				line_width :"1dp"						
-			MDRoundFlatIconButton:
-				text : "School Fees"
-				pos_hint : {"center_x":0.5,"center_y":0.55}	
-				icon : "currency-inr"
-				line_width :2
-				font_name : "assets/Poppins-Regular.ttf"
-				icon_color:app.theme_cls.accent_color
-				theme_text_color:"Custom"
-				text_color:app.theme_cls.accent_color
-				line_color:app.theme_cls.accent_color				
-				font_size : "20sp"
-				on_press : app.fees();app.show_ad()
-				size_hint_x : 0.7
-				size_hint_y : 0.08
-				line_width :"1dp"
-			MDRoundFlatIconButton:
-				text : "Admission Process"
-				pos_hint : {"center_x":0.5,"center_y":0.45}				
-				icon : "school"
-				line_width :2
-				font_name : "assets/Poppins-Regular.ttf"
-				radius:[10,10]
-				icon_color:app.theme_cls.accent_color
-				theme_text_color:"Custom"
-				text_color:app.theme_cls.accent_color
-				line_color:app.theme_cls.accent_color				
-				font_size : "20sp"
-				on_press : app.adim();app.show_ad()
-				size_hint_x : 0.7
-				size_hint_y : 0.08
-				line_width :"1dp"						
-			MDRoundFlatIconButton:
-				text : "Student Strength"
-				pos_hint : {"center_x":0.5,"center_y":0.35}				
-				icon : "human-capacity-increase"
-				line_width :2
-				font_name : "assets/Poppins-Regular.ttf"
-				icon_color:app.theme_cls.accent_color
-				theme_text_color:"Custom"
-				text_color:app.theme_cls.accent_color
-				line_color:app.theme_cls.accent_color				
-				font_size : "20sp"
-				on_press : app.table();app.show_ad()
-				size_hint_x : 0.7
-				size_hint_y : 0.08
-				line_width :"1dp"						
-			MDRoundFlatIconButton:
-				text : "Book Lists"
-				pos_hint : {"center_x":0.5,"center_y":0.25}				
-				icon : "book-multiple"
-				line_width :2
-				font_name : "assets/Poppins-Regular.ttf"
-				icon_color:app.theme_cls.accent_color
-				theme_text_color:"Custom"
-				text_color:app.theme_cls.accent_color
-				line_color:app.theme_cls.accent_color				
-				font_size : "20sp"
-				on_press : app.booklist();app.show_ad()
-				size_hint_x : 0.7
-				size_hint_y : 0.08
-				line_width :"1dp"
+				AnchorLayout:
+					pos_hint:{"center_x":0.5,"center_y":0.55}
+					size_hint:None,None
+					size:app.y-dp(10),app.x-dp(150)
+					BoxLayout:
+						orientation: 'horizontal' 
+						BoxLayout:
+							orientation:"vertical"
+							AnchorLayout:
+								IconRound:
+									icon:'account-school'
+									text:"School Facultuy"
+									on_press:app.show_ad();app.table()
+							AnchorLayout:
+								IconRound:
+									icon:'book-multiple'
+									text:"Book Lists"
+									on_press:app.show_ad();app.booklist()
+							AnchorLayout:
+								IconRound:
+									icon:'school'
+									text:"Admin Process"
+									on_press:app.show_ad();app.adim()									
+						BoxLayout:
+							orientation:"vertical"												
+							AnchorLayout:
+								IconRound:
+									icon:'currency-inr'
+									text:"Pay Fees"
+									on_press:app.show_ad();app.fees()
+							AnchorLayout:
+								IconRound:
+									icon:'account-clock'
+									text:"Timinings"
+									on_press:app.show_ad();app.time()
+							AnchorLayout:
+								IconRound:
+									icon:'account-school'
+									text:"School Facultuy"
+									on_press:app.show_ad();app.table()	
 		MDBottomNavigationItem:
 			md_bg_color:app.colorHex("#7E59FF")
 			name: "screen3"

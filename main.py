@@ -910,6 +910,7 @@ class SRAPS_APP_STUDENT(MDApp):
 	time = lambda self:show_timings()
 	fees = lambda self:show_fees()
 	adim = lambda self:show_adim()
+	x= Window.size[1]
 	title="SRAPS App"
 	def colorHex(self, color):
 		return get_color_from_hex(color)
@@ -1128,4 +1129,4 @@ ModalView:
 
 	""")
 		modal.open()
-SRAPS_APP_STARTUP().run()
+SRAPS_APP_STUDENT().run()
