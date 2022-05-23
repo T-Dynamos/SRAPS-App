@@ -10,24 +10,28 @@
 <IconRound@MyMDCard>:
 	icon:""
 	text:""
-	radius:"50dp"
-	elevation:"20dp"
+	radius:"30dp"
+	elevation:"0dp"
 	size_hint:None,None
 	size:dp(150),dp(120)
 	ripple_behavior:True
-	md_bg_color:app.theme_cls.bg_darkest
+	md_bg_color:app.theme_cls.accent_light
 	RelativeLayout:
 		AnchorLayout:
 			MDIconButton:
 				icon:root.icon
 				on_press:root.on_press
-				icon_color:1,1,1,1
+				theme_icon_color:"Custom"
+				icon_color:0,0,0,1
 		MDLabel:
 			halign:"center"
 			pos_hint:{"center_x":0.5,"center_y":0.25}
 			text:root.text
 			font_name:"assets/Poppins-Regular.ttf"
 			font_size:"15sp"
+			theme_text_color:"Custom"
+			
+			text_color:0,0,0,1
 
 <MyLayout@MDSwiperItem>:
 	img:""
@@ -88,7 +92,7 @@
 		size_hint:None,None
 		style:"elevated"
 		size: app.y-app.y//17, "200dp"
-		md_bg_color:app.theme_cls.accent_color
+		md_bg_color:app.theme_cls.accent_light
 
 		FitImage:
 			source:root.img
@@ -100,19 +104,25 @@
 				halign:"center"
 				font_name:"assets/Poppins-Bold.ttf"
 				font_size:"25sp"
+				theme_text_color:"Custom"
+				text_color:0,0,0,1
 
 			AnchorLayout:
+				id:ooo
 				orientation:"vertical"
 				anchor_x:'center'
 				anchor_y:'center'
-				MDRoundFlatButton:
-					text:"Read More"
-					
-					halign:"center"					
-					line_width:"2dp"   		
-					
-    				size:(self.width,"30dp")
-    				on_press:webbrowser.open(root.link)
+				MyMDCard:
+					size_hint:None,None
+					size:ooo.width-dp(25),ooo.height-dp(35)
+					on_press: webbrowser.open(root.link)
+					md_bg_color:app.theme_cls.primary_light
+					MDLabel:
+						halign:"center"
+						text:'Read More'
+						font_name:"assets/Poppins-Bold.ttf"
+						font_size:"15sp"
+						
 <FitCard2@MyMDCard>
 	text:""
 	image:""
@@ -584,18 +594,17 @@ MDScreen:
 			text:"Essentials"
 			font_name:"Poppins-Bold.ttf"
 			font_size:"20sp"
+			md_bg_color:app.theme_cls.bg_light
 			MDLabel:
 				text:"Essentials"
 				font_name:"assets/Poppins-ExtraBold.ttf"
 				halign:"center"
 				font_size:"30sp"
-				pos_hint:{"center_x":0.5,"center_y":0.95}
-				theme_text_color:"Custom"
-				text_color:app.theme_cls.accent_color
+				pos_hint:{"center_x":0.5,"center_y":0.93}
 				AnchorLayout:
-					pos_hint:{"center_x":0.5,"center_y":0.55}
+					pos_hint:{"center_x":0.5,"center_y":0.5}
 					size_hint:None,None
-					size:app.y-dp(10),app.x-dp(150)
+					size:app.y,app.x-dp(150)
 					BoxLayout:
 						orientation: 'horizontal' 
 						BoxLayout:
