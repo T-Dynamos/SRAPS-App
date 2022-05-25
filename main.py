@@ -197,61 +197,18 @@ def Toast(string):
 		threadRun(Toast1,string)		
 
 def update_menu():
-	KV = """
-#:import _thread _thread
-MyMDCard:
-
-	radius:"30dp"
-	elevation:18
-	orientation:"vertical"
-	MDRelativeLayout:
-		AnchorLayout:
-			anchor_x:"left"
-			anchor_y:"top"
-			MDIconButton:
-				on_press:model.dismiss()
-				icon:"chevron-left"
-		AnchorLayout:
-			id:upd1		
-			Image:
-				id:upd
-				source:"assets/update.png"
-				size:(0.9,0.9)
-				halign:"center"
-				size_hint:None,None
-				size:"70dp","70dp"
-				anim_delay:0.05
-	MDLabel:
-		id:ud2
-		text:"Currently Installed Version "+app.__version__
-		font_name:"assets/Lato-Italic.ttf"
-		font_size:"15sp"
-		halign:"center"
-	AnchorLayout:
-		orientation:"vertical"
-		anchor_x:'center'
-		anchor_y:'center'
-		MDRoundFlatButton:
-			id:ud3
-			text:"Check for Update"
-			font_name:"assets/Lato-Italic.ttf"
-			font_size:"15sp"
-			halign:"center"
-			line_width:"1dp"
-			on_press:upd.source = "assets/search.png";ud2.text = "Checking ...";_thread.start_new_thread(app.update_a,(upd1,ud2,upd,ud3))
-	
-	"""
 
 	
 	modal = Builder.load_string("""
+#: import _thread _thread
 ModalView:
 	id:model
 	background_color:[0,0,0,0]
 	size_hint:(0.7, 0.5)
-	overlay_color:(0, 0, 0, 0)
+	overlay_color:(0, 0, 0, 0.6)
 	
 	MyMDCard:
-modalmodal
+
 		radius:"30dp"
 		elevation:18
 		orientation:"vertical"
@@ -374,6 +331,7 @@ MyMDCard:
 			size_hint_y:None
 			MDLabel:
 			MDLabel:
+				halign:"center"
 				text:"Choose Class"
 				font_name:"assets/Poppins-Bold.ttf"
 				font_size:"25sp"
@@ -490,7 +448,7 @@ MyMDCard:
 	modal = ModalView(
         background_color=[0,0,0,0],
         size_hint=(0.8, 0.8),
-        overlay_color=(0, 0, 0, 0),
+        overlay_color=(0, 0, 0, 0.7),
 	)
 
 	modal.add_widget(Builder.load_string(a))
@@ -520,7 +478,7 @@ Builder.load_string(
     size_hint: None, None
     size: "284dp", "400dp"
 	MyMDCard:
-
+		radius:"40dp"
         MDTabs:
             tab_hint_x: True
             on_tab_switch: root.on_tab_switch(*args)
@@ -602,18 +560,12 @@ def show_timings():
 
 	a = """
 MyMDCard:
-	radius:[30,]
+	radius:"20dp"
 	size:(0.85,0.85)
 	elevation:50
 	orientation:"vertical"
-	AnchorLayout:
-		Image:
-			size:(0.8,0.8)
-			source:"assets/time.jpg"
-			allow_stretch:True
-			keep_ratio :False
-			radius:"30dp"
 	ScrollView:
+
 		MDGridLayout:
 			cols:1
 			adaptive_height:True
@@ -621,10 +573,16 @@ MyMDCard:
 			id : boxi
 			orientation :"lr-tb"
 			padding:10
-			MDLabel:
-				text:""
-				font_name:"assets/Poppins-Bold.ttf"
-				font_size:"15sp"
+			MyMDCard:
+				radius:"20dp"
+				size_hint:None,None
+				size:"300dp","300dp"
+				id:oo
+				FitImage:
+					source:"assets/time.jpg"
+					allow_stretch:True
+					keep_ratio :True
+					radius:"20dp"
 			MDLabel:
 				text:"Timings can be changed any time as the situation demands."
 				font_name:"assets/Poppins-Bold.ttf"
@@ -650,7 +608,7 @@ MyMDCard:
 	modal = ModalView(
         background_color=[0,0,0,0],
         size_hint=(0.8, 0.8),
-        overlay_color=(0, 0, 0, 0),
+        overlay_color=(0, 0, 0, 0.7),
 	)
 
 	modal.add_widget(Builder.load_string(a))
@@ -751,46 +709,54 @@ MyMDCard:
 	modal = ModalView(
         background_color=[0,0,0,0],
         size_hint=(0.8, 0.8),
-        overlay_color=(0, 0, 0, 0),
+        overlay_color=(0, 0, 0, 0.7),
 	)
 
 	modal.add_widget(Builder.load_string(a))
 	modal.open()		
 def load_img(img):
+	size = '{"center_x":0.5,"center_y":0.1}'
+	
+	
 	a = f"""
 MyMDCard:
 	id:f
-	raidus:30
-	elevation:18
+	raidus:"30dp"
 	orientation:"vertical"
-	MDLabel:
-	MDLabel:
-	AnchorLayout:
+	RelativeLayout:
 		id:fu
-		anchor_x:"center"
-		anchor_y:"bottom"
 		Scatter:
-			id:ok			
-			do_rotation:False
-			do_scale:True
+			pos_hint_x:0.5
+			pos_hiny_y:0.7
 			AsyncImage:
 				halign:"center"
 				source:"{img}"
-				size:(fu.width,fu.height*3.3)
-				keep_ratio:False
+				size_hint:None,None
+				size:(f.width,fu.height)
+				keep_ratio:True
 				allow_stretch:True
-	BoxLayout:
-		size:(f.width-f.width//15,"50dp")
-		orientation:"horizontal"
-		padding:50
-		MDRaisedButton:
-  		  text: "Save to Gallery"
-    		font_size: "18sp"
-   		 font_name: "assets/Poppins-Regular.ttf"
-		MDIconButton:
-			icon:"share-variant-outline"   
-		MDIconButton:
-			icon:"whatsapp"		 	
+		BoxLayout:
+			pos_hint:{size}
+			size_hint:None,None			
+			size:(f.width-dp(10),"30dp")
+			orientation:"horizontal"
+
+			AnchorLayout:
+				id:ohm
+				MDRaisedButton:
+					size_hint:None,None
+					size:(ohm.width-dp(8),ohm.height)
+  		  		text: "Save to Gallery"
+    				font_size: "18sp"
+   		 		font_name: "assets/Poppins-Regular.ttf"
+			BoxLayout:
+			
+				AnchorLayout:
+					MDIconButton:
+						icon:"share-variant-outline"   
+				AnchorLayout:
+					MDIconButton:
+						icon:"whatsapp"		 	
 """	
 	modal = ModalView(
         background_color=[0,0,0,0],
@@ -828,16 +794,14 @@ def show_fees():
 	modal = ModalView(
         background_color=[0,0,0,0],
         size_hint=(0.83, 0.7),
-        overlay_color=(0, 0, 0, 0),
+        overlay_color=(0, 0, 0, 0.7),
 	)
 
 	modal.add_widget(card)
 
 	modal.open()	
 def show_teachers():
-	card = MyMDCard(elevation=18, radius=[30],size=(1,1))
 	f = MDDataTable(
-	size=(0.8,0.8),
 	use_pagination=True,
 	column_data=[
 
@@ -850,14 +814,15 @@ def show_teachers():
 	("Qualification", dp(20))],
 	row_data = Teachers) 
 
-	card.add_widget(f)
+
 	modal = ModalView(
         background_color=[0,0,0,0],
-        size_hint=(0.95, 0.95),
-        overlay_color=(0, 0, 0, 0),
+        size_hint=(None,None),
+        size=(1,1),
+        overlay_color=(0, 0, 0, 0.7),
 	)
 
-	modal.add_widget(card)
+	modal.add_widget(f)
 
 	modal.open()
 def get_part_of_day(h):
