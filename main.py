@@ -13,6 +13,7 @@ from kivymd.uix.pickers import *
 from kivymd.uix.label import *
 from kivy.uix.image import *
 from kivy.uix.label import *
+from bs4 import BeautifulSoup
 from kivy.uix.screenmanager import *
 from kivy.lang import Builder
 from kivymd.uix.button import *
@@ -826,6 +827,22 @@ def show_teachers():
 	modal.add_widget(f)
 
 	modal.open()
+def getStdInfo(soup_text) -> list:
+    try:
+        soup = BeautifulSoup(soup_text, 'html.parser')
+    except Exception as e:
+        return "Connection Error"
+
+    stdinfo = []
+
+    for i in  soup.find_all("li"):
+    	ok = (str(i.get_text()).split("\n"))[0]
+    	if ok.startswith("Admission No") or ok.startswith("St") or ok.startswith("Cl") or ok.startswith("Fa") or ok.startswith("Mo"):
+            stdinfo.append(str(ok.split(":   ")[-1]).replace("<\\/label><\\/li>\r","").replace("<\\/span>",""))
+    stdinfo.pop(0)
+    return stdinfo
+
+
 def get_part_of_day(h):
     return (
         "Morning"
@@ -1056,7 +1073,7 @@ class SRAPS_APP_STARTUP(MDApp):
 	screen_manager=screen_manager
 	Toast =lambda self ,string:Toast(string)
 	number = ""
-
+	controler = requests.session()
 	def build(self):
 
 		self.title="SRAPS App"
@@ -1078,12 +1095,14 @@ class SRAPS_APP_STARTUP(MDApp):
 		self.admno = str(self.admno[-1])
 		self.dob = str(self.dob)
 		import time
-		time.sleep(5)
+		time.sleep(3)
 		try:
 			head = {"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
 "Accept":"/","X-Requested-With":"XMLHttpRequest"}
-			req = requests.post("http://www.shriramashramps.org/feecontroller.php",data=f"admno={self.admno}&action=send_otp&stddob={self.dob}",headers=head)
+			req = self.controler.post("http://www.shriramashramps.org/feecontroller.php",data=f"admno={self.admno}&action=send_otp&stddob={self.dob}",headers=head)
+
 		except Exception as e:
+			print(e)
 			return self.modal.dismiss();Toast("No Internet !")
 		if "OTP" in req.text:
 			Toast("Otp send successfully")
@@ -1096,13 +1115,11 @@ class SRAPS_APP_STARTUP(MDApp):
 			self.modal.dismiss()
 	def get_creds(self,otp):
 		def est():
-			a  = requests.post("http://www.shriramashramps.org/feecontroller.php",data=f"otp={otp}&action=verify_otp",headers={"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8","Accept":"/","X-Requested-With":"XMLHttpRequest"})
-			if "error" in (a.text):
-				Toast("Invaild OTP")
+			a  = self.controler.post("http://www.shriramashramps.org/feecontroller.php",data=f"otp={otp}&action=verify_otp",headers={"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8","Accept":"/","X-Requested-With":"XMLHttpRequest"})
+			if '"type":"error"' in (a.text):
+				Toast("Invaild OTP ")
 			else:
-				print(a.text)
-				Toast("Your app rocks")
-				Toast(a.text)
+				Toast(str(getStdInfo(open(a.text.replace("\\","")))))
 				self.modal.dismiss()
 		import _thread
 		_thread.start_new_thread(est,())
