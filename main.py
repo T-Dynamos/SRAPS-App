@@ -9,6 +9,7 @@ from kivy.uix.anchorlayout import *
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
 from kivymd.toast import toast as Toast2
 from kivymd.app import *
+from kivymd.uix.pickers import *
 from kivymd.uix.label import *
 from kivy.uix.image import *
 from kivy.uix.label import *
@@ -189,7 +190,7 @@ HeadItem:
 def Toast1(string,*largs):
 	Toast2(string)
 
-def Toast(string):
+def Toast(string,*largs):
 	loaderS(string)
 	if platform=="android":
 		Toast2(string,gravity=80)
@@ -1053,6 +1054,9 @@ class SRAPS_APP_STARTUP(MDApp):
 	y=y
 	x=Window.size[1]
 	screen_manager=screen_manager
+	Toast =lambda self ,string:Toast(string)
+
+
 	def build(self):
 
 		self.title="SRAPS App"
@@ -1062,8 +1066,32 @@ class SRAPS_APP_STARTUP(MDApp):
 		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[-1]))		
 		screen_manager.current = "Sscreen"
 		return screen_manager
+	def on_save(self, instance, value, date_range):
+		screen_manager.get_screen("Sscreen2").ids.ran.text = "Selected DOB : "+str(value)
 
-	def get_admno(self):
+	def show_date_picker(self):
+		date_dialog = MDDatePicker()
+		date_dialog.bind(on_save=self.on_save,on_ok_button_pressed=self.on_save)
+		date_dialog.open()
+
+	def sAdim(self,*largs):
+		self.admno = str(self.admno[-1])
+		self.dob = str(self.dob)
+		import time
+		time.sleep(1)
+		try:
+			head = {"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
+"Accept":"/","X-Requested-With":"XMLHttpRequest"}
+			req = requests.post("http://www.shriramashramps.org/feecontroller.php",data=f"admno={self.admno}&action=send_otp&stddob=2007-04-21",headers=head)
+		except Exception as e:
+			return self.modal.dismiss();Toast("No Internet !")
+		if "OTP" in req.text:
+			Toast("Otp send successfully")
+			self.modal.dismiss()
+		else:
+			return Toast("Invaild Creadentials !");self.modal.dismiss()
+
+	def get_admno(self):			
 		modal = Builder.load_string("""
 ModalView:
 	id:model
@@ -1086,6 +1114,8 @@ ModalView:
 				theme_text_color:"Custom"
 				text_color:app.theme_cls.primary_light
 			MDSpinner:
+
+				id:ok4
 				pos_hint:{"center_x":0.5,"center_y":0.38}
 				size_hint: None, None
 				size: dp(40), dp(40)
@@ -1094,4 +1124,10 @@ ModalView:
 
 	""")
 		modal.open()
-SRAPS_APP_STUDENT().run()
+		self.admno =  str(screen_manager.get_screen("Sscreen2").ids.admno.text),
+		self.dob = str((screen_manager.get_screen("Sscreen2").ids.ran.text).split(": ")[-1])
+		self.modal = modal
+				
+		threadRun(self.sAdim,
+			())
+SRAPS_APP_STARTUP().run()
