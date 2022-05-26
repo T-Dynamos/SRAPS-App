@@ -978,7 +978,7 @@ class SRAPS_APP_TEACHER(MDApp):
 	update_menu=lambda self:update_menu()
 	settings = settings
 	logs = settings.getSettings()["logs"]
-	show_theme_picker = lambda self:theme_picker()	
+	show_theme_picker = lambda self:theme_picker()
 
 	update = settings.getSettings()["update"]	
 	def build(self):
@@ -1055,7 +1055,7 @@ class SRAPS_APP_STARTUP(MDApp):
 	x=Window.size[1]
 	screen_manager=screen_manager
 	Toast =lambda self ,string:Toast(string)
-
+	number = ""
 
 	def build(self):
 
@@ -1078,7 +1078,7 @@ class SRAPS_APP_STARTUP(MDApp):
 		self.admno = str(self.admno[-1])
 		self.dob = str(self.dob)
 		import time
-		time.sleep(1)
+		time.sleep(5)
 		try:
 			head = {"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
 "Accept":"/","X-Requested-With":"XMLHttpRequest"}
@@ -1087,10 +1087,93 @@ class SRAPS_APP_STARTUP(MDApp):
 			return self.modal.dismiss();Toast("No Internet !")
 		if "OTP" in req.text:
 			Toast("Otp send successfully")
-			self.modal.dismiss()
-		else:
-			return Toast("Invaild Creadentials !");self.modal.dismiss()
+			self.number = (req.text.split("<\\/h5>")[0]).split("On ")[-1]
 
+			self.modal.dismiss()
+			threadRun(self.verify_otp,(self.admno))
+		else:
+			Toast("Student not found !")
+			self.modal.dismiss()
+	def get_creds(self,otp):
+		def est():
+			a  = requests.post("http://www.shriramashramps.org/feecontroller.php",data=f"otp={otp}&action=verify_otp",headers={"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8","Accept":"/","X-Requested-With":"XMLHttpRequest"})
+			if "error" in (a.text):
+				Toast("Invaild OTP")
+			else:
+				print(a.text)
+				self.modal.dismiss()
+		import _thread
+		_thread.start_new_thread(est,())
+	def verify_otp(self,admno,*largs):
+
+	
+		modal = Builder.load_string("""
+#: import _thread _thread
+ModalView:
+	id:model
+	background_color:[0,0,0,0]
+	size_hint:(0.8, 0.65)
+	overlay_color:(0, 0, 0, 0.6)
+	
+	MyMDCard:
+
+		radius:"30dp"
+		elevation:18
+		orientation:"vertical"
+		MDRelativeLayout:
+			AnchorLayout:
+				anchor_x:"left"
+				anchor_y:"top"
+				MDIconButton:
+					on_press:model.dismiss()
+					icon:"close"
+			AnchorLayout:
+				id:upd1		
+				Image:
+					id:upd
+					source:"assets/otp.png"
+					size:(0.9,0.9)
+					halign:"center"
+					size_hint:None,None
+					size:"70dp","70dp"
+					anim_delay:0.05
+		MDLabel:
+			id:ud2
+			text:"Please enter the OTP sent on "+app.number
+			font_name:"assets/Lato-Italic.ttf"
+			font_size:"15sp"
+			halign:"center"
+		MDBoxLayout:
+			pos_hint:{"center_x":0.5,"center_y":0.7}
+			size_hint:None,None
+			size:dp(200),"50dp"
+			MDTextField:
+				id:otp
+				hint_text:"Enter the OTP"	
+				mode: "rectangle"
+				max_text_length:6
+				font_name:"assets/Poppins-Regular.ttf"
+				font_name_hint_text:"assets/Poppins-Regular.ttf"			
+		AnchorLayout:
+			orientation:"vertical"
+			anchor_x:'center'
+			anchor_y:'center'
+			MDFlatButton:
+				id:ud3
+				text:"Verify"
+				font_name:"assets/Poppins-Regular.ttf"
+				font_size:"15sp"
+				halign:"center"
+				line_width:"1dp"
+				size_hint:None,None
+				size:dp(150),"50dp"
+				md_bg_color:app.theme_cls.primary_light
+				line_color:app.theme_cls.primary_light
+				on_press:app.get_creds(otp.text)
+				
+		""")
+		modal.open()
+		self.modal = modal
 	def get_admno(self):			
 		modal = Builder.load_string("""
 ModalView:
@@ -1107,7 +1190,7 @@ ModalView:
 		RelativeLayout:
 			MDLabel:
 				pos_hint:{"center_x":0.5,"center_y":0.76}
-				text:"Searching "+app.screen_manager.get_screen("Sscreen2").ids.admno.text
+				text:"Locating "+app.screen_manager.get_screen("Sscreen2").ids.admno.text
 				font_name:"assets/Poppins-Regular.ttf"
 				font_size:"25sp"
 				halign:"center"
@@ -1123,11 +1206,12 @@ ModalView:
 				palette:[app.theme_cls.primary_light,app.theme_cls.accent_light,app.theme_cls.primary_light,app.theme_cls.accent_light]
 
 	""")
-		modal.open()
+		threadRun(modal.open,())
 		self.admno =  str(screen_manager.get_screen("Sscreen2").ids.admno.text),
 		self.dob = str((screen_manager.get_screen("Sscreen2").ids.ran.text).split(": ")[-1])
 		self.modal = modal
-				
-		threadRun(self.sAdim,
+		import _thread	
+		_thread.start_new_thread(self.sAdim,
 			())
+		
 SRAPS_APP_STARTUP().run()
