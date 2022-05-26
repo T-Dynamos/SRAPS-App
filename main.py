@@ -1082,7 +1082,7 @@ class SRAPS_APP_STARTUP(MDApp):
 		try:
 			head = {"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
 "Accept":"/","X-Requested-With":"XMLHttpRequest"}
-			req = requests.post("http://www.shriramashramps.org/feecontroller.php",data=f"admno={self.admno}&action=send_otp&stddob=2007-04-21",headers=head)
+			req = requests.post("http://www.shriramashramps.org/feecontroller.php",data=f"admno={self.admno}&action=send_otp&stddob={self.dob}",headers=head)
 		except Exception as e:
 			return self.modal.dismiss();Toast("No Internet !")
 		if "OTP" in req.text:
@@ -1101,6 +1101,8 @@ class SRAPS_APP_STARTUP(MDApp):
 				Toast("Invaild OTP")
 			else:
 				print(a.text)
+				Toast("Your app rocks")
+				Toast(a.text)
 				self.modal.dismiss()
 		import _thread
 		_thread.start_new_thread(est,())
@@ -1112,7 +1114,8 @@ class SRAPS_APP_STARTUP(MDApp):
 ModalView:
 	id:model
 	background_color:[0,0,0,0]
-	size_hint:(0.8, 0.65)
+	size_hint:None,None
+	size:app.y-dp(30),"400dp"
 	overlay_color:(0, 0, 0, 0.6)
 	
 	MyMDCard:

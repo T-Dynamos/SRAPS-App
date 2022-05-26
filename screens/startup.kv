@@ -135,23 +135,15 @@ MDScreen:
 				keep_ratio:True
 				allow_stretch:True
 				size:"300dp","300dp"
-		MDRoundFlatButton:
-			id:ran
-			size_hint:None,None
-			size:dp(150),"50dp"
-			pos_hint:{"center_x":0.5,"center_y":0.6}
-			text:"Select DOB "
-			md_bg_color:app.theme_cls.accent_light
-			line_color:app.theme_cls.accent_light
-			on_press:app.show_date_picker()		
+
 		MDFlatButton:
 			size_hint:None,None
 			size:dp(150),"50dp"
-			pos_hint:{"center_x":0.5,"center_y":0.5}
+			pos_hint:{"center_x":0.5,"center_y":0.48}
 			text:"Proceed"
 			md_bg_color:app.theme_cls.primary_light
 			line_color:app.theme_cls.primary_light
-			on_press:app.get_admno() if admno.text != "" and "-"  in str(ran.text) else app.Toast("Fill select and fill both required fields")		
+			on_press:app.get_admno() if admno.text != ""  and "-"  in str(ran.text) or len(ran.text) is not 10 else app.Toast("Fill select and fill both required fields correctly")		
 	MDBoxLayout:
 		pos_hint:{"center_x":0.5,"center_y":0.7}
 		size_hint:None,None
@@ -163,5 +155,15 @@ MDScreen:
 			max_text_length: 4
 			font_name:"assets/Poppins-Regular.ttf"
 			font_name_hint_text:"assets/Poppins-Regular.ttf"
-
+	MDBoxLayout:
+		pos_hint:{"center_x":0.5,"center_y":0.58}
+		size_hint:None,None
+		size:dp(200),"50dp"
+		MDTextField:
+			id:ran
+			hint_text:"Enter dob yyyy-mm-dd "	
+			mode: "rectangle"
+			max_text_length: 10
+			font_name:"assets/Poppins-Regular.ttf"
+			font_name_hint_text:"assets/Poppins-Regular.ttf"
 												
