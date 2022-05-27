@@ -9,9 +9,12 @@
     pos_hint: {'center_x': .5}	
     
 <IconRound@MyMDCard>:
+
+	source:"gradients/"+app.gra
 	icon:""
 	text:""
 	radius:"30dp"
+	style:"elevated"
 	size_hint:None,None
 	size:dp(150),dp(120)
 	ripple_behavior:True
@@ -19,7 +22,7 @@
 
 	RelativeLayout:
 		FitImage:
-			source:"gradients/"+app.gra
+			source:root.source
 			radius:"30dp"
 		AnchorLayout:
 			MDIconButton:
@@ -264,8 +267,8 @@ MDScreen:
 							MDLabel:
 								font_name:"assets/Poppins-Bold.ttf"
 								font_size:"25sp"								
-								halign:'auto'
-								text:"  Hardik"	
+								halign:'center'
+								text:"Ansh Dadwal"
 						AnchorLayout:
 							pos_hint:{"center_x":0.5,"center_y":0.8}
 							orientation:"vertical"
@@ -275,7 +278,7 @@ MDScreen:
 							MDLabel:
 								font_name:"assets/Poppins-ExtraBold.ttf"
 								font_size:"40sp"
-								halign:'auto'
+								halign:'center'
 								text:"  Good "+app.dday	
 						AnchorLayout:
 							anchor_y:"bottom"
@@ -296,9 +299,14 @@ MDScreen:
 											on_press:bot.switch_tab("homework")
 											size_hint:None,None
 											size:aa.width-dp(20),aa.height-dp(60)
-											BoxLayout:
+											radius:"20dp"
+											RelativeLayout:
 												orientation:"vertical"
 												padding:dp(10)
+												FitImage:
+													id:imgs8
+													source:"gradients/"+app.gra
+													radius:"20dp"
 												
 												MDLabel:
 													halign:"center"
@@ -307,6 +315,7 @@ MDScreen:
 													font_size:"20sp"
 												AnchorLayout:
 													anchor_x:'right'
+													anchor_y:"bottom"
 													MDIconButton:
 														on_press:bot.switch_tab("homework")
 														icon:"chevron-right"
@@ -318,10 +327,15 @@ MDScreen:
 											on_press:bot.switch_tab("ess")								
 											size_hint:None,None
 											size:aa.width-dp(20),aa.height-dp(60)
-											BoxLayout:
+											radius:"20dp"
+											
+											RelativeLayout:
 												orientation:"vertical"
 												padding:dp(10)
-												
+												FitImage:
+													id:imgs7
+													source:"gradients/"+app.gra
+													radius:"20dp"												
 												MDLabel:
 													halign:"center"
 													text:"Essentials"
@@ -329,6 +343,7 @@ MDScreen:
 													font_size:"20sp"
 												AnchorLayout:
 													anchor_x:'right'
+													anchor_y:"bottom"
 													MDIconButton:
 														icon:"chevron-right"
 														on_press:bot.switch_tab("ess")
@@ -615,16 +630,19 @@ MDScreen:
 							orientation:"vertical"
 							AnchorLayout:
 								IconRound:
+									id:imgs5
 									icon:'account-school'
 									text:"School Facultuy"
 									on_press:app.show_ad();app.table()
 							AnchorLayout:
 								IconRound:
+									id:imgs6
 									icon:'book-multiple'
 									text:"Book Lists"
 									on_press:app.show_ad();app.booklist()
 							AnchorLayout:
 								IconRound:
+									id:imgs1
 									icon:'school'
 									text:"Admin Process"
 									on_press:app.show_ad();app.adim()									
@@ -632,16 +650,19 @@ MDScreen:
 							orientation:"vertical"												
 							AnchorLayout:
 								IconRound:
+									id:imgs2
 									icon:'currency-inr'
 									text:"Pay Fees"
 									on_press:app.show_ad();app.fees()
 							AnchorLayout:
 								IconRound:
+									id:imgs3
 									icon:'account-clock'
 									text:"Timinings"
 									on_press:app.time()
 							AnchorLayout:
 								IconRound:
+									id:imgs4
 									icon:'account-school'
 									text:"School Facultuy"
 									on_press:app.show_ad();app.table()	

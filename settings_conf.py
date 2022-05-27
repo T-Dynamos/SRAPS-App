@@ -1,5 +1,5 @@
 logs = True      
 update = True
-accent = "Amber"
-primary = "Orange"
-
+accent = "Indigo"
+primary = "Pink"
+gra = "JShine.jpg"

@@ -453,7 +453,8 @@ Builder.load_string(
 	size_hint:None,None
 	size:"50dp","50dp"
 	radius:"150dp"
-	on_press:app.gra = "gradients/"+self.gra
+	ripple_behavior:True
+	on_press:app.chg(self.gra);print(self.gra)
 
 	FitImage:
 		pos_hint:{"center_x":0.5,"center_y":0.5}
@@ -744,6 +745,7 @@ ModalView:
 					radius:"20dp"
 					RelativeLayout:
 						FitImage:
+							id:ty
 							radius:"20dp"
 							source:"gradients/"+app.gra					
 						MDLabel:
@@ -754,34 +756,43 @@ ModalView:
 			AnchorLayout:
 				anchor_y:"bottom"
 				Icon:
+					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"JShine.jpg"
 			AnchorLayout:
 				anchor_y:"bottom"
 
 				Icon:
+					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Bloody Mary.jpg"
 			AnchorLayout:
 				anchor_y:"bottom"
 
 				Icon:
+					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Green Beach.jpg"
-			AnchorLayout:	
+			AnchorLayout:
+					
 				anchor_y:"bottom"
 
 				Icon:
+					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Hazel.jpg"
 		BoxLayout:
 			AnchorLayout:		
 				Icon:
+					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Intuitive Purple.jpg"
 			AnchorLayout:					
 				Icon:
+					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Noon to Dusk.jpg"
 			AnchorLayout:					
 				Icon:
+					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Purple.jpg"
 			AnchorLayout:					
 				Icon:
+					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Rose Water.jpg"
 	""")
 	modal.open()
@@ -934,9 +945,10 @@ def getUpdate():
 
 from datetime import datetime
 from platform import python_version
-
+import random
 class SRAPS_APP_STUDENT(MDApp):
-	gra="JShine.jpg"
+	gra=settings.getSettings()["gra"]
+
 	av = lambda self:genAvtar()
 	threadRun = lambda self,func,args:threadRun(func, args)
 	show_ad = lambda self:loadAD()
@@ -966,6 +978,16 @@ class SRAPS_APP_STUDENT(MDApp):
 	adim = lambda self:show_adim()
 	x= Window.size[1]
 	title="SRAPS App"
+	def chg(self,gra):
+		screen_manager.get_screen("Mscreen").ids.imgs1.source = "gradients/"+gra
+		screen_manager.get_screen("Mscreen").ids.imgs2.source = "gradients/"+gra
+		screen_manager.get_screen("Mscreen").ids.imgs3.source = "gradients/"+gra
+		screen_manager.get_screen("Mscreen").ids.imgs4.source = "gradients/"+gra
+		screen_manager.get_screen("Mscreen").ids.imgs5.source = "gradients/"+gra
+		screen_manager.get_screen("Mscreen").ids.imgs6.source = "gradients/"+gra
+		screen_manager.get_screen("Mscreen").ids.imgs7.source = "gradients/"+gra
+		screen_manager.get_screen("Mscreen").ids.imgs8.source = "gradients/"+gra
+		settings.writeSettings("gra",gra)
 	def colorHex(self, color):
 		return get_color_from_hex(color)
 	def myc(self):
