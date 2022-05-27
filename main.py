@@ -53,6 +53,8 @@ from kivymd.uix.label import *
 from kivymd.uix.sliverappbar import *
 from kivymd_extensions.akivymd.uix.loaders import *
 from functools import partial
+import _thread
+
 
 if platform == "android":
 	from kivmob import KivMob
@@ -66,22 +68,11 @@ except Exception:
 	Teachers=[]
 	passls
 	
-
 screen_manager = ScreenManager()
-
-class GLOBALs(Screen):
-    pass
-
-
-class CLASSs(Screen):
-    pass
-
-
-class SManager(ScreenManager):
-    pass
 
 class HeadItem(AnchorLayout):
 	pass
+
 class Tab(MDFloatLayout, MDTabsBase):
     pass
 
@@ -457,6 +448,17 @@ MyMDCard:
 	modal.open()
 Builder.load_string(
     """
+<Icon@MyMDCard>:
+	gra:""
+	size_hint:None,None
+	size:"50dp","50dp"
+	radius:"150dp"
+	on_press:app.gra = "gradients/"+self.gra
+
+	FitImage:
+		pos_hint:{"center_x":0.5,"center_y":0.5}
+		radius:"150dp"
+		source:"gradients/"+root.gra
 <Tab@MDFloatLayout+MDTabsBase+CommonElevationBehavior>
     md_bg_color: app.theme_cls.bg_normal
 
@@ -716,6 +718,73 @@ MyMDCard:
 
 	modal.add_widget(Builder.load_string(a))
 	modal.open()		
+
+def gradient_changer(self):
+	modal = Builder.load_string("""
+
+ModalView:
+	id:model
+	background_color:[0,0,0,0]
+	size_hint:None,None
+	size:"300dp","250dp"
+	overlay_color:(0, 0, 0, 0.6)
+	
+	MyMDCard:
+
+		radius:"30dp"
+		elevation:18
+		orientation:"vertical"
+		RelativeLayout:
+			AnchorLayout:
+				pos_hint:{"center_x":0.5,"center_y":0.5}
+				anchor_y:"top"
+				MyMDCard:
+					size_hint:None,None
+					size:"300dp","70dp"
+					radius:"20dp"
+					RelativeLayout:
+						FitImage:
+							radius:"20dp"
+							source:"gradients/"+app.gra					
+						MDLabel:
+							text:"Change Gradient"
+							font_name:"assets/Poppins-Regular.ttf"
+							halign:"center"
+		BoxLayout:
+			AnchorLayout:
+				anchor_y:"bottom"
+				Icon:
+					gra:"JShine.jpg"
+			AnchorLayout:
+				anchor_y:"bottom"
+
+				Icon:
+					gra:"Bloody Mary.jpg"
+			AnchorLayout:
+				anchor_y:"bottom"
+
+				Icon:
+					gra:"Green Beach.jpg"
+			AnchorLayout:	
+				anchor_y:"bottom"
+
+				Icon:
+					gra:"Hazel.jpg"
+		BoxLayout:
+			AnchorLayout:		
+				Icon:
+					gra:"Intuitive Purple.jpg"
+			AnchorLayout:					
+				Icon:
+					gra:"Noon to Dusk.jpg"
+			AnchorLayout:					
+				Icon:
+					gra:"Purple.jpg"
+			AnchorLayout:					
+				Icon:
+					gra:"Rose Water.jpg"
+	""")
+	modal.open()
 def load_img(img):
 	size = '{"center_x":0.5,"center_y":0.1}'
 	
@@ -867,6 +936,7 @@ from datetime import datetime
 from platform import python_version
 
 class SRAPS_APP_STUDENT(MDApp):
+	gra="JShine.jpg"
 	av = lambda self:genAvtar()
 	threadRun = lambda self,func,args:threadRun(func, args)
 	show_ad = lambda self:loadAD()
@@ -892,6 +962,7 @@ class SRAPS_APP_STUDENT(MDApp):
 	News="No Internet"
 	time = lambda self:show_timings()
 	fees = lambda self:show_fees()
+	gradient_changer=gradient_changer
 	adim = lambda self:show_adim()
 	x= Window.size[1]
 	title="SRAPS App"
@@ -1074,8 +1145,8 @@ class SRAPS_APP_STARTUP(MDApp):
 	Toast =lambda self ,string:Toast(string)
 	number = ""
 	controler = requests.session()
-	def build(self):
 
+	def build(self):
 		self.title="SRAPS App"
 		self.theme_cls.material_style = "M3"
 		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[0]))
@@ -1083,6 +1154,7 @@ class SRAPS_APP_STARTUP(MDApp):
 		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[-1]))		
 		screen_manager.current = "Sscreen"
 		return screen_manager
+
 	def on_save(self, instance, value, date_range):
 		screen_manager.get_screen("Sscreen2").ids.ran.text = "Selected DOB : "+str(value)
 
@@ -1121,11 +1193,9 @@ class SRAPS_APP_STARTUP(MDApp):
 			else:
 				Toast(str(getStdInfo(open(a.text.replace("\\","")))))
 				self.modal.dismiss()
-		import _thread
 		_thread.start_new_thread(est,())
-	def verify_otp(self,admno,*largs):
 
-	
+	def verify_otp(self,admno,*largs):
 		modal = Builder.load_string("""
 #: import _thread _thread
 ModalView:
@@ -1194,6 +1264,7 @@ ModalView:
 		""")
 		modal.open()
 		self.modal = modal
+
 	def get_admno(self):			
 		modal = Builder.load_string("""
 ModalView:
@@ -1230,8 +1301,6 @@ ModalView:
 		self.admno =  str(screen_manager.get_screen("Sscreen2").ids.admno.text),
 		self.dob = str((screen_manager.get_screen("Sscreen2").ids.ran.text).split(": ")[-1])
 		self.modal = modal
-		import _thread	
-		_thread.start_new_thread(self.sAdim,
-			())
+		_thread.start_new_thread(self.sAdim,())
 		
-SRAPS_APP_STARTUP().run()
+SRAPS_APP_STUDENT().run()

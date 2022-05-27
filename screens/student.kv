@@ -1,5 +1,6 @@
 #: import webbrowser  webbrowser
 #: import Window kivy.core.window.Window
+
 <BaseShadowWidget>:
     size_hint: None, None
     size: 100, 100
@@ -11,12 +12,15 @@
 	icon:""
 	text:""
 	radius:"30dp"
-	elevation:"0dp"
 	size_hint:None,None
 	size:dp(150),dp(120)
 	ripple_behavior:True
 	md_bg_color:app.theme_cls.accent_light
+
 	RelativeLayout:
+		FitImage:
+			source:"gradients/"+app.gra
+			radius:"30dp"
 		AnchorLayout:
 			MDIconButton:
 				icon:root.icon
@@ -731,6 +735,20 @@ MDScreen:
 						MDIconButton:
 							icon:"chevron-right"
 							on_press:app.show_theme_picker()
+					MyMDCard:
+						radius:70
+						padding: dp(8)
+						size_hint: None, None
+						size: app.y, "50dp"
+						elevation:0
+						on_press:app.gradient_changer()	
+						MDLabel:
+							text:"Change Gradients"
+							font_name:"assets/Poppins-Regular.ttf"
+							font_size:"15sp"
+						MDIconButton:
+							icon:"chevron-right"
+							on_press:app.gradient_changer()							
 					MyMDCard:
 						radius:70
 						padding: dp(8)

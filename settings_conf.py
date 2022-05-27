@@ -1,5 +1,5 @@
 logs = True      
-update = False
+update = True
 accent = "Amber"
-primary = "BlueGray"
+primary = "Orange"
 
