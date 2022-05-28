@@ -1,4 +1,5 @@
-logs = True      
+
+logs = True
 update = True
 accent = "Indigo"
 primary = "Pink"  
