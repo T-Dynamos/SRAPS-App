@@ -9,32 +9,31 @@
     pos_hint: {'center_x': .5}	
     
 <IconRound@MyMDCard>:
-
 	source:"gradients/"+app.gra
 	icon:""
 	text:""
-	radius:"30dp"
+	radius:"20dp"
 	style:"elevated"
 	size_hint:None,None
 	size:dp(150),dp(120)
 	ripple_behavior:True
 	md_bg_color:app.theme_cls.accent_light
-
 	RelativeLayout:
 		FitImage:
 			source:root.source
-			radius:"30dp"
+			radius:"20dp"
 		AnchorLayout:
 			MDIconButton:
-				user_font_size: "55sp"
+				user_font_size: "48sp"
 				icon:root.icon
 				on_press:root.on_press
 		MDLabel:
 			halign:"center"
 			pos_hint:{"center_x":0.5,"center_y":0.20}
 			text:root.text
-			font_name:"assets/Poppins-Regular.ttf"
+			font_name:"assets/Poppins-Bold.ttf"
 			font_size:"15sp"
+
 
 <MyLayout@MDSwiperItem>:
 	img:""
@@ -89,42 +88,46 @@
 	size_hint:None,None
 	size: app.y-app.y//17, "200dp"
 	MyMDCard:
-		radius:"40dp"
+		radius:"20dp"
 		elevation:30
 		halign:"center"
 		size_hint:None,None
 		style:"elevated"
 		size: app.y-app.y//17, "200dp"
 		md_bg_color:app.theme_cls.accent_light
-
-		FitImage:
-			source:root.img
-			radius:"40dp"
-		MDBoxLayout:
-			orientation:"vertical"
-			MDLabel:
-				text:root.text
-				halign:"center"
-				font_name:"assets/Poppins-Bold.ttf"
-				font_size:"25sp"
-				theme_text_color:"Custom"
-				text_color:0,0,0,1
-
-			AnchorLayout:
-				id:ooo
-				orientation:"vertical"
-				anchor_x:'center'
-				anchor_y:'center'
-				MyMDCard:
-					size_hint:None,None
-					size:ooo.width-dp(25),ooo.height-dp(35)
-					on_press: webbrowser.open(root.link)
-					md_bg_color:app.theme_cls.primary_light
+		RelativeLayout:
+			FitImage:
+				source:app.ragra()
+				radius:"20dp"
+			BoxLayout:
+				FitImage:
+					source:root.img
+					radius:"20dp",0,0,"20dp"
+				MDBoxLayout:
+					orientation:"vertical"
 					MDLabel:
+						text:root.text
 						halign:"center"
-						text:'Read More'
 						font_name:"assets/Poppins-Bold.ttf"
-						font_size:"15sp"
+						font_size:"25sp"
+						theme_text_color:"Custom"
+						text_color:0,0,0,1
+
+					AnchorLayout:
+						id:ooo
+						orientation:"vertical"
+						anchor_x:'center'
+						anchor_y:'center'
+						MyMDCard:
+							size_hint:None,None
+							size:ooo.width-dp(25),ooo.height-dp(35)
+							on_press: webbrowser.open(root.link)
+							md_bg_color:app.theme_cls.primary_light
+							MDLabel:
+								halign:"center"
+								text:'Read More'
+								font_name:"assets/Poppins-Bold.ttf"
+								font_size:"15sp"
 						
 <FitCard2@MyMDCard>
 	text:""
@@ -365,13 +368,13 @@ MDScreen:
 						AnchorLayout:
 							size_hint_y: None 
 							size_hint_x:None
-							size:(app.y,"170dp")
+							size:(app.y,"180dp")
 							MyMDCard:
 								radius:"20dp"
 								elevation:"40dp"
 								halign:"center"
 								size_hint:None,None
-								size: app.y-dp(15),"200dp"
+								size: app.y-dp(15),"180dp"
 								style:'elevated'
 								md_bg_color:app.theme_cls.accent_color
 								RelativeLayout:
@@ -396,29 +399,44 @@ MDScreen:
 						AnchorLayout:
 							size_hint_y: None 
 							size_hint_x:None
-							size:(app.y-dp(5),"420dp")
+							size:(app.y,"410dp")
 							MyMDCard:
 								radius:"20dp"
 								size_hint:None,None
-								size: app.y-dp(5), "420dp"
+								size: app.y-dp(15), "410dp"
 								style:'elevated'
-								padding:20
 								RelativeLayout:
 									FitImage:
-										source:"gradients/JShine.jpg"	
-										radius:"20dp"			
-									MDLabel:
-										hailgn:'center'
-										text:' Shri Ram Ashram Public School, one of the most prestigious schools in Punjab, founded in 1923 at the behest and benediction of Pandit Madan Mohan Malaviya Ji and other national leaders with the sole aim and objective of providing value based quality education. Since then it has been a path breaker in the pursuit of excellence. Its endeavour of integrating with quality is reflected in the outstanding results of X & XII year after year and accolades won in different fields. The school considers education to be a life-long process which should have a strong foundation.The goal of the school is to inculcate in each student a love for learning and a desire to excel at every level. The school also aims at equipping the students with the intellectual and practical skills that are necessary to meet the challenges in the future. We assure you that here your child will become an enlightened citizen .                                   '
-										font_name:'assets/Lato-Italic.ttf'
-										font_size:"15sp"	
+										source:app.ragra()	
+										radius:"20dp"	
+									BoxLayout:
+										padding:dp(10)		
+										MDLabel:
+											halign:'center'
+											text:' Shri Ram Ashram Public School, one of the most prestigious schools in Punjab, founded in 1923 at the behest and benediction of Pandit Madan Mohan Malaviya Ji and other national leaders with the sole aim and objective of providing value based quality education. Since then it has been a path breaker in the pursuit of excellence. Its endeavour of integrating with quality is reflected in the outstanding results of X & XII year after year and accolades won in different fields. The school considers education to be a life-long process which should have a strong foundation.The goal of the school is to inculcate in each student a love for learning and a desire to excel at every level. The school also aims at equipping the students with the intellectual and practical skills that are necessary to meet the challenges in the future. We assure you that here your child will become an enlightened citizen .                                   '
+											font_name:'assets/Lato-Italic.ttf'
+											font_size:"15sp"	
 										
 						AnchorLayout:
 							size_hint_y: None 
 							size_hint_x:None
 							size:(app.y,"150dp")
-							FitCard:
-								text:'We aim at making every child a human being first, before he/she become an Engineer, Doctor, Philosopher or an Educator .'
+							MyMDCard:
+								radius:"20dp"
+								size_hint:None,None
+								size: app.y-dp(10), "150dp"
+								style:'elevated'
+								RelativeLayout:
+									FitImage:
+										source:app.ragra()
+										radius:"20dp"
+									BoxLayout:
+										padding:dp(10)				
+										MDLabel:
+											halign:'center'							
+											text:'We aim at making every child a human being first, before he/she become an Engineer, Doctor, Philosopher or an Educator .'
+											font_name:'assets/Poppins-Bold.ttf'
+											font_size:"15sp"
 
 
 						AnchorLayout:

@@ -948,7 +948,7 @@ from platform import python_version
 import random
 class SRAPS_APP_STUDENT(MDApp):
 	gra=settings.getSettings()["gra"]
-
+	ragra = lambda self : "gradients/"+random.choice(['Green Beach.jpg', 'Purple.jpg', 'Hazel.jpg', 'Rose Water.jpg', 'JShine.jpg', 'Intuitive Purple.jpg', 'Noon to Dusk.jpg', 'Bloody Mary.jpg'])
 	av = lambda self:genAvtar()
 	threadRun = lambda self,func,args:threadRun(func, args)
 	show_ad = lambda self:loadAD()
