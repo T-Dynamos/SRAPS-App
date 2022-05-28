@@ -746,7 +746,7 @@ ModalView:
 					RelativeLayout:
 						FitImage:
 							id:ty
-							radius:"20dp"
+							radius:"20dp","20dp",0,0
 							source:"gradients/"+app.gra					
 						MDLabel:
 							text:"Change Gradient"

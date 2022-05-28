@@ -28,17 +28,12 @@
 			MDIconButton:
 				icon:root.icon
 				on_press:root.on_press
-				theme_icon_color:"Custom"
-				icon_color:0,0,0,1
 		MDLabel:
 			halign:"center"
 			pos_hint:{"center_x":0.5,"center_y":0.25}
 			text:root.text
 			font_name:"assets/Poppins-Regular.ttf"
 			font_size:"15sp"
-			theme_text_color:"Custom"
-			
-			text_color:0,0,0,1
 
 <MyLayout@MDSwiperItem>:
 	img:""
@@ -370,15 +365,15 @@ MDScreen:
 							size_hint_x:None
 							size:(app.y,"170dp")
 							MyMDCard:
-								radius:"40dp"
+								radius:"20dp"
 								elevation:"40dp"
 								halign:"center"
 								size_hint:None,None
-								size: app.y-dp(13),"170dp"
+								size: app.y-dp(15),"170dp"
 								style:'elevated'
 								md_bg_color:app.theme_cls.accent_color
 								FitImage:
-									radius:"40dp"
+									radius:"20dp"
 									id:NI
 									source:app.NI
 
@@ -387,6 +382,7 @@ MDScreen:
 							text:" "+app.News
 							font_name:"assets/Lato-Italic.ttf"
 							font_size:'18sp'
+							halig:"center"
 						MDLabel:
 
 						AnchorLayout:

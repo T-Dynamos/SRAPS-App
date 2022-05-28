@@ -1,7 +1,7 @@
 DataBase = {
 
-"SliderImages":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8b2jhAOpt1P0TCC1eUms14TMt4Jeb0cw2g&usqp=CAU",
-"News":"Admission is open "
+"SliderImages":"https://shriramashramps.org/assets/img/robotic.jpg",
+"News":" Lego classes soon starting in school"
 
 }
 
