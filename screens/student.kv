@@ -24,7 +24,6 @@
 			radius:"20dp"
 		AnchorLayout:
 			MDIconButton:
-				user_font_size: "45sp"
 				icon:root.icon
 				on_press:root.on_press
 		MDLabel:
@@ -394,11 +393,11 @@ MDScreen:
 						AnchorLayout:
 							size_hint_y: None 
 							size_hint_x:None
-							size:(app.y,"460dp")
+							size:(app.y,"500dp")
 							MyMDCard:
 								radius:"20dp"
 								size_hint:None,None
-								size: app.y-dp(15), "460dp"
+								size: app.y-dp(15), "500dp"
 								style:'elevated'
 								RelativeLayout:
 									FitImage:

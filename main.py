@@ -569,7 +569,7 @@ def show_timings():
 	a = """
 MyMDCard:
 	radius:"20dp"
-	size:(0.85,0.85)
+	size:"270dp","400dp"
 	elevation:50
 	orientation:"vertical"
 	ScrollView:
@@ -584,7 +584,7 @@ MyMDCard:
 			MyMDCard:
 				radius:"20dp"
 				size_hint:None,None
-				size:"300dp","320dp"
+				size:"260dp","320dp"
 				id:oo
 				FitImage:
 					source:"assets/time.jpg"
@@ -615,7 +615,8 @@ MyMDCard:
 		"""
 	modal = ModalView(
         background_color=[0,0,0,0],
-        size_hint=(0.8, 0.8),
+        size_hint=(None,None),
+        size=(dp(270),dp(400)),
         overlay_color=(0, 0, 0, 0.7),
 	)
 
