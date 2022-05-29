@@ -86,48 +86,41 @@
 	img:""
 	link:""
 	size_hint:None,None
-	size: app.y-app.y//17, "200dp"
+	size: app.y-app.y//2-dp(10), "153dp"
 	MyMDCard:
 		radius:"20dp"
 		elevation:30
 		halign:"center"
 		size_hint:None,None
 		style:"elevated"
-		size: app.y-app.y//17, "200dp"
+		size:app.y-app.y//2-dp(10), "150dp"
 		md_bg_color:app.theme_cls.accent_light
 		RelativeLayout:
+			id:ooo
 			FitImage:
-				source:"gradients/Intuitive Purple.jpg"
+				source:root.img
 				radius:"20dp"
-			BoxLayout:
-				FitImage:
-					source:root.img
-					radius:"20dp",0,0,"20dp"
-				MDBoxLayout:
-					orientation:"vertical"
-					MDLabel:
-						text:root.text
-						halign:"center"
-						font_name:"assets/Poppins-Bold.ttf"
-						font_size:"25sp"
-						theme_text_color:"Custom"
-						text_color:0,0,0,1
+			FitImage:
+				source:"assets/shadow-black-down.png"
+				radius:"20dp"
 
-					AnchorLayout:
-						id:ooo
-						orientation:"vertical"
-						anchor_x:'center'
-						anchor_y:'center'
-						MyMDCard:
-							size_hint:None,None
-							size:ooo.width-dp(25),ooo.height-dp(35)
-							on_press: webbrowser.open(root.link)
-							md_bg_color:app.theme_cls.primary_light
-							MDLabel:
-								halign:"center"
-								text:'Read More'
-								font_name:"assets/Poppins-Bold.ttf"
-								font_size:"15sp"
+
+			MyMDCard:
+				pos_hint:{"center_x":0.5,"center_y":0.08}
+				size_hint:None,None
+				size:ooo.width-dp(25),ooo.height//2-dp(20)
+				on_press: webbrowser.open(root.link)
+				md_bg_color:app.theme_cls.primary_light
+				radius:"20dp"
+				RelativeLayout:
+					FitImage:
+						source:"gradients/"+app.gra
+						radius:"20dp"
+					MDLabel:
+						halign:"center"
+						text:root.text
+						font_name:"assets/Poppins-Bold.ttf"
+						font_size:"15sp"
 						
 <FitCard2@MyMDCard>
 	text:""
@@ -440,118 +433,105 @@ MDScreen:
 											font_name:'assets/Poppins-Bold.ttf'
 											font_size:"15sp"
 
+						BoxLayout:
+							size_hint:None,None
+							size:app.y,"150dp"
+							AnchorLayout:
+								FitImgCard:
+									img:"assets/audi-1.jpg"
+									text:"Auditorium"
+									link:"http://www.shriramashramps.org/auditorium#"
+							AnchorLayout:
 
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
-							FitImgCard:
-								img:"assets/audi-1.jpg"
-								text:"Auditorium"
-								link:"http://www.shriramashramps.org/auditorium#"
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
+								FitImgCard:
+									img:"assets/kids-1.jpg"
+									link:"http://www.shriramashramps.org/kidszone"	
+									text:"Kids Zone"
+							
+						BoxLayout:
+							size_hint:None,None
+							size:app.y,"150dp"
+							AnchorLayout:
+								FitImgCard:
+									img:"assets/gym-1.jpg"
+									
+									text:"Gymnasium"
+									
+									link:"http://www.shriramashramps.org/gymnasium"	
+							AnchorLayout:
+								FitImgCard:
+									img:"assets/rob-1.jpg"
+									
+									text:"Robotics"
+									
+									link:"http://www.shriramashramps.org/robotic"
+						BoxLayout:
+							size_hint:None,None
+							size:app.y,"150dp"									
+							AnchorLayout:
+								
+								FitImgCard:
+									img:"assets/bcourt-1.jpg"
+									
+									text:"Badminton Court"
+									
+									link:"http://www.shriramashramps.org/badminton"				
+							AnchorLayout:
+								
+								FitImgCard:
+									img:"assets/ncc-1.jpg"
+									text:"NCC"
+									link:"http://www.shriramashramps.org/ncc"
+						BoxLayout:
+							size_hint:None,None
+							size:app.y,"150dp"
+							AnchorLayout:
+								FitImgCard:
+									img:"assets/music-1.jpg"
+									text:"Music & Orchestra"
+									link:"http://www.shriramashramps.org/music"	
 
-							FitImgCard:
-								img:"assets/kids-1.jpg"
-								link:"http://www.shriramashramps.org/kidszone"	
-								text:"Kids Zone"
+							AnchorLayout:
+								FitImgCard:
+									img:"assets/sports-2.jpg"
+									
+									text:"Sports & Games"
+									
+									link:"http://www.shriramashramps.org/sports"
+						BoxLayout:
+							size_hint:None,None
+							size:app.y,"150dp"										
+							AnchorLayout:
 								
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
+								FitImgCard:
+									img:"assets/sciencelab.jpg"
+									
+									text:"Science Lab"
+									
+									link:"http://www.shriramashramps.org/sciencelab"
+							AnchorLayout:
 								
-							
-							FitImgCard:
-								img:"assets/gym-1.jpg"
-								
-								text:"Gymnasium"
-								
-								link:"http://www.shriramashramps.org/gymnasium"	
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
-							
-							FitImgCard:
-								img:"assets/rob-1.jpg"
-								
-								text:"Robotics"
-								
-								link:"http://www.shriramashramps.org/robotic"
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
-							
-							FitImgCard:
-								img:"assets/bcourt-1.jpg"
-								
-								text:"Badminton Court"
-								
-								link:"http://www.shriramashramps.org/badminton"				
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
-							
-							FitImgCard:
-								img:"assets/ncc-1.jpg"
-								text:"NCC"
-								link:"http://www.shriramashramps.org/ncc"
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
-							FitImgCard:
-								img:"assets/music-1.jpg"
-								text:"Music & Orchestra"
-								link:"http://www.shriramashramps.org/music"	
-
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
-							
-							FitImgCard:
-								img:"assets/sports-2.jpg"
-								
-								text:"Sports & Games"
-								
-								link:"http://www.shriramashramps.org/sports"	
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
-							
-							FitImgCard:
-								img:"assets/sciencelab.jpg"
-								
-								text:"Science Lab"
-								
-								link:"http://www.shriramashramps.org/sciencelab"
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
-							
-							FitImgCard:
-								img:"assets/garden.jpg"
-								
-								text:"Garden"
-								
-								link:"http://www.shriramashramps.org/garden"	
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
-							
-							FitImgCard:
-								img:"assets/lib-1.jpg"
-								
-								text:"Library"
-								
-								link:"http://www.shriramashramps.org/library"	
-						AnchorLayout:
-							size_hint: (None, None)
-							size:app.y,dp(200)
-							
-							FitImgCard:
-								img:"assets/medical-1.jpg"
-								text:"Medical"		
-								link:"http://www.shriramashramps.org/medical"
+								FitImgCard:
+									img:"assets/garden.jpg"
+									
+									text:"Garden"
+									
+									link:"http://www.shriramashramps.org/garden"	
+						BoxLayout:
+							size_hint:None,None
+							size:app.y,"150dp"									
+							AnchorLayout:
+								FitImgCard:
+									img:"assets/lib-1.jpg"
+									
+									text:"Library"
+									
+									link:"http://www.shriramashramps.org/library"	
+							AnchorLayout:
+								FitImgCard:
+									img:"assets/medical-1.jpg"
+									text:"Medical"		
+									link:"http://www.shriramashramps.org/medical"
 
 		MDBottomNavigationItem:
 			name: "homework"
