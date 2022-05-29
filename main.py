@@ -1,4 +1,4 @@
-
+#!/usr/bin/python3
 
 __version__ = "2.02"
 
@@ -724,6 +724,52 @@ MyMDCard:
 	modal.add_widget(Builder.load_string(a))
 	modal.open()		
 
+def staff(self):
+	modal = Builder.load_string("""
+
+ModalView:
+	id:model
+	background_color:[0,0,0,0]
+	size_hint:None,None
+	size:"300dp","250dp"
+	overlay_color:(0, 0, 0, 0.6)
+	
+	MyMDCard:
+
+		radius:"30dp"
+		elevation:18
+		orientation:"vertical"
+		BoxLayout:
+			RelativeLayout:
+
+				AKCircularProgress:
+				    id: progress_1
+				    pos_hint: {"center_x": .5, "center_y": .5}
+				    size_hint: None, None
+				    size: dp(100), dp(100)
+				    percent_type: "percent"
+				    start_deg: 0
+				    end_deg: 360
+				    percent_type: "relative"
+				    max_percent: 3000
+			RelativeLayout:
+				AKCircularProgress:
+					pos_hint: {"center_x": .5, "center_y": .5}
+
+					id:proress_2
+				    size_hint: None, None
+				    size: dp(100), dp(100)
+				    percent_type: "percent"
+				    start_deg: 0
+				    end_deg: 360
+				    percent_type: "relative"
+				    max_percent: 150
+
+
+	""")
+	modal.open()
+	modal.ids.progress_1.current_percentage = -3000
+
 def gradient_changer(self):
 	modal = Builder.load_string("""
 
@@ -951,6 +997,7 @@ from datetime import datetime
 from platform import python_version
 import random
 class SRAPS_APP_STUDENT(MDApp):
+	staff=staff
 	gra=settings.getSettings()["gra"]
 	ragra = lambda self : "gradients/"+random.choice(['Green Beach.jpg', 'Purple.jpg', 'Hazel.jpg', 'Rose Water.jpg', 'JShine.jpg', 'Intuitive Purple.jpg', 'Noon to Dusk.jpg', 'Bloody Mary.jpg'])
 	av = lambda self:genAvtar()
@@ -969,6 +1016,7 @@ class SRAPS_APP_STUDENT(MDApp):
 	python_version = python_version()
 	__version__ = __version__
 	y = y
+	x=Window.size[1]
 	wid = lambda self:loaderS("Function called")
 	Teachers = Teachers
 	spacing = Window.size[1]//20
@@ -992,6 +1040,7 @@ class SRAPS_APP_STUDENT(MDApp):
 		screen_manager.get_screen("Mscreen").ids.imgs7.source = "gradients/"+gra
 		screen_manager.get_screen("Mscreen").ids.imgs8.source = "gradients/"+gra
 		settings.writeSettings("gra",gra)
+		Toast("Some gradients will change on next startup ! ")
 	def colorHex(self, color):
 		return get_color_from_hex(color)
 	def myc(self):
@@ -1031,7 +1080,7 @@ MDScreen:
 		Image:
 			source:"splash.png"
 			size_hint:None,None
-			size:"200dp","200dp"
+			size:app.y,app.y
 			"""))
 		return screen_manager
 	def start_build(self,*largs):
