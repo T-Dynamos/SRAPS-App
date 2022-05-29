@@ -1,6 +1,5 @@
-
-logs = True
+logs = True      
 update = True
 accent = "Indigo"
 primary = "Pink"  
-gra = "Green Beach.jpg" 
+gra = "Bloody Mary.jpg" 

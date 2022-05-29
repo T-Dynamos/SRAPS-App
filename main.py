@@ -53,7 +53,10 @@ from kivymd.uix.label import *
 from kivymd.uix.sliverappbar import *
 from kivymd_extensions.akivymd.uix.loaders import *
 from functools import partial
+from kivy.loader import *
 import _thread
+
+
 
 
 if platform == "android":
@@ -77,7 +80,7 @@ class Tab(MDFloatLayout, MDTabsBase):
     pass
 
 if platform != "android":
-	Window.size = (Window.size[0]//2, Window.size[1])
+	Window.size = (dp(400),dp(600))
 y = Window.size[0]
 
 def check_intr():
@@ -581,7 +584,7 @@ MyMDCard:
 			MyMDCard:
 				radius:"20dp"
 				size_hint:None,None
-				size:"300dp","300dp"
+				size:"300dp","320dp"
 				id:oo
 				FitImage:
 					source:"assets/time.jpg"
@@ -900,7 +903,7 @@ def show_teachers():
 	modal = ModalView(
         background_color=[0,0,0,0],
         size_hint=(None,None),
-        size=(1,1),
+        size=(y-dp(10),Window.size[1]-dp(20)),
         overlay_color=(0, 0, 0, 0.7),
 	)
 
@@ -1010,6 +1013,8 @@ class SRAPS_APP_STUDENT(MDApp):
 			screen_manager.get_screen("Mscreen").ids.a891.icon_color = 0,0,0,0
 			screen_manager.get_screen("Mscreen").ids.a891.text_color = 0,0,0,0				
 	def build(self):
+		Loader.loading_image = "assets/trans.png"
+		Loader.error_image = "assets/trans.png"
 		self.theme_cls.material_style = "M3"
 		self.theme_cls.primary_palette = settings.getSettings()["primary"]
 		self.theme_cls.accent_palette = settings.getSettings()["accent"]		
@@ -1017,9 +1022,21 @@ class SRAPS_APP_STUDENT(MDApp):
 			self.theme_cls.theme_style = 'Dark'
 		else:
 			self.theme_cls.theme_style = 'Light'
+		screen_manager.add_widget(Builder.load_string("""
+MDScreen:
+	name:"t"
+	md_bg_color:app.colorHex("#FF3647")
+	AnchorLayout:
+		Image:
+			source:"splash.png"
+			size_hint:None,None
+			size:"200dp","200dp"
+			"""))
+		return screen_manager
+	def start_build(self,*largs):
 		screen_manager.add_widget(Builder.load_file('screens/student.kv'))
 		screen_manager.current = "Mscreen"
-		return screen_manager
+		show_message() if check_intr() == False else update_data()
 	def kl(self,*args):
 		screen_manager.get_screen("Mscreen").ids.test.avatar = genAvtar()
 		screen_manager.get_screen("Mscreen").ids.test1.avatar = genAvtar()
@@ -1028,7 +1045,8 @@ class SRAPS_APP_STUDENT(MDApp):
 		screen_manager.get_screen("Mscreen").ids.test4.avatar = genAvtar()
 		screen_manager.get_screen("Mscreen").ids.test5.avatar = genAvtar()
 	def start(self,*largs):
-		show_message() if check_intr() == False else update_data()
+		Clock.schedule_once(self.start_build,0.5)
+
 	def on_start(self):
 		threadRun(self.start,())
 	def accent(self,color):

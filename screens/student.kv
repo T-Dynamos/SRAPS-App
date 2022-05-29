@@ -24,7 +24,7 @@
 			radius:"20dp"
 		AnchorLayout:
 			MDIconButton:
-				user_font_size: "48sp"
+				user_font_size: "45sp"
 				icon:root.icon
 				on_press:root.on_press
 		MDLabel:
@@ -97,7 +97,7 @@
 		md_bg_color:app.theme_cls.accent_light
 		RelativeLayout:
 			FitImage:
-				source:app.ragra()
+				source:"gradients/Intuitive Purple.jpg"
 				radius:"20dp"
 			BoxLayout:
 				FitImage:
@@ -392,6 +392,8 @@ MDScreen:
 										font_name:"assets/Lato-Italic.ttf"
 										font_size:'18sp'
 										halign:"center"
+										theme_text_color:"Custom"
+										text_color:1,1,1,1
 
 
 						MDLabel:
@@ -399,22 +401,22 @@ MDScreen:
 						AnchorLayout:
 							size_hint_y: None 
 							size_hint_x:None
-							size:(app.y,"410dp")
+							size:(app.y,"460dp")
 							MyMDCard:
 								radius:"20dp"
 								size_hint:None,None
-								size: app.y-dp(15), "410dp"
+								size: app.y-dp(15), "460dp"
 								style:'elevated'
 								RelativeLayout:
 									FitImage:
-										source:app.ragra()	
+										source:"gradients/Bloody Mary.jpg"	
 										radius:"20dp"	
 									BoxLayout:
 										padding:dp(10)		
 										MDLabel:
-											halign:'center'
+											halign:'auto'
 											text:' Shri Ram Ashram Public School, one of the most prestigious schools in Punjab, founded in 1923 at the behest and benediction of Pandit Madan Mohan Malaviya Ji and other national leaders with the sole aim and objective of providing value based quality education. Since then it has been a path breaker in the pursuit of excellence. Its endeavour of integrating with quality is reflected in the outstanding results of X & XII year after year and accolades won in different fields. The school considers education to be a life-long process which should have a strong foundation.The goal of the school is to inculcate in each student a love for learning and a desire to excel at every level. The school also aims at equipping the students with the intellectual and practical skills that are necessary to meet the challenges in the future. We assure you that here your child will become an enlightened citizen .                                   '
-											font_name:'assets/Lato-Italic.ttf'
+											font_name:'assets/Poppins-Regular.ttf'
 											font_size:"15sp"	
 										
 						AnchorLayout:
@@ -428,7 +430,7 @@ MDScreen:
 								style:'elevated'
 								RelativeLayout:
 									FitImage:
-										source:app.ragra()
+										source:"gradients/JShine.jpg"
 										radius:"20dp"
 									BoxLayout:
 										padding:dp(10)				
@@ -577,7 +579,16 @@ MDScreen:
 							adaptive_height: True
 							height: self.minimum_height
 							MDLabel:																																									
-
+							HeadItem:
+								id:test
+								title:""
+								content:""
+								avatar:""
+							HeadItem:
+								id:test
+								title:""
+								content:""
+								avatar:""								
 
 	            Tab:
 	            	id:c_tab
@@ -597,32 +608,17 @@ MDScreen:
 								id:test
 								title:""
 								content:""
-								avatar:app.av()								
+								avatar:""
 							HeadItem:
-								id:test1
+								id:test
 								title:""
 								content:""
-								avatar:app.av()		
+								avatar:""
 							HeadItem:
-								id:test2
+								id:test
 								title:""
 								content:""
-								avatar:app.av()								
-							HeadItem:
-								id:test3
-								title:""
-								content:""
-								avatar:app.av()			
-							HeadItem:
-								id:test4
-								title:""
-								content:""
-								avatar:app.av()								
-							HeadItem:
-								id:test5
-								title:""
-								content:""
-								avatar:app.av()																																										
+								avatar:""																																																	
 							
 
 																																							
