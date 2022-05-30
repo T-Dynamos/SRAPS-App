@@ -6,10 +6,12 @@ __version__ = "2.02"
 import kivy
 from kivymd.uix.floatlayout import *
 from kivy.uix.anchorlayout import *
+from kivy.uix.boxlayout import *
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
 from kivymd.toast import toast as Toast2
 from kivymd.app import *
 from kivymd.uix.pickers import *
+from kivymd.theming import ThemableBehavior
 from kivymd.uix.label import *
 from kivy.uix.image import *
 from kivy.uix.label import *
@@ -53,6 +55,7 @@ from kivymd.uix.label import *
 from kivymd.uix.sliverappbar import *
 from kivymd_extensions.akivymd.uix.loaders import *
 from functools import partial
+from kivy.properties import *
 from kivy.loader import *
 import _thread
 
@@ -449,8 +452,31 @@ MyMDCard:
 
 	modal.add_widget(Builder.load_string(a))
 	modal.open()
+
 Builder.load_string(
     """
+<AKCircularProgress>:
+
+    canvas.before:
+        Color:
+            rgba: root.background_circle_color if root.background_circle_color else app.theme_cls.primary_light
+        Line:
+            circle: (self.x + self.width / 2, self.y + self.height / 2, self.height / 2, root.start_deg, root.end_deg)
+            width: root.background_line_width
+        Color:
+            rgba: root.circle_color if root.circle_color else app.theme_cls.primary_color
+        Line:
+            circle: (self.x + self.width / 2, self.y + self.height / 2, self.height / 2, root.start_deg, root._current_deg)
+            width: root.line_width
+            cap: root.cap_type
+
+    MDLabel:
+        id: _percent_label
+        halign: "center"
+        valign: "center"
+        theme_text_color: "Custom"
+        text_color: root.percent_color if root.percent_color else app.theme_cls.primary_color
+        font_size: root.percent_size
 <Icon@MyMDCard>:
 	gra:""
 	size_hint:None,None
@@ -530,6 +556,7 @@ Builder.load_string(
 
 """
 )
+
 
 
 class ColorSelector(MDIconButton):
@@ -731,45 +758,157 @@ ModalView:
 	id:model
 	background_color:[0,0,0,0]
 	size_hint:None,None
-	size:"300dp","250dp"
+	size:"300dp","350dp"
 	overlay_color:(0, 0, 0, 0.6)
-	
-	MyMDCard:
 
+	MyMDCard:
 		radius:"30dp"
 		elevation:18
 		orientation:"vertical"
-		BoxLayout:
+		GridLayout:
+			rows:2
+			cols:2
 			RelativeLayout:
-
-				AKCircularProgress:
-				    id: progress_1
-				    pos_hint: {"center_x": .5, "center_y": .5}
-				    size_hint: None, None
-				    size: dp(100), dp(100)
-				    percent_type: "percent"
-				    start_deg: 0
-				    end_deg: 360
-				    percent_type: "relative"
-				    max_percent: 3000
+				MyMDCard:
+					pos_hint:{"center_x":0.5,"center_y":0.5}
+					radius:"100dp"
+					size_hint:None,None
+					size:dp(100),dp(100)
+					md_bg_color:app.theme_cls.primary_color
+					AnchorLayout:
+						MyMDCard:
+							pos_hint:{"center_x":0.5,"center_y":0.5}
+							radius:"100dp"
+							size_hint:None,None
+							size:dp(90),dp(90)
+							RelativeLayout:
+								FitImage:
+									source:"gradients/"+app.gra
+									radius:"100dp"
+								MDLabel:
+									id:test
+									text:"0 +"
+									halign:"center"
+									font_name:"assets/Poppins-Bold.ttf"
+				MDLabel:
+					pos_hint:{"center_x":0.5,"center_y":0.05}
+					text:"Students"
+					font_name:"assets/Poppins-Regular.ttf"
+					halign:"center"
 			RelativeLayout:
-				AKCircularProgress:
-					pos_hint: {"center_x": .5, "center_y": .5}
-
-					id:proress_2
-				    size_hint: None, None
-				    size: dp(100), dp(100)
-				    percent_type: "percent"
-				    start_deg: 0
-				    end_deg: 360
-				    percent_type: "relative"
-				    max_percent: 150
-
-
+				MyMDCard:
+					pos_hint:{"center_x":0.5,"center_y":0.5}
+					radius:"100dp"
+					size_hint:None,None
+					size:dp(100),dp(100)
+					md_bg_color:app.theme_cls.primary_color
+					AnchorLayout:
+						MyMDCard:
+							pos_hint:{"center_x":0.5,"center_y":0.5}
+							radius:"100dp"
+							size_hint:None,None
+							size:dp(90),dp(90)
+							RelativeLayout:
+								FitImage:
+									source:"gradients/"+app.gra
+									radius:"100dp"
+								MDLabel:
+									id:test2
+									text:"0 +"
+									halign:"center"
+									font_name:"assets/Poppins-Bold.ttf"
+				MDLabel:
+					pos_hint:{"center_x":0.5,"center_y":0.05}
+					text:"Staff"
+					font_name:"assets/Poppins-Regular.ttf"
+					halign:"center"									
+			RelativeLayout:
+				MyMDCard:
+					pos_hint:{"center_x":0.5,"center_y":0.5}
+					radius:"100dp"
+					size_hint:None,None
+					size:dp(100),dp(100)
+					md_bg_color:app.theme_cls.primary_color
+					AnchorLayout:
+						MyMDCard:
+							pos_hint:{"center_x":0.5,"center_y":0.5}
+							radius:"100dp"
+							size_hint:None,None
+							size:dp(90),dp(90)
+							RelativeLayout:
+								FitImage:
+									source:"gradients/"+app.gra
+									radius:"100dp"
+								MDLabel:
+									id:test4
+									text:"0 +"
+									halign:"center"
+									font_name:"assets/Poppins-Bold.ttf"
+				MDLabel:
+					pos_hint:{"center_x":0.5,"center_y":0.065}
+					text:"Class Rooms"
+					font_name:"assets/Poppins-Regular.ttf"
+					halign:"center"											
+			RelativeLayout:
+				MyMDCard:
+					pos_hint:{"center_x":0.5,"center_y":0.5}
+					radius:"100dp"
+					size_hint:None,None
+					size:dp(100),dp(100)
+					md_bg_color:app.theme_cls.primary_color
+					AnchorLayout:
+						MyMDCard:
+							pos_hint:{"center_x":0.5,"center_y":0.5}
+							radius:"100dp"
+							size_hint:None,None
+							size:dp(90),dp(90)
+							RelativeLayout:
+								FitImage:
+									source:"gradients/"+app.gra
+									radius:"100dp"
+								MDLabel:
+									id:test3
+									text:"10 +"
+									halign:"center"
+									font_name:"assets/Poppins-Bold.ttf"
+				MDLabel:
+					pos_hint:{"center_x":0.5,"center_y":0.065}
+					text:"Labs"
+					font_name:"assets/Poppins-Regular.ttf"
+					halign:"center"
+	RelativeLayout:
+		MDLabel:
+			pos_hint:{"center_x":0.5,"center_y":0.95}
+			text:"School Important Facts"
+			halign:"center"
+			font_name:"assets/Poppins-SemiBoldItalic.ttf"			
 	""")
 	modal.open()
-	modal.ids.progress_1.current_percentage = -3000
-
+	def func():
+		
+		for i in range(0,3000):
+			time.sleep(0.000001)
+			modal.ids.test.text = str(i)+" +"
+		modal.ids.test.text = "3000 +"
+	def func2():
+		for i in range(0,150):
+			time.sleep(0.005)
+			modal.ids.test2.text = str(i)+" +"
+		modal.ids.test2.text = "150 +"	
+	def func3():
+		for i in range(0,10):
+			time.sleep(0.1)
+			modal.ids.test3.text = str(i)+" +"
+		modal.ids.test3.text = "10 +"
+	def func4():
+		for i in range(0,300):
+			time.sleep(0.0025)
+			modal.ids.test4.text = str(i)+" +"
+		modal.ids.test4.text = "300 +"						
+	_thread.start_new_thread(func,())
+	_thread.start_new_thread(func2,())
+	_thread.start_new_thread(func3,())
+	_thread.start_new_thread(func4,())
 def gradient_changer(self):
 	modal = Builder.load_string("""
 
@@ -937,7 +1076,7 @@ def show_teachers():
 	use_pagination=True,
 	column_data=[
 
-	("No.", dp(20)),
+	("No.", dp(10)),
 
 	("Name", dp(20)),
 
@@ -950,7 +1089,7 @@ def show_teachers():
 	modal = ModalView(
         background_color=[0,0,0,0],
         size_hint=(None,None),
-        size=(y-dp(10),Window.size[1]-dp(20)),
+        size=(y-dp(10),Window.size[1]//1.5-dp(20)),
         overlay_color=(0, 0, 0, 0.7),
 	)
 
@@ -1399,4 +1538,4 @@ ModalView:
 		self.modal = modal
 		_thread.start_new_thread(self.sAdim,())
 		
-SRAPS_APP_STARTUP().run()
+SRAPS_APP_STUDENT().run()
