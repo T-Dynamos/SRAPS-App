@@ -143,7 +143,7 @@ MDScreen:
 			text:"Proceed"
 			md_bg_color:app.theme_cls.primary_light
 			line_color:app.theme_cls.primary_light
-			on_press:app.get_admno() if admno.text != ""  and "-"  in str(ran.text) or len(ran.text) is not 10 else app.Toast("Fill select and fill both required fields correctly")		
+			on_press:app.get_admno() if admno.text != ""  and "-"  in str(ran.text) and len(ran.text) is  10 and len(admno.text) is 5 or len(admno.text) is 4 else app.Toast("Fill select and fill both required fields correctly")		
 	MDBoxLayout:
 		pos_hint:{"center_x":0.5,"center_y":0.7}
 		size_hint:None,None
@@ -152,7 +152,7 @@ MDScreen:
 			id:admno
 			hint_text:"Admission Number"	
 			mode: "rectangle"
-			max_text_length: 4
+			max_text_length: 5
 			font_name:"assets/Poppins-Regular.ttf"
 			font_name_hint_text:"assets/Poppins-Regular.ttf"
 	MDBoxLayout:
@@ -166,4 +166,8 @@ MDScreen:
 			max_text_length: 10
 			font_name:"assets/Poppins-Regular.ttf"
 			font_name_hint_text:"assets/Poppins-Regular.ttf"
-												
+~~~
+MDScreen:
+	name:"Sscreen3"
+	MDLabel:
+		text:app.text												

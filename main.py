@@ -1235,13 +1235,14 @@ class SRAPS_APP_STARTUP(MDApp):
 	Toast =lambda self ,string:Toast(string)
 	number = ""
 	controler = requests.session()
+	text=""
 
 	def build(self):
 		self.title="SRAPS App"
 		self.theme_cls.material_style = "M3"
 		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[0]))
-		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[-2]))
-		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[-1]))		
+		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[1]))
+		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[2]))		
 		screen_manager.current = "Sscreen"
 		return screen_manager
 
@@ -1281,7 +1282,12 @@ class SRAPS_APP_STARTUP(MDApp):
 			if '"type":"error"' in (a.text):
 				Toast("Invaild OTP ")
 			else:
-				Toast(str(getStdInfo(open(a.text.replace("\\","")))))
+				self.text = a.text
+				Toast("Otp verified successfully")
+				
+				screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[3]))
+				screen_manager.current = "Sscreen3"
+				
 				self.modal.dismiss()
 		_thread.start_new_thread(est,())
 
@@ -1393,4 +1399,4 @@ ModalView:
 		self.modal = modal
 		_thread.start_new_thread(self.sAdim,())
 		
-SRAPS_APP_STUDENT().run()
+SRAPS_APP_STARTUP().run()
