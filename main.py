@@ -1375,7 +1375,8 @@ class SRAPS_APP_STARTUP(MDApp):
 	number = ""
 	controler = requests.session()
 	text=""
-
+	verifying=False
+	stu=lambda self:open("student.conf","w").write(str(self.text))
 	def build(self):
 		self.title="SRAPS App"
 		self.theme_cls.material_style = "M3"
@@ -1416,18 +1417,28 @@ class SRAPS_APP_STARTUP(MDApp):
 			Toast("Student not found !")
 			self.modal.dismiss()
 	def get_creds(self,otp):
+		def chs(*largs):
+			screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[3]))
+			screen_manager.current = "Sscreen3"
+
 		def est():
 			a  = self.controler.post("http://www.shriramashramps.org/feecontroller.php",data=f"otp={otp}&action=verify_otp",headers={"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8","Accept":"/","X-Requested-With":"XMLHttpRequest"})
 			if '"type":"error"' in (a.text):
+				self.verifying = False
 				Toast("Invaild OTP ")
 			else:
-				self.text = a.text
-				Toast("Otp verified successfully")
-				
-				screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[3]))
-				screen_manager.current = "Sscreen3"
-				
+				a = a.text
+				admno = a.split("Admission No    :   ")[-1].split("Student Name")[0][:-63][31:]
+				stdname = a.split("Student Name    :   ")[-1].split("Class & Section")[0][:-62][30:]
+				stdclass = a.split("Class & Section :   ")[-1].split("Fathers Name")[0][:-62][31:]
+				fatname = a.split("Fathers Name   :   ")[-1].split("Mothers Name")[0][:-62][31:]
+				motname = a.split("Mothers Name   :   ")[-1].split("/div>")[0][:-55][31:]
+				self.text = [admno,stdname,stdclass,fatname,motname]
+
+				threadRun(chs,())
+
 				self.modal.dismiss()
+		self.verifying = True
 		_thread.start_new_thread(est,())
 
 	def verify_otp(self,admno,*largs):
@@ -1494,7 +1505,7 @@ ModalView:
 				size:dp(150),"50dp"
 				md_bg_color:app.theme_cls.primary_light
 				line_color:app.theme_cls.primary_light
-				on_press:app.get_creds(otp.text)
+				on_press:app.get_creds(otp.text) if app.verifying is False else app.Toast("Wait we are verifying !")
 				
 		""")
 		modal.open()
@@ -1538,4 +1549,7 @@ ModalView:
 		self.modal = modal
 		_thread.start_new_thread(self.sAdim,())
 		
-SRAPS_APP_STUDENT().run()
+if os.path.exists("student.conf"):
+	SRAPS_APP_STUDENT().run()
+else:
+	SRAPS_APP_STARTUP().run()
