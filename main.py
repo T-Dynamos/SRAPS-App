@@ -69,7 +69,7 @@ class MyMDCard(MDCard,FakeRectangularElevationBehavior):
 
 
 try:
-	from dataDb import Teachers
+	from dataDb import *
 except Exception:
 	Teachers=[]
 	passls
@@ -277,44 +277,8 @@ def show_message():
 		dialog.open()
 
 def add_part(links):
-	if check_intr() is True:
-		screen_manager.get_screen("Mscreen").ids.fu.add_widget(Builder.load_string("""
-MDLabel:
-MDLabel:
-	text:'Our Partners '
-	font_name:'assets/Poppins-Bold.ttf'
-	font_size:'20sp'
-			"""))
-		pass
-	else:
-		card = MyMDCard(
-		radius=[20],
-		padding=0,
-		elevation=10,
-		halign="center",
-		size_hint=(None,None),
-		size= (y-y//5, "200dp")
-		)
-		card.add_widget(FitImage(source='assets/no-internet.png'))
-		screen_manager.get_screen("Mscreen").ids.fu.add_widget(card)	
-	for link in links:
-		card = MyMDCard(
-		radius=[20],
-		padding=10,
-		halign="center",
-		elevation=0,
-		size_hint=(None,None),
-		size= (y-y//8, "200dp"),
-		md_bg_color=[0,0,0,1],
-		)
-		image = AsyncImage (source=link, allow_stretch=True,keep_ratio=False, width="200dp")
-		a = AnchorLayout ()
-		card.add_widget(image)
-		a.add_widget(card)
-		o = screen_manager.get_screen("Mscreen").ids
-		for i in range(1,6):
-			o.fu.add_widget(MDLabel ())	
-		o.fu.add_widget(a)
+	pass
+
 		
 def booklist():
 	a = """
@@ -1137,6 +1101,7 @@ from datetime import datetime
 from platform import python_version
 import random
 class SRAPS_APP_STUDENT(MDApp):
+	links=links
 	staff=staff
 	gra=settings.getSettings()["gra"]
 	ragra = lambda self : "gradients/"+random.choice(['Green Beach.jpg', 'Purple.jpg', 'Hazel.jpg', 'Rose Water.jpg', 'JShine.jpg', 'Intuitive Purple.jpg', 'Noon to Dusk.jpg', 'Bloody Mary.jpg'])

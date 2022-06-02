@@ -343,15 +343,14 @@ MDScreen:
 						adaptive_height: True
 						height: self.minimum_height
 						MDLabel:
-							text:''
-							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
 						
 						MDLabel:
 							text:'  Latest News'
 							font_name:"assets/Poppins-Bold.ttf"
 							font_size:'25sp'
+							
 						MDLabel:
+
 						AnchorLayout:
 							size_hint_y: None 
 							size_hint_x:None
@@ -388,11 +387,11 @@ MDScreen:
 						AnchorLayout:
 							size_hint_y: None 
 							size_hint_x:None
-							size:(app.y,"560dp")
+							size:(app.y,"580dp")
 							MyMDCard:
 								radius:"20dp"
 								size_hint:None,None
-								size: app.y-dp(20), "560dp"
+								size: app.y-dp(20), "580dp"
 								style:'elevated'
 								md_bg_color:app.theme_cls.bg_light
 								padding:dp(10)
@@ -400,7 +399,7 @@ MDScreen:
 									cols:1
 									AnchorLayout:
 										size_hint:None,None
-										size: app.y-dp(15), "30dp"
+										size: app.y-dp(15), "40dp"
 										MDLabel:
 											halign:'left'
 											font_size:"30sp"
@@ -452,106 +451,175 @@ MDScreen:
 											text:'We aim at making every child a human being first, before he/she become an Engineer, Doctor, Philosopher or an Educator .'
 											font_name:'assets/Poppins-Bold.ttf'
 											font_size:"15sp"
+						BoxLayout:
+							size_hint:None,None 
+							size:app.y,"40dp"
+							padding:dp(10)
+							MDLabel:
+								text:"Our Features"
+								font_name:"assets/Poppins-Bold.ttf"
+								font_size:'25sp'
+						ScrollView:
+							size_hint:None,None 
+							size:app.y,"170dp"
+							do_scroll_x:False
+							do_scroll_y:True
+							GridLayout:
+								size_hint_x:None
+								rows:1
+								adaptive_width:True
+								BoxLayout:
+									size_hint:None,None
+									size:app.y,"150dp"
+									AnchorLayout:
+										FitImgCard:
+											img:"assets/audi-1.jpg"
+											text:"Auditorium"
+											link:"http://www.shriramashramps.org/auditorium#"
+									AnchorLayout:
 
-						BoxLayout:
-							size_hint:None,None
-							size:app.y,"150dp"
-							AnchorLayout:
-								FitImgCard:
-									img:"assets/audi-1.jpg"
-									text:"Auditorium"
-									link:"http://www.shriramashramps.org/auditorium#"
-							AnchorLayout:
+										FitImgCard:
+											img:"assets/kids-1.jpg"
+											link:"http://www.shriramashramps.org/kidszone"	
+											text:"Kids Zone"
+									
+								BoxLayout:
+									size_hint:None,None
+									size:app.y,"150dp"
+									AnchorLayout:
+										FitImgCard:
+											img:"assets/gym-1.jpg"
+											
+											text:"Gymnasium"
+											
+											link:"http://www.shriramashramps.org/gymnasium"	
+									AnchorLayout:
+										FitImgCard:
+											img:"assets/rob-1.jpg"
+											
+											text:"Robotics"
+											
+											link:"http://www.shriramashramps.org/robotic"
+								BoxLayout:
+									size_hint:None,None
+									size:app.y,"150dp"									
+									AnchorLayout:
+										
+										FitImgCard:
+											img:"assets/bcourt-1.jpg"
+											
+											text:"Badminton Court"
+											
+											link:"http://www.shriramashramps.org/badminton"				
+									AnchorLayout:
+										
+										FitImgCard:
+											img:"assets/ncc-1.jpg"
+											text:"NCC"
+											link:"http://www.shriramashramps.org/ncc"
+								BoxLayout:
+									size_hint:None,None
+									size:app.y,"150dp"
+									AnchorLayout:
+										FitImgCard:
+											img:"assets/music-1.jpg"
+											text:"Music & Orchestra"
+											link:"http://www.shriramashramps.org/music"	
 
-								FitImgCard:
-									img:"assets/kids-1.jpg"
-									link:"http://www.shriramashramps.org/kidszone"	
-									text:"Kids Zone"
-							
+									AnchorLayout:
+										FitImgCard:
+											img:"assets/sports-2.jpg"
+											
+											text:"Sports & Games"
+											
+											link:"http://www.shriramashramps.org/sports"
+								BoxLayout:
+									size_hint:None,None
+									size:app.y,"150dp"										
+									AnchorLayout:
+										
+										FitImgCard:
+											img:"assets/sciencelab.jpg"
+											
+											text:"Science Lab"
+											
+											link:"http://www.shriramashramps.org/sciencelab"
+									AnchorLayout:
+										
+										FitImgCard:
+											img:"assets/garden.jpg"
+											
+											text:"Garden"
+											
+											link:"http://www.shriramashramps.org/garden"	
+								BoxLayout:
+									size_hint:None,None
+									size:app.y,"150dp"									
+									AnchorLayout:
+										FitImgCard:
+											img:"assets/lib-1.jpg"
+											
+											text:"Library"
+											
+											link:"http://www.shriramashramps.org/library"	
+									AnchorLayout:
+										FitImgCard:
+											img:"assets/medical-1.jpg"
+											text:"Medical"		
+											link:"http://www.shriramashramps.org/medical"
 						BoxLayout:
-							size_hint:None,None
+							size_hint:None,None 
+							size:app.y,"40dp"
+							padding:dp(10)
+							MDLabel:
+								text:"Our Partners"
+								font_name:"assets/Poppins-Bold.ttf"
+								font_size:'25sp'
+						AnchorLayout:
+							size_hint:None,None 
 							size:app.y,"150dp"
-							AnchorLayout:
-								FitImgCard:
-									img:"assets/gym-1.jpg"
-									
-									text:"Gymnasium"
-									
-									link:"http://www.shriramashramps.org/gymnasium"	
-							AnchorLayout:
-								FitImgCard:
-									img:"assets/rob-1.jpg"
-									
-									text:"Robotics"
-									
-									link:"http://www.shriramashramps.org/robotic"
-						BoxLayout:
-							size_hint:None,None
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:"1dp"
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								AsyncImage:
+									size_hint:None,None
+									size:okbro.width,okbro.height
+									source:app.links[0]
+						AnchorLayout:
+							size_hint:None,None 
 							size:app.y,"150dp"									
-							AnchorLayout:
-								
-								FitImgCard:
-									img:"assets/bcourt-1.jpg"
-									
-									text:"Badminton Court"
-									
-									link:"http://www.shriramashramps.org/badminton"				
-							AnchorLayout:
-								
-								FitImgCard:
-									img:"assets/ncc-1.jpg"
-									text:"NCC"
-									link:"http://www.shriramashramps.org/ncc"
-						BoxLayout:
-							size_hint:None,None
-							size:app.y,"150dp"
-							AnchorLayout:
-								FitImgCard:
-									img:"assets/music-1.jpg"
-									text:"Music & Orchestra"
-									link:"http://www.shriramashramps.org/music"	
-
-							AnchorLayout:
-								FitImgCard:
-									img:"assets/sports-2.jpg"
-									
-									text:"Sports & Games"
-									
-									link:"http://www.shriramashramps.org/sports"
-						BoxLayout:
-							size_hint:None,None
-							size:app.y,"150dp"										
-							AnchorLayout:
-								
-								FitImgCard:
-									img:"assets/sciencelab.jpg"
-									
-									text:"Science Lab"
-									
-									link:"http://www.shriramashramps.org/sciencelab"
-							AnchorLayout:
-								
-								FitImgCard:
-									img:"assets/garden.jpg"
-									
-									text:"Garden"
-									
-									link:"http://www.shriramashramps.org/garden"	
-						BoxLayout:
-							size_hint:None,None
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:dp(1)
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								AsyncImage:
+									size_hint:None,None
+									size:okbro.width,okbro.height
+									source:app.links[1]
+						AnchorLayout:
+							size_hint:None,None 
 							size:app.y,"150dp"									
-							AnchorLayout:
-								FitImgCard:
-									img:"assets/lib-1.jpg"
-									
-									text:"Library"
-									
-									link:"http://www.shriramashramps.org/library"	
-							AnchorLayout:
-								FitImgCard:
-									img:"assets/medical-1.jpg"
-									text:"Medical"		
-									link:"http://www.shriramashramps.org/medical"
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:"1dp"
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								AsyncImage:
+									size_hint:None,None
+									size:okbro.width,okbro.height
+									source:app.links[2]									
 
 		MDBottomNavigationItem:
 			name: "homework"
