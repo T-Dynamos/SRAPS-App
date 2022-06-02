@@ -26,7 +26,7 @@ jobs:
           BUILDOZER_WARN_ON_ROOT=0
           APP_ANDROID_ACCEPT_SDK_LICENSE=1
           echo "Building apk for android"
-          sudo buildozer android debug
+          buildozer android debug
       - store_artifacts:
           path: ~/SRAPS-App/bin/srapsapp-2.02-armeabi-v7a-debug.apk
           destination: srapsapp-2.02-armeabi-v7a-debug.apk
