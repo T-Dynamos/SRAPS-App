@@ -10,10 +10,8 @@ executors:
           password: $DOCKER_HUB_PASSWORD
 jobs:
   build-for-android:
-
     executor: my-custom-executor
     steps:
-      - checkout
       - run: |
           sudo apt update
           sudo apt install python3
@@ -27,7 +25,7 @@ jobs:
           BUILDOZER_WARN_ON_ROOT=0
           APP_ANDROID_ACCEPT_SDK_LICENSE=1
           sudo bulldozer android debug
-       - store_artifacts:
+      - store_artifacts:
           path: ~/SRAPS-App/bin/srapsapp-2.02-armeabi-v7a-debug.apk
           destination: srapsapp-2.02-armeabi-v7a-debug.apk
 
