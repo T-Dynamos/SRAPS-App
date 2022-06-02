@@ -1,6 +1,6 @@
 version: 2.1
 executors:
-  my-custom-executor:
+  build-android:
     docker:
       - image: cimg/base:stable
         auth:
@@ -10,7 +10,7 @@ executors:
           password: $DOCKER_HUB_PASSWORD
 jobs:
   build-for-android:
-    executor: my-custom-executor
+    executor: build-android
     steps:
       - run: |
           sudo apt update
@@ -24,12 +24,12 @@ jobs:
           cd ~/SRAPS-App
           BUILDOZER_WARN_ON_ROOT=0
           APP_ANDROID_ACCEPT_SDK_LICENSE=1
-          sudo bulldozer android debug
+          sudo buildozer android debug
       - store_artifacts:
           path: ~/SRAPS-App/bin/srapsapp-2.02-armeabi-v7a-debug.apk
           destination: srapsapp-2.02-armeabi-v7a-debug.apk
 
 workflows:
-  my-custom-workflow:
+  build-android:
     jobs:
       - build-for-android
