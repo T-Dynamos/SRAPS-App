@@ -85,7 +85,7 @@
 	img:""
 	link:""
 	size_hint:None,None
-	size: app.y-app.y//2-dp(10), "153dp"
+	size: app.y-app.y//2-dp(10), "165dp"
 	MyMDCard:
 		radius:"20dp"
 		elevation:30
@@ -99,22 +99,17 @@
 			FitImage:
 				source:root.img
 				radius:"20dp"
-			FitImage:
-				source:"assets/shadow-black-down.png"
-				radius:"20dp"
 
 
 			MyMDCard:
-				pos_hint:{"center_x":0.5,"center_y":0.08}
+				pos_hint:{"center_x":0.5,"center_y":0.03}
 				size_hint:None,None
-				size:ooo.width-dp(25),ooo.height//2-dp(20)
+				size:app.y-app.y//2-dp(10),ooo.height//2-dp(23)
 				on_press: webbrowser.open(root.link)
 				md_bg_color:app.theme_cls.primary_light
-				radius:"20dp"
+				radius:0,0,"20dp",'20dp'
+				style:"elevated"
 				RelativeLayout:
-					FitImage:
-						source:"gradients/"+app.gra
-						radius:"20dp"
 					MDLabel:
 						halign:"center"
 						text:root.text
@@ -209,7 +204,7 @@ MDScreen:
 		selected_color_background:app.theme_cls.bg_normal
 		panel_color:app.theme_cls.bg_light
 		MDBottomNavigationItem:
-			md_bg_color:app.theme_cls.bg_light
+			md_bg_color:app.theme_cls.bg_dark
 			name: "screen1"
 			icon:"home"
 			text:"Home"
@@ -355,7 +350,7 @@ MDScreen:
 						MDLabel:
 							text:'  Latest News'
 							font_name:"assets/Poppins-Bold.ttf"
-							font_size:'20sp'
+							font_size:'25sp'
 						MDLabel:
 						AnchorLayout:
 							size_hint_y: None 
@@ -393,23 +388,49 @@ MDScreen:
 						AnchorLayout:
 							size_hint_y: None 
 							size_hint_x:None
-							size:(app.y,"500dp")
+							size:(app.y,"560dp")
 							MyMDCard:
 								radius:"20dp"
 								size_hint:None,None
-								size: app.y-dp(15), "500dp"
+								size: app.y-dp(20), "560dp"
 								style:'elevated'
-								RelativeLayout:
-									FitImage:
-										source:"gradients/Bloody Mary.jpg"	
-										radius:"20dp"	
-									BoxLayout:
-										padding:dp(10)		
+								md_bg_color:app.theme_cls.bg_light
+								padding:dp(10)
+								GridLayout:
+									cols:1
+									AnchorLayout:
+										size_hint:None,None
+										size: app.y-dp(15), "30dp"
 										MDLabel:
-											halign:'auto'
+											halign:'left'
+											font_size:"30sp"
+											text:"About Us"
+											font_name:'assets/Poppins-Bold.ttf'
+									BoxLayout:
+										size_hint:None,None										
+										size: app.y-dp(35), "460dp"
+										MDLabel:
+											halign:'left'
 											text:' Shri Ram Ashram Public School, one of the most prestigious schools in Punjab, founded in 1923 at the behest and benediction of Pandit Madan Mohan Malaviya Ji and other national leaders with the sole aim and objective of providing value based quality education. Since then it has been a path breaker in the pursuit of excellence. Its endeavour of integrating with quality is reflected in the outstanding results of X & XII year after year and accolades won in different fields. The school considers education to be a life-long process which should have a strong foundation.The goal of the school is to inculcate in each student a love for learning and a desire to excel at every level. The school also aims at equipping the students with the intellectual and practical skills that are necessary to meet the challenges in the future. We assure you that here your child will become an enlightened citizen .                                   '
 											font_name:'assets/Poppins-Regular.ttf'
 											font_size:"15sp"	
+									MyMDCard:
+										size_hint:None,None										
+										size: app.y-dp(35), "45dp"
+										ripple_behavior:True
+										radius:"20dp"
+										md_bg_color:app.theme_cls.accent_light
+										RelativeLayout:
+											MDLabel:
+												font_name:"assets/Poppins-Regular.ttf"
+												font_size:"20sp"
+												halign:"center"				
+												text:"Read more about us"
+											MDIconButton:
+												pos_hint:{"center_x":0.85,"center_y":0.5}
+												icon:"arrow-right"
+										
+
 										
 						AnchorLayout:
 							size_hint_y: None 

@@ -1,5 +1,5 @@
 logs = True      
-update = True
+update = False
 accent = "Indigo"
 primary = "Pink"  
-gra = "Bloody Mary.jpg" 
+gra = "Intuitive Purple.jpg" 

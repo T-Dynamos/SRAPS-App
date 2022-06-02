@@ -261,7 +261,7 @@ def show_message():
 		show_message_true = lambda self:show_message()
 		c = lambda self : (dialog.dismiss(),Clock.schedule_once(show_message_true,5))
 		d = lambda *largs : a(True) if check_intr() is True else b(True)
-		e = lambda self:threadRun(d,())
+		e = lambda self:_thread.start_new_thread(d,())
 		dialog.buttons = [
 		MDFlatButton(text="RETRY",
 			font_name="assets/Poppins-Regular.ttf",
@@ -279,6 +279,7 @@ def show_message():
 def add_part(links):
 	if check_intr() is True:
 		screen_manager.get_screen("Mscreen").ids.fu.add_widget(Builder.load_string("""
+MDLabel:
 MDLabel:
 	text:'Our Partners '
 	font_name:'assets/Poppins-Bold.ttf'
@@ -1376,16 +1377,30 @@ class SRAPS_APP_STARTUP(MDApp):
 	controler = requests.session()
 	text=""
 	verifying=False
-	stu=lambda self:open("student.conf","w").write(str(self.text))
+	stu=lambda self:open("student.conf","w").write(str(self.text)[:-1][1:])
+	def colorHex(self, color):
+		return get_color_from_hex(color)	
 	def build(self):
 		self.title="SRAPS App"
 		self.theme_cls.material_style = "M3"
+		screen_manager.add_widget(Builder.load_string("""
+MDScreen:
+	name:"t"
+	md_bg_color:app.colorHex("#FF3647")
+	AnchorLayout:
+		Image:
+			source:"splash.png"
+			size_hint:None,None
+			size:app.y,app.y
+			"""))
+		return screen_manager
+	def start_build(self,*largs):
 		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[0]))
 		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[1]))
 		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[2]))		
 		screen_manager.current = "Sscreen"
-		return screen_manager
-
+	def on_start(self):
+		Clock.schedule_once(self.start_build,3)
 	def on_save(self, instance, value, date_range):
 		screen_manager.get_screen("Sscreen2").ids.ran.text = "Selected DOB : "+str(value)
 
@@ -1551,5 +1566,5 @@ ModalView:
 		
 if os.path.exists("student.conf"):
 	SRAPS_APP_STUDENT().run()
-else:
+else:	
 	SRAPS_APP_STARTUP().run()
