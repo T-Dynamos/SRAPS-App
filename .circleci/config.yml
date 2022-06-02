@@ -21,7 +21,7 @@ jobs:
           # add the following line at the end of your ~/.bashrc file
           export PATH=$PATH:~/.local/bin/
           git clone https://github.com/T-Dynamos/SRAPS-App ~/SRAPS-App
-          cd ~/SRAPS-App
+          cd ~/SRAPS-App && pip3 install buildozer
           BUILDOZER_WARN_ON_ROOT=0
           APP_ANDROID_ACCEPT_SDK_LICENSE=1
           sudo buildozer android debug
