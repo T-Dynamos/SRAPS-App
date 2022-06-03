@@ -386,19 +386,19 @@ MDScreen:
 						AnchorLayout:
 							size_hint_y: None 
 							size_hint_x:None
-							size:(app.y,"580dp")
+							size:(app.y,"620dp")
 							MyMDCard:
 								radius:"20dp"
 								size_hint:None,None
-								size: app.y-dp(20), "580dp"
+								size: app.y-dp(20), "620dp"
 								style:'elevated'
 								md_bg_color:app.theme_cls.bg_light
-								padding:dp(10)
 								GridLayout:
 									cols:1
 									AnchorLayout:
 										size_hint:None,None
-										size: app.y-dp(15), "40dp"
+										size: app.y-dp(15), "60dp"
+										padding:dp(10)
 										MDLabel:
 											halign:'left'
 											font_size:"30sp"
@@ -406,27 +406,34 @@ MDScreen:
 											font_name:'assets/Poppins-Bold.ttf'
 									BoxLayout:
 										size_hint:None,None										
-										size: app.y-dp(35), "460dp"
+										size: app.y-dp(35), "500dp"
+										padding:dp(10)
 										MDLabel:
 											halign:'left'
 											text:' Shri Ram Ashram Public School, one of the most prestigious schools in Punjab, founded in 1923 at the behest and benediction of Pandit Madan Mohan Malaviya Ji and other national leaders with the sole aim and objective of providing value based quality education. Since then it has been a path breaker in the pursuit of excellence. Its endeavour of integrating with quality is reflected in the outstanding results of X & XII year after year and accolades won in different fields. The school considers education to be a life-long process which should have a strong foundation.The goal of the school is to inculcate in each student a love for learning and a desire to excel at every level. The school also aims at equipping the students with the intellectual and practical skills that are necessary to meet the challenges in the future. We assure you that here your child will become an enlightened citizen .                                   '
 											font_name:'assets/Poppins-Regular.ttf'
 											font_size:"15sp"	
-									MyMDCard:
-										size_hint:None,None										
-										size: app.y-dp(35), "45dp"
-										ripple_behavior:True
-										radius:"20dp"
-										md_bg_color:app.theme_cls.accent_light
-										RelativeLayout:
-											MDLabel:
-												font_name:"assets/Poppins-Regular.ttf"
-												font_size:"20sp"
-												halign:"center"				
-												text:"Read more about us"
-											MDIconButton:
-												pos_hint:{"center_x":0.85,"center_y":0.5}
-												icon:"arrow-right"
+		
+									AnchorLayout:
+										size_hint:None,None
+										size: app.y-dp(20), "60dp"																	
+										MyMDCard:
+											size_hint:None,None										
+											size: app.y-dp(35), "45dp"
+											ripple_behavior:True
+											on_press:webbrowser.open("https://shriramashramps.org/")
+											radius:"20dp"
+											md_bg_color:app.theme_cls.accent_light
+											RelativeLayout:
+												MDLabel:
+													font_name:"assets/Poppins-Regular.ttf"
+													font_size:"20sp"
+													halign:"center"				
+													text:"Read more about us"
+												MDIconButton:
+													on_press:webbrowser.open("https://shriramashramps.org/")
+													pos_hint:{"center_x":0.85,"center_y":0.5}
+													icon:"arrow-right"
 										
 
 										
@@ -588,8 +595,8 @@ MDScreen:
 								line_width:"1dp"
 								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
 								md_bg_color:0,0,0,1
-								AsyncImage:
-									size_hint:None,None
+								FitImage:
+									radius:dp(20)
 									size:okbro.width,okbro.height
 									source:app.links[0]
 						AnchorLayout:
@@ -603,8 +610,8 @@ MDScreen:
 								line_width:dp(1)
 								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
 								md_bg_color:0,0,0,1
-								AsyncImage:
-									size_hint:None,None
+								FitImage:
+									radius:dp(20)
 									size:okbro.width,okbro.height
 									source:app.links[1]
 						AnchorLayout:
@@ -618,11 +625,146 @@ MDScreen:
 								line_width:"1dp"
 								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
 								md_bg_color:0,0,0,1
-								AsyncImage:
-									size_hint:None,None
+								FitImage:
+									radius:dp(20)
 									size:okbro.width,okbro.height
-									source:app.links[2]									
-
+									source:app.links[2]	
+						AnchorLayout:
+							size_hint:None,None 
+							size:app.y,"150dp"									
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:"1dp"
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								FitImage:
+									radius:dp(20)
+									size:okbro.width,okbro.height
+									source:app.links[3]
+						AnchorLayout:
+							size_hint:None,None 
+							size:app.y,"150dp"									
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:"1dp"
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								FitImage:
+									radius:dp(20)
+									size:okbro.width,okbro.height
+									source:app.links[4]																										
+						AnchorLayout:
+							size_hint:None,None 
+							size:app.y,"150dp"									
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:"1dp"
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								FitImage:
+									radius:dp(20)
+									size:okbro.width,okbro.height
+									source:app.links[5]		
+						AnchorLayout:
+							size_hint:None,None 
+							size:app.y,"150dp"									
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:"1dp"
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								FitImage:
+									radius:dp(20)
+									size:okbro.width,okbro.height
+									source:app.links[6]		
+						AnchorLayout:
+							size_hint:None,None 
+							size:app.y,"150dp"									
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:"1dp"
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								FitImage:
+									radius:dp(20)
+									size:okbro.width,okbro.height
+									source:app.links[7]		
+						AnchorLayout:
+							size_hint:None,None 
+							size:app.y,"150dp"									
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:"1dp"
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								FitImage:
+									radius:dp(20)
+									size:okbro.width,okbro.height
+									source:app.links[8]	
+						AnchorLayout:
+							size_hint:None,None 
+							size:app.y,"150dp"									
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:"1dp"
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								FitImage:
+									radius:dp(20)
+									size:okbro.width,okbro.height
+									source:app.links[9]			
+						AnchorLayout:
+							size_hint:None,None 
+							size:app.y,"150dp"									
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:"1dp"
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								FitImage:
+									radius:dp(20)
+									size:okbro.width,okbro.height
+									source:app.links[10]
+						AnchorLayout:
+							size_hint:None,None 
+							size:app.y,"150dp"									
+							MyMDCard:
+								id:okbro
+								size_hint:None,None 
+								size:app.y-dp(70),"150dp"
+								style:"outlined"
+								line_width:"1dp"
+								line_color:(0,0,0,1) if app.theme_cls.theme_style == "Light" else (1,1,1,1)
+								md_bg_color:0,0,0,1
+								FitImage:
+									radius:dp(20)
+									size:okbro.width,okbro.height
+									source:app.links[11]		
+																																																				
 		MDBottomNavigationItem:
 			name: "homework"
 			icon:"book-open-outline"
