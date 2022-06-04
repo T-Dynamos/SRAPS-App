@@ -1,13 +1,11 @@
 [app]
 
 # (str) Title of your application
-title = SRAPS App
-
+title = UrlOpen
 # (str) Package name
-package.name = srapsapp
-
+package.name = amjad
 # (str) Package domain (needed for android/ios packaging)
-package.domain = com.tdynamos
+package.domain = com.urlopen
 
 # (str) Source code where the main.py live
 source.dir = .
@@ -22,21 +20,18 @@ source.dir = .
 source.exclude_exts = spec
 
 # (list) List of directory to exclude (let empty to not exclude anything)
-source.exclude_dirs =  bin,img,linux
 
 # (list) List of exclusions using pattern matching
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-#version = 1
+version = 1
 
 # (str) Application versioning (method 2)
-version.regex = __version__ = ['"](.*)['"]
-version.filename = main.py
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = kivy==2.1.0,https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip, requests,pillow,charset_normalizer,chardet,idna,urllib3,certifi,kivymd_extensions,kivymd_extensions.akivymd, kivmob, soupsieve,beautifulsoup4,bs4
+requirements = kivy==2.1.0,https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -49,7 +44,7 @@ requirements = kivy==2.1.0,https://github.com/kivymd/KivyMD/archive/refs/heads/m
 presplash.filename = splash.png
 
 # (str) Icon of the application
-icon.filename = logo.png
+icon.filename = splash.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = portrait
@@ -82,7 +77,7 @@ fullscreen = 0
 # red, blue, green, black, white, gray, cyan, magenta, yellow, lightgray,
 # darkgray, grey, lightgrey, darkgrey, aqua, fuchsia, lime, maroon, navy,
 # olive, purple, silver, teal.
-android.presplash_color = #FF3647
+android.presplash_color = navy
 
 # (list) Permissions
 android.permissions = INTERNET,ACCESS_NETWORK_STATE
@@ -262,7 +257,7 @@ ios.kivy_ios_url = https://github.com/kivy/kivy-ios
 ios.kivy_ios_branch = master
 
 # Another platform dependency: ios-deploy
-# Uncomment to use a custom checkout
+## Uncomment to use a custom checkout
 #ios.ios_deploy_dir = ../ios_deploy
 # Or specify URL and branch
 ios.ios_deploy_url = https://github.com/phonegap/ios-deploy
