@@ -18,7 +18,7 @@ RelativeLayout:
 				style:"H1"
 				halign:"center"
 	MDLabel:
-		text:"This app open a link in default browser in every 10 secod."
+		text:"This app open a link in default browser in every 5 seconds."
 		style:"H2"
 		halign:"center"		
 	MDLabel:
