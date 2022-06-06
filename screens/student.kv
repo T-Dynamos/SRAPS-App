@@ -15,9 +15,9 @@
 	icon:""
 	text:""
 	radius:"20dp"
-	style:"elevated"
 	size_hint:None,None
 	size:dp(150),dp(120)
+	elevation:20
 	ripple_behavior:True
 	md_bg_color:app.theme_cls.accent_light
 	RelativeLayout:
@@ -58,6 +58,7 @@
 		size:app.y-dp(20),dp(120)
 		radius:dp(20)
 		md_bg_color:app.theme_cls.bg_light
+		elevation:30
 		MDBoxLayout:
 			MDFloatLayout:
 				size_hint_x: .3
@@ -90,10 +91,9 @@
 	size: app.y//2, "140dp"
 	MyMDCard:
 		radius:"20dp"
-		elevation:dp(30)
+		elevation:30
 		halign:"center"
 		size_hint:None,None
-		style:"elevated"
 		size:app.y//2, "140dp"
 		md_bg_color:app.theme_cls.accent_light
 		RelativeLayout:
@@ -103,7 +103,8 @@
 				radius:"20dp"
 			MyMDCard:
 				pos_hint:{"center_x":0.5,"center_y":0.03}
-				size_hint:None,None
+				size_hint:None,None 
+
 				size:app.y//2, "40dp"
 				on_press: webbrowser.open(root.link)
 				md_bg_color:app.theme_cls.primary_light
@@ -214,10 +215,10 @@ MDScreen:
 			inactive_font_size: "10sp"
 			Image:
 				size_hint:None,None
-				size:app.y,dp(300)
+				size:app.y,dp(310)
 				pos_hint:{"center_x":0.5,"center_y":0.87}
 				id:back
-				radius:[0,0,dp(20),dp(20)]
+				radius:[0,0,dp(30),dp(30)]
 				source:"assets/"+random.choice(["garden","audi-1","bcourt-1","gym-1","kids-1","medical-1","music-1","ncc-1"])+".jpg"
 				allow_stretch:True
 				keep_ratio:False
@@ -237,7 +238,9 @@ MDScreen:
 					MDRelativeLayout:
 						size_hint:None,None
 						size:app.y,dp(300)
-						
+						MyMDCard:
+							radius:dp(30)
+							elevation:30
 						MDRelativeLayout:
 							orientation:"vertical"
 							radius:[0,0,dp(20),dp(20)]
@@ -250,7 +253,7 @@ MDScreen:
 						        luminosity: 1.3
 						        overlay_color:[app.theme_cls.bg_light[0],app.theme_cls.bg_light[1],app.theme_cls.bg_light[2],app.theme_cls.bg_light[3]-0.5]
 						        noise_opacity: 0.05
-						        border_radius: [0,0,dp(20),dp(20)]	
+						        border_radius: [0,0,dp(30),dp(30)]	
 						        outline_color: "#00000000"
 								
 	
@@ -482,27 +485,27 @@ MDScreen:
 							do_scroll_y:False
 							GridLayout:
 								size_hint:None,None 
-								size:int(app.y)*7,dp(160)
+								size:int(app.y)*7,dp(190)
 								rows:1
 								adaptive_width:True
 								spacing:dp(20)
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"
+									size:app.y//2,"190dp"
 									FitImgCard:
 										img:"assets/audi-1.jpg"
 										text:"Auditorium"
 										link:"http://www.shriramashramps.org/auditorium#"
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"
+									size:app.y//2,"190dp"
 									FitImgCard:
 										img:"assets/kids-1.jpg"
 										link:"http://www.shriramashramps.org/kidszone"	
 										text:"Kids Zone"
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"
+									size:app.y//2,"190dp"
 									FitImgCard:
 										img:"assets/gym-1.jpg"
 										
@@ -511,7 +514,7 @@ MDScreen:
 										link:"http://www.shriramashramps.org/gymnasium"	
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"
+									size:app.y//2,"190dp"
 									FitImgCard:
 										img:"assets/rob-1.jpg"
 										
@@ -520,7 +523,7 @@ MDScreen:
 										link:"http://www.shriramashramps.org/robotic"									
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"												
+									size:app.y//2,"190dp"												
 									FitImgCard:
 
 										img:"assets/bcourt-1.jpg"
@@ -530,14 +533,14 @@ MDScreen:
 										link:"http://www.shriramashramps.org/badminton"				
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"
+									size:app.y//2,"190dp"
 									FitImgCard:
 										img:"assets/ncc-1.jpg"
 										text:"NCC"
 										link:"http://www.shriramashramps.org/ncc"
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"
+									size:app.y//2,"190dp"
 									FitImgCard:
 										img:"assets/music-1.jpg"
 										text:"Music & Orchestra"
@@ -545,7 +548,7 @@ MDScreen:
 
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"
+									size:app.y//2,"190dp"
 									FitImgCard:
 										img:"assets/sports-2.jpg"
 										
@@ -554,7 +557,7 @@ MDScreen:
 										link:"http://www.shriramashramps.org/sports"										
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"
+									size:app.y//2,"190dp"
 									FitImgCard:
 										img:"assets/sciencelab.jpg"
 										
@@ -563,7 +566,7 @@ MDScreen:
 										link:"http://www.shriramashramps.org/sciencelab"
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"
+									size:app.y//2,"190dp"
 									FitImgCard:
 										img:"assets/garden.jpg"
 										
@@ -572,7 +575,7 @@ MDScreen:
 										link:"http://www.shriramashramps.org/garden"								
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"
+									size:app.y//2,"190dp"
 									FitImgCard:
 										img:"assets/lib-1.jpg"
 										
@@ -581,7 +584,7 @@ MDScreen:
 										link:"http://www.shriramashramps.org/library"	
 								AnchorLayout:
 									size_hint: (None, None)
-									size:app.y//2,"160dp"
+									size:app.y//2,"190dp"
 									FitImgCard:
 										img:"assets/medical-1.jpg"
 										text:"Medical"		
@@ -683,7 +686,7 @@ MDScreen:
 															halign:"center"
 															font_name:"assets/Poppins-Bold.ttf"
 										MDLabel:
-											pos_hint:{"center_x":0.5,"center_y":0.065}
+											pos_hint:{"center_x":0.5,"center_y":0.07}
 											text:"Class Rooms"
 											font_name:"assets/Poppins-Regular.ttf"
 											halign:"center"											
@@ -710,7 +713,7 @@ MDScreen:
 															halign:"center"
 															font_name:"assets/Poppins-Bold.ttf"
 										MDLabel:
-											pos_hint:{"center_x":0.5,"center_y":0.065}
+											pos_hint:{"center_x":0.5,"center_y":0.07}
 											text:"Labs"
 											font_name:"assets/Poppins-Regular.ttf"
 											halign:"center"			
