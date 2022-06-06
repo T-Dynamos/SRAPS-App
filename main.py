@@ -174,18 +174,12 @@ def showShort(words):
 def update_data(*largs):
 	o = screen_manager.get_screen("Mscreen").ids
 	DataBase, links = getDb()
-	o.news.text = str(DataBase["News"])		
-	o.NI.source = str(DataBase["SliderImages"])
+	def test(*largs):
+		o.news.text = str(DataBase["News"])		
+		o.NI.source = str(DataBase["SliderImages"])
+	threadRun(test,())
 	add_part(links)
-	for i in (requests.get("http://srapsapp.herokuapp.com/getGlobalNotification?pass=sraps").text).split("\n"):
-		inf = i.replace("\n","")
-		if inf != "":
-			o.global_noti.add_widget(Builder.load_string(f"""
-HeadItem:
-	title:"{str(inf.split("`")[0])}"
-	content:"{str(inf.split("`")[-1])}"
-	avatar:'assets/logo.png'
-	"""))
+
 def Toast1(string,*largs):
 	Toast2(string)
 
@@ -250,14 +244,14 @@ ModalView:
 		
 	""")
 	modal.open()	
-def show_message():
+def show_message(*largs):
 		dialog=Snackbar(text="No internet!",
 		snackbar_x="10dp",
 
 		radius=[dp(10),dp(10),dp(10),dp(10)],
 		snackbar_y="75dp",
 		size_hint_x=.95)
-		a = lambda self : (Toast("Updating data"),threadRun(update_data,()),dialog.dismiss())
+		a = lambda self : (Toast("Updating data"),_thread.start_new_thread(update_data,()),dialog.dismiss())
 		b = lambda self : Toast("Internet not connected")
 		show_message_true = lambda self:show_message()
 		c = lambda self : (dialog.dismiss(),Clock.schedule_once(show_message_true,5))
@@ -1189,10 +1183,15 @@ MDScreen:
 			size:app.y,app.y
 			"""))
 		return screen_manager
+
+	def runData(sefl):
+		threadRun(show_message,()) if check_intr() == False else _thread.start_new_thread(update_data,())
+
 	def start_build(self,*largs):
 		screen_manager.add_widget(Builder.load_file('screens/student.kv'))
 		screen_manager.current = "Mscreen"
-		show_message() if check_intr() == False else update_data()
+		_thread.start_new_thread(self.runData,())
+
 	def kl(self,*args):
 		screen_manager.get_screen("Mscreen").ids.test.avatar = genAvtar()
 		screen_manager.get_screen("Mscreen").ids.test1.avatar = genAvtar()

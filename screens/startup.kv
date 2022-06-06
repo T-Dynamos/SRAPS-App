@@ -20,7 +20,11 @@ MDScreen:
 			pos_hint:{"center_x":0.5,"center_y":0.08}
 			style:"elevated"
 			size_hint:None,None
+			shadow_offset:(0,0.05)
 			size:app.y-dp(20),dp(60)
+			elevation:dp(40)
+			shadow_offset:(0.0, 0.01)
+			shadow_softness :dp(10)
 			radius:dp(20)
 			ripple_behavior:True
 			on_press:app.screen_manager.current = "Sscreen1"
@@ -74,11 +78,11 @@ MDScreen:
 			pos_hint:{"center_x":0.5,"center_y":0.5}
 			anchor_y:"bottom"
 			Image:
-				source:"assets/wel3.jpg"
+				source:"assets/wel2.png"
 				size_hint:None,None
 				keep_ratio:True
 				allow_stretch:True
-				size:"300dp","300dp"
+				size:"250dp","250dp"
 	RelativeLayout:
 		AnchorLayout:
 			anchor_y:"top"
