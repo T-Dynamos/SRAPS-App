@@ -6,9 +6,11 @@ __version__ = "2.02"
 import kivy
 from kivymd.uix.floatlayout import *
 from kivy.uix.anchorlayout import *
+from kivy_garden.frostedglass import FrostedGlass
 from kivy.uix.boxlayout import *
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
 from kivymd.toast import toast as Toast2
+import random
 from kivymd.app import *
 from kivymd.uix.pickers import *
 from kivymd.theming import ThemableBehavior
@@ -1217,11 +1219,11 @@ MDScreen:
 		if screen_manager.get_screen("Mscreen").ids.hi.active == False:
 			self.settings.writeSettings("update","False")
 			self.theme_cls.theme_style = "Light"
-			screen_manager.get_screen("Mscreen").ids.rimg.source = "assets/shadow-white.png" 
+			screen_manager.get_screen("Mscreen").ids.back.source = "assets/"+random.choice(["garden","audi-1","bcourt-1","gym-1","kids-1","medical-1","music-1","ncc-1"])+".jpg"
 		else:
 			self.settings.writeSettings("update","True")
 			self.theme_cls.theme_style = "Dark"
-			screen_manager.get_screen("Mscreen").ids.rimg.source = "assets/shadow-black.png" 
+			screen_manager.get_screen("Mscreen").ids.back.source = "assets/"+random.choice(["garden","audi-1","bcourt-1","gym-1","kids-1","medical-1","music-1","ncc-1"])+".jpg"
 	def update_a(self,a,b,c,d):
 		b.text = "Checking ..."
 		url = "https://raw.githubusercontent.com/T-Dynamos/SRAPS-App/main/.srapsapp.versionfile"
