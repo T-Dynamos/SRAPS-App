@@ -1,10 +1,17 @@
 MDScreen:
 	name:"Sscreen"
 	md_bg_color:1,1,1,1
+	Image:
+		pos_hint:{"center_x":0.5,"center_y":0.9}
+		source:"assets/wave.png"
+		size_hint:None,None
+		keep_ratio:True
+		allow_stretch:True
+		size:app.y,"300dp"
 	MDLabel:
-		pos_hint:{"center_x":0.5,"center_y":0.85}
-		text:"Welcome to SRAPS App!"
-		font_name:"assets/Poppins-Regular.ttf"
+		pos_hint:{"center_x":0.5,"center_y":0.78}
+		text:"SRAPS App!"
+		font_name:"assets/Poppins-Bold.ttf"
 		font_size:"35sp"
 		halign:"center"
 	AnchorLayout:
@@ -44,8 +51,15 @@ MDScreen:
 MDScreen:
 	md_bg_color:1,1,1,1
 	name:"Sscreen1"
+	Image:
+		pos_hint:{"center_x":0.5,"center_y":0.9}
+		source:"assets/wave2.png"
+		size_hint:None,None
+		keep_ratio:True
+		allow_stretch:True
+		size:app.y,"330dp"
 	MDLabel:
-		pos_hint:{"center_x":0.5,"center_y":0.85}
+		pos_hint:{"center_x":0.5,"center_y":0.78}
 		text:"Who are you?"
 		font_name:"assets/Poppins-Regular.ttf"
 		font_size:"35sp"
@@ -115,8 +129,15 @@ MDScreen:
 MDScreen:
 	name:"Sscreen2"
 	md_bg_color:1,1,1,1
+	Image:
+		pos_hint:{"center_x":0.5,"center_y":0.9}
+		source:"assets/wave2.png"
+		size_hint:None,None
+		keep_ratio:True
+		allow_stretch:True
+		size:app.y,"330dp"
 	MDLabel:
-		pos_hint:{"center_x":0.5,"center_y":0.85}
+		pos_hint:{"center_x":0.5,"center_y":0.78}
 		text:"What's your Admission No.?"
 		font_name:"assets/Poppins-Regular.ttf"
 		font_size:"25sp"
@@ -134,22 +155,22 @@ MDScreen:
 			pos_hint:{"center_x":0.5,"center_y":0.44}
 			anchor_y:"bottom"
 			Image:
-				source:"assets/wel2.jpg"
+				source:"assets/login.png"
 				size_hint:None,None
 				keep_ratio:True
-				allow_stretch:True
+				allow_stretch:False
 				size:"300dp","300dp"
 
 		MDFlatButton:
 			size_hint:None,None
 			size:dp(150),"50dp"
-			pos_hint:{"center_x":0.5,"center_y":0.48}
+			pos_hint:{"center_x":0.5,"center_y":0.44}
 			text:"Proceed"
 			md_bg_color:app.theme_cls.primary_light
 			line_color:app.theme_cls.primary_light
 			on_press:app.get_admno() if admno.text != ""  and "-"  in str(ran.text) and len(ran.text) is  10 and len(admno.text) is 5 or len(admno.text) is 4 else app.Toast("Fill select and fill both required fields correctly")		
 	MDBoxLayout:
-		pos_hint:{"center_x":0.5,"center_y":0.7}
+		pos_hint:{"center_x":0.5,"center_y":0.67}
 		size_hint:None,None
 		size:dp(200),"50dp"
 		MDTextField:
@@ -160,7 +181,7 @@ MDScreen:
 			font_name:"assets/Poppins-Regular.ttf"
 			font_name_hint_text:"assets/Poppins-Regular.ttf"
 	MDBoxLayout:
-		pos_hint:{"center_x":0.5,"center_y":0.58}
+		pos_hint:{"center_x":0.5,"center_y":0.54}
 		size_hint:None,None
 		size:dp(200),"50dp"
 		MDTextField:
