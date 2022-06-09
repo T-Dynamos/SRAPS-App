@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-__version__ = "2.02"
+__version__ = "1.0"
 
 
 import kivy

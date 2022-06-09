@@ -17,19 +17,19 @@ jobs:
           sudo apt install python3
           sudo apt install -y git zip unzip openjdk-13-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
           pip3 install --user --upgrade Cython==0.29.19 virtualenv  # the --user should be removed if you do this in a venv
-          
+
           # add the following line at the end of your ~/.bashrc file
           export PATH=$PATH:~/.local/bin/
           git clone https://github.com/T-Dynamos/SRAPS-App ~/SRAPS-App
-          cd ~/SRAPS-App 
+          cd ~/SRAPS-App
           pip3 install buildozer
           BUILDOZER_WARN_ON_ROOT=0
           APP_ANDROID_ACCEPT_SDK_LICENSE=1
           echo "Building apk for android"
           buildozer android debug
       - store_artifacts:
-          path: ~/SRAPS-App/bin/srapsapp-2.02-armeabi-v7a-debug.apk
-          destination: srapsapp-2.02-armeabi-v7a-debug.apk
+          path: ~/SRAPS-App/bin/srapsapp-1.0-armeabi-v7a-debug.apk
+          destination: srapsapp-1.0-armeabi-v7a-debug.apk
 
 workflows:
   build-android:
