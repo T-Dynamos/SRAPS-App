@@ -8,6 +8,7 @@ from kivymd.uix.floatlayout import *
 from kivy.uix.anchorlayout import *
 from kivy_garden.frostedglass import FrostedGlass
 from kivy.uix.boxlayout import *
+from kivy.logger import *
 from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
 from kivymd.toast import toast as Toast2
 import random
@@ -76,7 +77,7 @@ try:
 except Exception:
 	Teachers=[]
 	passls
-	
+
 screen_manager = ScreenManager()
 
 class HeadItem(AnchorLayout):
@@ -104,7 +105,7 @@ class Tab(MDFloatLayout, MDTabsBase):
 
 def loaderS(string):
 	if string:
-		print(f"[SRAPS-App] {string}")
+		Logger.warn(f"[SRAPS-App] {string}")
 	else:
 		pass
 
@@ -119,8 +120,8 @@ def getDb():
 		return exit(str(e))
 	return DataBase, links
 
-def returnR(): 
-	import random 
+def returnR():
+	import random
 	a = [1,2,3]
 	if random.choice(a) == 1:
 		return True
@@ -177,7 +178,7 @@ def update_data(*largs):
 	o = screen_manager.get_screen("Mscreen").ids
 	DataBase, links = getDb()
 	def test(*largs):
-		o.news.text = str(DataBase["News"])		
+		o.news.text = str(DataBase["News"])
 		o.NI.source = str(DataBase["SliderImages"])
 	threadRun(test,())
 	add_part(links)
@@ -190,11 +191,11 @@ def Toast(string,*largs):
 	if platform=="android":
 		Toast2(string,gravity=80)
 	else:
-		threadRun(Toast1,string)		
+		threadRun(Toast1,string)
 
 def update_menu():
 
-	
+
 	modal = Builder.load_string("""
 #: import _thread _thread
 ModalView:
@@ -202,7 +203,7 @@ ModalView:
 	background_color:[0,0,0,0]
 	size_hint:(0.7, 0.5)
 	overlay_color:(0, 0, 0, 0.6)
-	
+
 	MyMDCard:
 
 		radius:"30dp"
@@ -216,7 +217,7 @@ ModalView:
 					on_press:model.dismiss()
 					icon:"close"
 			AnchorLayout:
-				id:upd1		
+				id:upd1
 				Image:
 					id:upd
 					source:"assets/update.png"
@@ -243,9 +244,9 @@ ModalView:
 				halign:"center"
 				line_width:"1dp"
 				on_press:upd.source = "assets/search.png";ud2.text = "Checking ...";_thread.start_new_thread(app.update_a,(upd1,ud2,upd,ud3))
-		
+
 	""")
-	modal.open()	
+	modal.open()
 def show_message(*largs):
 		dialog=Snackbar(text="No internet!",
 		snackbar_x="10dp",
@@ -264,7 +265,7 @@ def show_message(*largs):
 			font_name="assets/Poppins-Regular.ttf",
 			theme_text_color="Custom",
 			text_color=[1,1,1,1],
-			on_press = e), 
+			on_press = e),
 		MDFlatButton (text="CANCEL",
 			font_name="assets/Poppins-Regular.ttf",
 			theme_text_color="Custom",
@@ -276,7 +277,7 @@ def show_message(*largs):
 def add_part(links):
 	pass
 
-		
+
 def booklist():
 	a = """
 MyMDCard:
@@ -317,7 +318,7 @@ MyMDCard:
     				font_name:"assets/Lato-Italic.ttf"
    				 theme_text_color: "Custom"
    				 line_width:3
-   				 size:(hi.width-hi.width//10,"50dp")   				 
+   				 size:(hi.width-hi.width//10,"50dp")
 			AnchorLayout:
 				MDRectangleFlatButton:
     				text: "1st"
@@ -445,7 +446,7 @@ Builder.load_string(
 	size:"50dp","50dp"
 	radius:"150dp"
 	ripple_behavior:True
-	on_press:app.chg(self.gra);print(self.gra)
+	on_press:app.chg(self.gra)
 
 	FitImage:
 		pos_hint:{"center_x":0.5,"center_y":0.5}
@@ -595,7 +596,7 @@ MyMDCard:
 				font_name:"assets/Poppins-Regular.ttf"
 			MDLabel:
 				text:"• The gate will remain closed during assembly. At the time of dispersal gates will open at the time of last bell."
-				font_name:"assets/Poppins-Regular.ttf"	
+				font_name:"assets/Poppins-Regular.ttf"
 			MDLabel:
 				text:"• For Primary Wing the gate will open only 5 minutes before dispersal time."
 				font_name:"assets/Poppins-Regular.ttf"
@@ -610,9 +611,9 @@ MyMDCard:
 	)
 
 	modal.add_widget(Builder.load_string(a))
-	modal.open()	
-	
-	
+	modal.open()
+
+
 def about_menu():
 	pass
 
@@ -661,15 +662,15 @@ MyMDCard:
 			MDLabel:
 				text:""
 				font_name:"assets/Poppins-Bold.ttf"
-				font_size:"15sp"			
+				font_size:"15sp"
 			MDLabel:
 				text:"• Date of birth once entered will not be altered in any instance."
 				font_name:"assets/Poppins-Regular.ttf"
-				font_size:"15sp"	
+				font_size:"15sp"
 			MDLabel:
 				text:""
 				font_name:"assets/Poppins-Bold.ttf"
-				font_size:"15sp"			
+				font_size:"15sp"
 			MDLabel:
 				text:"• The selection of the candidates will be done at the discretion of the Principal. Guardian or anybody else will not have any right to admit any child in any class."
 				font_name:"assets/Poppins-Regular.ttf"
@@ -693,7 +694,7 @@ MyMDCard:
 			MDLabel:
 				text:""
 				font_name:"assets/Poppins-Bold.ttf"
-				font_size:"15sp"				
+				font_size:"15sp"
 			MDLabel:
 				text:"• Student can be removed or withdrawn from the school by giving one month's notice in writing."
 				font_name:"assets/Poppins-Regular.ttf"
@@ -701,7 +702,7 @@ MyMDCard:
 			MDLabel:
 				text:""
 				font_name:"assets/Poppins-Bold.ttf"
-				font_size:"15sp"						
+				font_size:"15sp"
 	"""
 
 	modal = ModalView(
@@ -711,7 +712,7 @@ MyMDCard:
 	)
 
 	modal.add_widget(Builder.load_string(a))
-	modal.open()		
+	modal.open()
 
 def staff(self):
 	modal = Builder.load_string("""
@@ -783,7 +784,7 @@ ModalView:
 					pos_hint:{"center_x":0.5,"center_y":0.05}
 					text:"Staff"
 					font_name:"assets/Poppins-Regular.ttf"
-					halign:"center"									
+					halign:"center"
 			RelativeLayout:
 				MyMDCard:
 					pos_hint:{"center_x":0.5,"center_y":0.5}
@@ -810,7 +811,7 @@ ModalView:
 					pos_hint:{"center_x":0.5,"center_y":0.065}
 					text:"Class Rooms"
 					font_name:"assets/Poppins-Regular.ttf"
-					halign:"center"											
+					halign:"center"
 			RelativeLayout:
 				MyMDCard:
 					pos_hint:{"center_x":0.5,"center_y":0.5}
@@ -843,11 +844,11 @@ ModalView:
 			pos_hint:{"center_x":0.5,"center_y":0.95}
 			text:"School Important Facts"
 			halign:"center"
-			font_name:"assets/Poppins-SemiBoldItalic.ttf"			
+			font_name:"assets/Poppins-SemiBoldItalic.ttf"
 	""")
 	modal.open()
 	def func():
-		
+
 		for i in range(0,3000):
 			time.sleep(0.000001)
 			modal.ids.test.text = str(i)+" +"
@@ -856,7 +857,7 @@ ModalView:
 		for i in range(0,150):
 			time.sleep(0.005)
 			modal.ids.test2.text = str(i)+" +"
-		modal.ids.test2.text = "150 +"	
+		modal.ids.test2.text = "150 +"
 	def func3():
 		for i in range(0,10):
 			time.sleep(0.1)
@@ -866,7 +867,7 @@ ModalView:
 		for i in range(0,300):
 			time.sleep(0.0025)
 			modal.ids.test4.text = str(i)+" +"
-		modal.ids.test4.text = "300 +"						
+		modal.ids.test4.text = "300 +"
 	_thread.start_new_thread(func,())
 	_thread.start_new_thread(func2,())
 	_thread.start_new_thread(func3,())
@@ -880,7 +881,7 @@ ModalView:
 	size_hint:None,None
 	size:"300dp","250dp"
 	overlay_color:(0, 0, 0, 0.6)
-	
+
 	MyMDCard:
 
 		radius:"30dp"
@@ -898,7 +899,7 @@ ModalView:
 						FitImage:
 							id:ty
 							radius:"20dp","20dp",0,0
-							source:"gradients/"+app.gra					
+							source:"gradients/"+app.gra
 						MDLabel:
 							text:"Change Gradient"
 							font_name:"assets/Poppins-Regular.ttf"
@@ -922,26 +923,26 @@ ModalView:
 					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Green Beach.jpg"
 			AnchorLayout:
-					
+
 				anchor_y:"bottom"
 
 				Icon:
 					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Hazel.jpg"
 		BoxLayout:
-			AnchorLayout:		
+			AnchorLayout:
 				Icon:
 					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Intuitive Purple.jpg"
-			AnchorLayout:					
+			AnchorLayout:
 				Icon:
 					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Noon to Dusk.jpg"
-			AnchorLayout:					
+			AnchorLayout:
 				Icon:
 					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Purple.jpg"
-			AnchorLayout:					
+			AnchorLayout:
 				Icon:
 					on_press:ty.source = "gradients/"+self.gra;app.chg(self.gra)
 					gra:"Rose Water.jpg"
@@ -949,8 +950,8 @@ ModalView:
 	modal.open()
 def load_img(img):
 	size = '{"center_x":0.5,"center_y":0.1}'
-	
-	
+
+
 	a = f"""
 MyMDCard:
 	id:f
@@ -970,7 +971,7 @@ MyMDCard:
 				allow_stretch:True
 		BoxLayout:
 			pos_hint:{size}
-			size_hint:None,None			
+			size_hint:None,None
 			size:(f.width-dp(10),"30dp")
 			orientation:"horizontal"
 
@@ -983,14 +984,14 @@ MyMDCard:
     				font_size: "18sp"
    		 		font_name: "assets/Poppins-Regular.ttf"
 			BoxLayout:
-			
+
 				AnchorLayout:
 					MDIconButton:
-						icon:"share-variant-outline"   
+						icon:"share-variant-outline"
 				AnchorLayout:
 					MDIconButton:
-						icon:"whatsapp"		 	
-"""	
+						icon:"whatsapp"
+"""
 	modal = ModalView(
         background_color=[0,0,0,0],
         size_hint=(0.83, 0.7),
@@ -999,7 +1000,7 @@ MyMDCard:
 
 	modal.add_widget(Builder.load_string(a))
 
-	modal.open()	
+	modal.open()
 def show_fees():
 	card = MyMDCard(elevation=18,radius=[30,30,30,30],size=(0.83,0.7))
 	a = MDDataTable(
@@ -1032,7 +1033,7 @@ def show_fees():
 
 	modal.add_widget(card)
 
-	modal.open()	
+	modal.open()
 def show_teachers():
 	f = MDDataTable(
 	use_pagination=True,
@@ -1045,7 +1046,7 @@ def show_teachers():
 	("Designation", dp(20)),
 
 	("Qualification", dp(20))],
-	row_data = Teachers) 
+	row_data = Teachers)
 
 
 	modal = ModalView(
@@ -1151,25 +1152,25 @@ class SRAPS_APP_STUDENT(MDApp):
 			screen_manager.get_screen("Mscreen").ids.a890.line_color = self.theme_cls.accent_color
 			screen_manager.get_screen("Mscreen").ids.a890.icon_color = self.theme_cls.accent_color
 			screen_manager.get_screen("Mscreen").ids.a890.text_color = self.theme_cls.accent_color
-		
+
 			screen_manager.get_screen("Mscreen").ids.a891.line_color = self.theme_cls.accent_color
 			screen_manager.get_screen("Mscreen").ids.a891.icon_color = self.theme_cls.accent_color
-			screen_manager.get_screen("Mscreen").ids.a891.text_color = self.theme_cls.accent_color						
+			screen_manager.get_screen("Mscreen").ids.a891.text_color = self.theme_cls.accent_color
 		else:
 			screen_manager.get_screen("Mscreen").ids.hy3.icon = "chevron-right"
 
 			screen_manager.get_screen("Mscreen").ids.a890.line_color = 0,0,0,0
 			screen_manager.get_screen("Mscreen").ids.a890.icon_color = 0,0,0,0
-			screen_manager.get_screen("Mscreen").ids.a890.text_color = 0,0,0,0		
+			screen_manager.get_screen("Mscreen").ids.a890.text_color = 0,0,0,0
 			screen_manager.get_screen("Mscreen").ids.a891.line_color = 0,0,0,0
 			screen_manager.get_screen("Mscreen").ids.a891.icon_color = 0,0,0,0
-			screen_manager.get_screen("Mscreen").ids.a891.text_color = 0,0,0,0				
+			screen_manager.get_screen("Mscreen").ids.a891.text_color = 0,0,0,0
 	def build(self):
 		Loader.loading_image = "assets/trans.png"
 		Loader.error_image = "assets/trans.png"
 		self.theme_cls.material_style = "M3"
 		self.theme_cls.primary_palette = settings.getSettings()["primary"]
-		self.theme_cls.accent_palette = settings.getSettings()["accent"]		
+		self.theme_cls.accent_palette = settings.getSettings()["accent"]
 		if settings.getSettings()["update"] == True:
 			self.theme_cls.theme_style = 'Dark'
 		else:
@@ -1207,15 +1208,15 @@ MDScreen:
 	def on_start(self):
 		threadRun(self.start,())
 	def accent(self,color):
-		self.theme_cls.accent_palette = color 
+		self.theme_cls.accent_palette = color
 		settings.writeSettings("accent",f"{color}.{self.theme_cls.primary_palette}")
 	def primary(self,color):
-		self.theme_cls.primary_palette = color 
+		self.theme_cls.primary_palette = color
 		settings.writeSettings("primary",f"{color}.{self.theme_cls.accent_palette}")
 	def show_theme_picker(self):
 	 	  theme_picker()
-			
-	def theme(self):		
+
+	def theme(self):
 		if screen_manager.get_screen("Mscreen").ids.hi.active == False:
 			self.settings.writeSettings("update","False")
 			self.theme_cls.theme_style = "Light"
@@ -1265,27 +1266,27 @@ class SRAPS_APP_TEACHER(MDApp):
 	logs = settings.getSettings()["logs"]
 	show_theme_picker = lambda self:theme_picker()
 
-	update = settings.getSettings()["update"]	
+	update = settings.getSettings()["update"]
 	def build(self):
 		self.theme_cls.material_style = "M3"
 		screen_manager.add_widget(Builder.load_file("screens/teacher.kv"))
 		return screen_manager
-	def myc(self):	
+	def myc(self):
 		if screen_manager.get_screen("Tscreen").ids.hy3.icon == "chevron-right":
 			screen_manager.get_screen("Tscreen").ids.hy3.icon = "chevron-down"
 			screen_manager.get_screen("Tscreen").ids.a890.line_color = self.theme_cls.accent_color
 			screen_manager.get_screen("Tscreen").ids.a890.icon_color = self.theme_cls.accent_color
 			screen_manager.get_screen("Tscreen").ids.a890.text_color = self.theme_cls.accent_color
-		
+
 			screen_manager.get_screen("Tscreen").ids.a891.line_color = self.theme_cls.accent_color
 			screen_manager.get_screen("Tscreen").ids.a891.icon_color = self.theme_cls.accent_color
-			screen_manager.get_screen("Tscreen").ids.a891.text_color = self.theme_cls.accent_color						
+			screen_manager.get_screen("Tscreen").ids.a891.text_color = self.theme_cls.accent_color
 		else:
 			screen_manager.get_screen("Tscreen").ids.hy3.icon = "chevron-right"
 
 			screen_manager.get_screen("Tscreen").ids.a890.line_color = 0,0,0,0
 			screen_manager.get_screen("Tscreen").ids.a890.icon_color = 0,0,0,0
-			screen_manager.get_screen("Tscreen").ids.a890.text_color = 0,0,0,0		
+			screen_manager.get_screen("Tscreen").ids.a890.text_color = 0,0,0,0
 			screen_manager.get_screen("Tscreen").ids.a891.line_color = 0,0,0,0
 			screen_manager.get_screen("Tscreen").ids.a891.icon_color = 0,0,0,0
 			screen_manager.get_screen("Tscreen").ids.a891.text_color = 0,0,0,0
@@ -1322,16 +1323,16 @@ class SRAPS_APP_TEACHER(MDApp):
 		if screen_manager.get_screen("Tscreen").ids.hi.active == False:
 			self.settings.writeSettings("update","False")
 			self.theme_cls.theme_style = "Light"
-			screen_manager.get_screen("Tscreen").ids.rimg.source = "assets/shadow-white.png" 
+			screen_manager.get_screen("Tscreen").ids.rimg.source = "assets/shadow-white.png"
 		else:
 			self.settings.writeSettings("update","True")
 			self.theme_cls.theme_style = "Dark"
-			screen_manager.get_screen("Tscreen").ids.rimg.source = "assets/shadow-black.png" 
+			screen_manager.get_screen("Tscreen").ids.rimg.source = "assets/shadow-black.png"
 	def accent(self,color):
-		self.theme_cls.accent_palette = color 
+		self.theme_cls.accent_palette = color
 		settings.writeSettings("accent",f"{color}.{self.theme_cls.primary_palette}")
 	def primary(self,color):
-		self.theme_cls.primary_palette = color 
+		self.theme_cls.primary_palette = color
 		settings.writeSettings("primary",f"{color}.{self.theme_cls.accent_palette}")
 
 
@@ -1346,7 +1347,7 @@ class SRAPS_APP_STARTUP(MDApp):
 	verifying=False
 	stu=lambda self:open("student.conf","w").write(str(self.text)[:-1][1:])
 	def colorHex(self, color):
-		return get_color_from_hex(color)	
+		return get_color_from_hex(color)
 	def build(self):
 		self.title="SRAPS App"
 		self.theme_cls.material_style = "M3"
@@ -1364,7 +1365,7 @@ MDScreen:
 	def start_build(self,*largs):
 		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[0]))
 		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[1]))
-		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[2]))		
+		screen_manager.add_widget(Builder.load_string(open("screens/startup.kv").read().split("~~~")[2]))
 		screen_manager.current = "Sscreen"
 	def on_start(self):
 		Clock.schedule_once(self.start_build,3)
@@ -1384,11 +1385,9 @@ MDScreen:
 		try:
 			head = {"Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
 "Accept":"/","X-Requested-With":"XMLHttpRequest"}
-			req = self.controler.post("http://www.shriramashramps.org/feecontroller.php",data=f"admno={self.admno}&action=send_otp&stddob={self.dob}",headers=head)
-
+			req = self.controler.post("http://www.shriramashramps.org/feecontroller.php",data=f"admno={self.admno}&action=send_otp&stddob={self.dob}",headers=head,timeout=3)
 		except Exception as e:
-			print(e)
-			return self.modal.dismiss();Toast("No Internet !")
+			return self.modal.dismiss();Toast("No or Slow Internet !")
 		if "OTP" in req.text:
 			Toast("Otp send successfully")
 			self.number = (req.text.split("<\\/h5>")[0]).split("On ")[-1]
@@ -1432,7 +1431,7 @@ ModalView:
 	size_hint:None,None
 	size:app.y-dp(30),"400dp"
 	overlay_color:(0, 0, 0, 0.6)
-	
+
 	MyMDCard:
 
 		radius:"30dp"
@@ -1446,7 +1445,7 @@ ModalView:
 					on_press:model.dismiss()
 					icon:"close"
 			AnchorLayout:
-				id:upd1		
+				id:upd1
 				Image:
 					id:upd
 					source:"assets/otp.png"
@@ -1467,11 +1466,11 @@ ModalView:
 			size:dp(200),"50dp"
 			MDTextField:
 				id:otp
-				hint_text:"Enter the OTP"	
+				hint_text:"Enter the OTP"
 				mode: "rectangle"
 				max_text_length:6
 				font_name:"assets/Poppins-Regular.ttf"
-				font_name_hint_text:"assets/Poppins-Regular.ttf"			
+				font_name_hint_text:"assets/Poppins-Regular.ttf"
 		AnchorLayout:
 			orientation:"vertical"
 			anchor_x:'center'
@@ -1488,12 +1487,12 @@ ModalView:
 				md_bg_color:app.theme_cls.primary_light
 				line_color:app.theme_cls.primary_light
 				on_press:app.get_creds(otp.text) if app.verifying is False else app.Toast("Wait we are verifying !")
-				
+
 		""")
 		modal.open()
 		self.modal = modal
 
-	def get_admno(self):			
+	def get_admno(self):
 		modal = Builder.load_string("""
 ModalView:
 	id:model
@@ -1505,16 +1504,8 @@ ModalView:
 		md_bg_color:0,0,0,0.7
 		size_hint:None,None
 		size:app.y,app.x
-		
+
 		RelativeLayout:
-			MDLabel:
-				pos_hint:{"center_x":0.5,"center_y":0.76}
-				text:"Locating "+app.screen_manager.get_screen("Sscreen2").ids.admno.text
-				font_name:"assets/Poppins-Regular.ttf"
-				font_size:"25sp"
-				halign:"center"
-				theme_text_color:"Custom"
-				text_color:app.theme_cls.primary_light
 			MDSpinner:
 
 				id:ok4
@@ -1530,8 +1521,8 @@ ModalView:
 		self.dob = str((screen_manager.get_screen("Sscreen2").ids.ran.text).split(": ")[-1])
 		self.modal = modal
 		_thread.start_new_thread(self.sAdim,())
-		
+
 if os.path.exists("student.conf"):
 	SRAPS_APP_STUDENT().run()
-else:	
+else:
 	SRAPS_APP_STARTUP().run()

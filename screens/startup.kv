@@ -1,13 +1,15 @@
 MDScreen:
 	name:"Sscreen"
 	md_bg_color:1,1,1,1
-	Image:
-		pos_hint:{"center_x":0.5,"center_y":0.9}
-		source:"assets/wave.png"
-		size_hint:None,None
-		keep_ratio:True
-		allow_stretch:True
-		size:app.y,"300dp"
+	AnchorLayout:
+		anchor_y:"top"
+		Image:
+			pos_hint:{"center_x":0.5,"center_y":0.9}
+			source:"assets/wave.png"
+			size_hint:None,None
+			keep_ratio:False
+			allow_stretch:True
+			size:app.y,"150dp"
 	MDLabel:
 		pos_hint:{"center_x":0.5,"center_y":0.78}
 		text:"SRAPS App!"
@@ -34,16 +36,17 @@ MDScreen:
 			shadow_softness :dp(10)
 			radius:dp(20)
 			ripple_behavior:True
-			on_press:app.screen_manager.current = "Sscreen1"
+			on_press:app.screen_manager.transition.direction = 'left';app.screen_manager.current = "Sscreen1"
 			RelativeLayout:
 				MDLabel:
 					font_name:"assets/Poppins-Regular.ttf"
 					font_size:"20sp"
-					halign:"center"				
+					halign:"center"
 					text:"Take a Tour"
 				MDIconButton:
 					pos_hint:{"center_x":0.85,"center_y":0.5}
 					icon:"arrow-right"
+					on_press:app.screen_manager.transition.direction = 'left';app.screen_manager.current = "Sscreen1"
 
 ~~~
 
@@ -51,13 +54,15 @@ MDScreen:
 MDScreen:
 	md_bg_color:1,1,1,1
 	name:"Sscreen1"
-	Image:
-		pos_hint:{"center_x":0.5,"center_y":0.9}
-		source:"assets/wave2.png"
-		size_hint:None,None
-		keep_ratio:True
-		allow_stretch:True
-		size:app.y,"330dp"
+	AnchorLayout:
+		anchor_y:"top"
+		Image:
+			pos_hint:{"center_x":0.5,"center_y":0.9}
+			source:"assets/wave2.png"
+			size_hint:None,None
+			keep_ratio:False
+			allow_stretch:True
+			size:app.y,"160dp"
 	MDLabel:
 		pos_hint:{"center_x":0.5,"center_y":0.78}
 		text:"Who are you?"
@@ -73,37 +78,37 @@ MDScreen:
 			size:app.y-dp(20),dp(60)
 			radius:dp(20)
 			ripple_behavior:True
-			on_press:app.screen_manager.current = "Sscreen2"	
+			on_press:app.screen_manager.transition.direction = 'left';app.screen_manager.current = "Sscreen2"
 			RelativeLayout:
 				MDLabel:
 					font_name:"assets/Poppins-Regular.ttf"
 					font_size:"20sp"
-					halign:"center"				
+					halign:"center"
 					text:"I am a Student"
 				MDIconButton:
 					pos_hint:{"center_x":0.85,"center_y":0.5}
 					icon:"arrow-right"
 				MDIconButton:
 					pos_hint:{"center_x":0.1,"center_y":0.5}
-					icon:"account-school"					
+					icon:"account-school"
 
-	
+
 		AnchorLayout:
-			pos_hint:{"center_x":0.5,"center_y":0.5}
+			pos_hint:{"center_x":0.5,"center_y":0.46}
 			anchor_y:"bottom"
 			Image:
 				source:"assets/wel2.png"
 				size_hint:None,None
-				keep_ratio:True
+				keep_ratio:False
 				allow_stretch:True
-				size:"250dp","250dp"
+				size:"200dp","200dp"
 	RelativeLayout:
 		AnchorLayout:
 			anchor_y:"top"
 			anchor_x:"left"
 			MDIconButton:
-				icon:"chevron-left"		
-				on_press:app.screen_manager.current = "Sscreen"	
+				icon:"chevron-left"
+				on_press:app.screen_manager.transition.direction = 'right';app.screen_manager.current = "Sscreen"
 		MyMDCard:
 			md_bg_color:app.theme_cls.accent_light
 			pos_hint:{"center_x":0.5,"center_y":0.53}
@@ -116,40 +121,42 @@ MDScreen:
 				MDLabel:
 					font_name:"assets/Poppins-Regular.ttf"
 					font_size:"20sp"
-					halign:"center"				
+					halign:"center"
 					text:"I am a Teacher"
 				MDIconButton:
 					pos_hint:{"center_x":0.85,"center_y":0.5}
 					icon:"arrow-right"
 				MDIconButton:
 					pos_hint:{"center_x":0.1,"center_y":0.5}
-					icon:"account-school-outline"	
+					icon:"account-school-outline"
 ~~~
 
 MDScreen:
 	name:"Sscreen2"
 	md_bg_color:1,1,1,1
-	Image:
-		pos_hint:{"center_x":0.5,"center_y":0.9}
-		source:"assets/wave2.png"
-		size_hint:None,None
-		keep_ratio:True
-		allow_stretch:True
-		size:app.y,"330dp"
+	AnchorLayout:
+		anchor_y:"top"
+		Image:
+			pos_hint:{"center_x":0.5,"center_y":0.9}
+			source:"assets/wave2.png"
+			size_hint:None,None
+			keep_ratio:False
+			allow_stretch:True
+			size:app.y,"160dp"
 	MDLabel:
 		pos_hint:{"center_x":0.5,"center_y":0.78}
 		text:"What's your Admission No.?"
 		font_name:"assets/Poppins-Regular.ttf"
 		font_size:"25sp"
 		halign:"center"
-		
+
 	RelativeLayout:
 		AnchorLayout:
 			anchor_y:"top"
 			anchor_x:"left"
 			MDIconButton:
-				icon:"chevron-left"		
-				on_press:app.screen_manager.current = "Sscreen1"	
+				icon:"chevron-left"
+				on_press:app.screen_manager.transition.direction = 'right';app.screen_manager.current = "Sscreen1"
 	RelativeLayout:
 		AnchorLayout:
 			pos_hint:{"center_x":0.5,"center_y":0.44}
@@ -168,15 +175,15 @@ MDScreen:
 			text:"Proceed"
 			md_bg_color:app.theme_cls.primary_light
 			line_color:app.theme_cls.primary_light
-			on_press:app.get_admno() if admno.text != ""  and "-"  in str(ran.text) and len(ran.text) is  10 and len(admno.text) is 5 or len(admno.text) is 4 else app.Toast("Fill select and fill both required fields correctly")		
+			on_press:app.get_admno() if admno.text != ""  and "-"  in str(ran.text) and len(ran.text) is  10 and len(admno.text) is 5 or len(admno.text) is 4 else app.Toast("Fill select and fill both required fields correctly")
 	MDBoxLayout:
 		pos_hint:{"center_x":0.5,"center_y":0.67}
 		size_hint:None,None
 		size:dp(200),"50dp"
 		MDTextField:
 			id:admno
-			hint_text:"Admission Number"	
-			mode: "rectangle"
+			hint_text:"Admission Number"
+			mode:"fill"
 			max_text_length: 5
 			font_name:"assets/Poppins-Regular.ttf"
 			font_name_hint_text:"assets/Poppins-Regular.ttf"
@@ -186,8 +193,8 @@ MDScreen:
 		size:dp(200),"50dp"
 		MDTextField:
 			id:ran
-			hint_text:"Enter dob yyyy-mm-dd "	
-			mode: "rectangle"
+			hint_text:"Enter dob yyyy-mm-dd "
+			mode:"fill"
 			max_text_length: 10
 			font_name:"assets/Poppins-Regular.ttf"
 			font_name_hint_text:"assets/Poppins-Regular.ttf"
@@ -206,7 +213,7 @@ MDScreen:
 			anchor_y:"top"
 			anchor_x:"left"
 			MDIconButton:
-				icon:"chevron-left"		
+				icon:"chevron-left"
 				on_press:app.screen_manager.current = "Sscreen2"
 	RelativeLayout:
 		AnchorLayout:
@@ -222,7 +229,7 @@ MDScreen:
 		pos_hint:{"center_x":0.5,"center_y":0.5}
 		size_hint:None,None
 		size:app.y,"250dp"
-		MyMDCard:	
+		MyMDCard:
 			padding:dp(10)
 			size_hint:None,None
 			size:app.y-dp(20),"250dp"
