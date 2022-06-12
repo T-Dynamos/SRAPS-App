@@ -217,8 +217,8 @@ MDScreen:
 			inactive_font_size: "10sp"
 			Image:
 				size_hint:None,None
-				size:app.y,dp(310)
-				pos_hint:{"center_x":0.5,"center_y":0.87}
+				size:app.y,dp(340)
+				pos_hint:{"center_x":0.5,"center_y":0.9}
 				id:back
 				radius:[0,0,dp(30),dp(30)]
 				source:"assets/"+random.choice(["garden","audi-1","bcourt-1","gym-1","kids-1","medical-1","music-1","ncc-1"])+".jpg"
@@ -272,7 +272,7 @@ MDScreen:
 								font_name:"assets/Poppins-Bold.ttf"
 								font_size:"25sp"								
 								halign:'center'
-								text:open("student.conf","r").read().split(",")[0][:-1]
+								text:open("student.conf","r").read().split("', '")[1]
 						AnchorLayout:
 							pos_hint:{"center_x":0.5,"center_y":0.8}
 							orientation:"vertical"
