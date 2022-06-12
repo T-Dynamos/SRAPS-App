@@ -170,34 +170,36 @@ MDScreen:
 
 		MDFlatButton:
 			size_hint:None,None
-			size:dp(150),"50dp"
+			size:dp(150),"70dp"
 			pos_hint:{"center_x":0.5,"center_y":0.44}
 			text:"Proceed"
+			font_name:"assets/Poppins-Regular.ttf"
 			md_bg_color:app.theme_cls.primary_light
 			line_color:app.theme_cls.primary_light
-			on_press:app.get_admno() if admno.text != ""  and "-"  in str(ran.text) and len(ran.text)== 10 and len(admno.text)==5 or len(admno.text)==4 else app.Toast("Fill select and fill both required fields correctly")
+			on_press:app.get_admno() if admno.text != ""  and "-"  in str(ran.text[15:]) and len(ran.text[15:]) == 10 and len(admno.text) in [4,5,6] else app.Toast("Fill select and fill both required fields correctly")
 	MDBoxLayout:
 		pos_hint:{"center_x":0.5,"center_y":0.67}
 		size_hint:None,None
-		size:dp(200),"50dp"
+		size:dp(200),"60dp"
 		MDTextField:
 			id:admno
 			hint_text:"Admission Number"
 			mode:"fill"
-			max_text_length: 5
+			radius:[dp(10),dp(10),dp(10),dp(10)]
+			max_text_length: 6
 			font_name:"assets/Poppins-Regular.ttf"
 			font_name_hint_text:"assets/Poppins-Regular.ttf"
-	MDBoxLayout:
-		pos_hint:{"center_x":0.5,"center_y":0.54}
+
+	MDFlatButton:
+		id:ran
 		size_hint:None,None
+		pos_hint:{"center_x":0.5,"center_y":0.54}
 		size:dp(200),"50dp"
-		MDTextField:
-			id:ran
-			hint_text:"Enter dob yyyy-mm-dd "
-			mode:"fill"
-			max_text_length: 10
-			font_name:"assets/Poppins-Regular.ttf"
-			font_name_hint_text:"assets/Poppins-Regular.ttf"
+		text:"Select DOB"
+		md_bg_color:app.theme_cls.accent_light
+		line_color:app.theme_cls.primary_light
+		font_name:"assets/Poppins-Regular.ttf"
+		on_press:app.show_date_picker()
 ~~~
 MDScreen:
 	name:"Sscreen3"

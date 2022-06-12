@@ -106,7 +106,7 @@ class Tab(MDFloatLayout, MDTabsBase):
 
 def loaderS(string):
 	if string:
-		Logger.warn(f"[SRAPS-App] {string}")
+		Logger.warning(f"[SRAPS-App] {string}")
 	else:
 		pass
 
@@ -1388,7 +1388,9 @@ MDScreen:
 "Accept":"/","X-Requested-With":"XMLHttpRequest"}
 			req = self.controler.post("http://www.shriramashramps.org/feecontroller.php",data=f"admno={self.admno}&action=send_otp&stddob={self.dob}",headers=head,timeout=3)
 		except Exception as e:
-			return self.modal.dismiss();Toast("No or Slow Internet !")
+			self.modal.dismiss()
+			Toast("No or Slow Internet !")
+			return None
 		if "OTP" in req.text:
 			Toast("Otp send successfully")
 			self.number = (req.text.split("<\\/h5>")[0]).split("On ")[-1]
