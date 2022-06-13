@@ -21,14 +21,12 @@
 	size:dp(150),dp(120)
 	elevation:20
 	ripple_behavior:True
-	md_bg_color:app.theme_cls.accent_light
+	md_bg_color:app.theme_cls.bg_light
 	RelativeLayout:
-		FitImage:
-			source:root.source
-			radius:"20dp"
 		AnchorLayout:
 			MDIconButton:
 				icon:root.icon
+				icon_size:"48sp"
 				on_press:root.on_press()
 		MDLabel:
 			halign:"center"
@@ -1016,7 +1014,7 @@ MDScreen:
 							AnchorLayout:
 								IconRound:
 									id:imgs5
-									icon:'account-school'
+									icon:'test.png'
 									text:"School Facultuy"
 									on_press:app.show_ad();app.table()
 							AnchorLayout:
