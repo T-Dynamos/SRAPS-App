@@ -28,13 +28,6 @@
 				source:root.icon
 				size_hint:None,None 
 				size:dp(100),dp(120)
-				on_press:root.on_press()
-		MDLabel:
-			halign:"center"
-			pos_hint:{"center_x":0.5,"center_y":0.20}
-			text:root.text
-			font_name:"assets/Poppins-Bold.ttf"
-			font_size:"15sp"
 
 
 <MyLayout@MDSwiperItem>:
@@ -1015,7 +1008,7 @@ MDScreen:
 							AnchorLayout:
 								IconRound:
 									id:imgs5
-									icon:'test.png'
+									icon:'icons/fac.png'
 									text:"School Facultuy"
 									on_press:app.show_ad();app.table()
 							AnchorLayout:
