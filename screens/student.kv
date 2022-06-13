@@ -24,9 +24,10 @@
 	md_bg_color:app.theme_cls.bg_light
 	RelativeLayout:
 		AnchorLayout:
-			MDIconButton:
-				icon:root.icon
-				icon_size:"48sp"
+			Image:
+				source:root.icon
+				size_hint:None,None 
+				size:dp(100),dp(120)
 				on_press:root.on_press()
 		MDLabel:
 			halign:"center"
