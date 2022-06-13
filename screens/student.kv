@@ -21,13 +21,28 @@
 	size:dp(150),dp(120)
 	elevation:20
 	ripple_behavior:True
-	md_bg_color:app.theme_cls.bg_light
 	RelativeLayout:
+		FitImage:
+			source:"gradients/JShine.jpg"
+			radius:dp(20)
+		AnchorLayout:
+			MyMDCard:
+				size_hint:None,None
+				size:dp(143),dp(113)
+				radius:dp(20)
+			
 		AnchorLayout:
 			Image:
 				source:root.icon
 				size_hint:None,None 
 				size:dp(100),dp(120)
+		MDLabel:
+			pos_hint:{"center_x":0.5,"center_y":0.14}
+			text:root.text
+			halign:"center"
+			font_name:"assets/Poppins-Regular.ttf"
+			font_size:"15sp"
+			
 
 
 <MyLayout@MDSwiperItem>:
