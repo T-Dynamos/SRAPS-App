@@ -1182,7 +1182,7 @@ class SRAPS_APP_STUDENT(MDApp):
 			screen_manager.get_screen("Mscreen").ids.a891.text_color = 0,0,0,0
 	def build(self):
 		self.ads = lambda self:KivAds() if platform == "android" else loaderS("Hy")
-		self.interstitial = lambda self :InterstitialAd(TestID.INTERSTITIAL) if platform == "android" else loaderS("Hy")
+		self.interstitial = lambda self :InterstitialAd("ca-app-pub-1400437871441093/3864750867") if platform == "android" else loaderS("Hy")
 		Loader.loading_image = "assets/trans.png"
 		Loader.error_image = "assets/trans.png"
 		self.theme_cls.material_style = "M3"
