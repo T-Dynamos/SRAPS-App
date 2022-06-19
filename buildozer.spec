@@ -36,7 +36,7 @@ version.filename = main.py
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = kivy==2.1.0,https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip, requests,pillow,charset_normalizer,chardet,idna,urllib3,certifi,kivymd_extensions,kivymd_extensions.akivymd, kivmob, soupsieve,beautifulsoup4,bs4,kivy_garden.frostedglass
+requirements = kivy==2.1.0,https://github.com/kivymd/KivyMD/archive/refs/heads/master.zip, requests,pillow,charset_normalizer,chardet,idna,urllib3,certifi,kivymd_extensions,kivymd_extensions.akivymd,  soupsieve,beautifulsoup4,bs4,kivy_garden.frostedglass
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -148,7 +148,7 @@ android.accept_sdk_license = True
 
 # (list) List of Java files to add to the android project (can be java or a
 # directory containing the files)
-#android.add_src =
+android.add_src = src
 
 # (list) Android AAR archives to add (currently works only with sdl2_gradle
 # bootstrap)
@@ -156,7 +156,7 @@ android.accept_sdk_license = True
 
 # (list) Gradle dependencies to add (currently works only with sdl2_gradle
 # bootstrap)
-android.gradle_dependencies = 'com.google.firebase:firebase-ads:10.2.0'
+android.gradle_dependencies = 'com.google.android.gms:play-services-ads:20.3.0'
 
 # (list) add java compile options
 # this can for example be necessary when importing certain java libraries using the 'android.gradle_dependencies' option

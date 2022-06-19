@@ -62,12 +62,11 @@ from functools import partial
 from kivy.properties import *
 from kivy.loader import *
 import _thread
-
-
-
-
 if platform == "android":
-	from kivmob import KivMob
+	from kivads import *
+
+
+
 class MyMDCard(MDCard,FakeRectangularElevationBehavior):
 	pass
 
@@ -129,17 +128,7 @@ def returnR():
 	else:
 		return False
 
-def loadAD():
-	if platform=="android":
-		ads = KivMob("ca-app-pub-1400437871441093~9758605790")
-		ads.new_interstitial("ca-app-pub-1400437871441093/3864750867")
-		if returnR() == True:
-			loaderS("Add Called")
-			ads.request_interstitial()
-		else:
-			pass
-	else:
-		pass
+
 
 def threadRun(func,args):
 	Clock.schedule_once(partial(func,args))
@@ -198,7 +187,7 @@ def update_menu():
 
 
 	modal = Builder.load_string("""
-#: import _thread _thread
+i#: import _thread _thread
 ModalView:
 	id:model
 	background_color:[0,0,0,0]
@@ -616,8 +605,36 @@ MyMDCard:
 
 
 def about_menu():
-	pass
+	a = """
+MyMDCard:
+	size_hint:None,None
+	size:dp(300),dp(500)
+	RelativeLayout:
+		AnchorLayout:
+			anchor_y:"top"
+			Image:
+				radius:dp(20)
+				source:"assets/td-s.png"
+				size_hint:None,None
+				size:dp(300),dp(200)
+				allow_stretch:True
+				keep_ratio :False
+		MDLabel:
+			pos_hint:{"center_x":0.5,"center_y":0.8}
+			text:"We are T-Dynamos"
+			font_name:"assets/Poppins-Bold.ttf"
+			halign:"center"
 
+
+	"""
+	modal = ModalView(
+        background_color=[0,0,0,0],
+        size_hint=(0.8, 0.8),
+        overlay_color=(0, 0, 0, 0.7),
+	)
+
+	modal.add_widget(Builder.load_string(a))
+	modal.open()
 def show_adim():
 	a = """
 MyMDCard:
@@ -1100,6 +1117,7 @@ from datetime import datetime
 from platform import python_version
 import random
 class SRAPS_APP_STUDENT(MDApp):
+
 	links=links
 	staff=staff
 	gra=settings.getSettings()["gra"]
@@ -1135,14 +1153,10 @@ class SRAPS_APP_STUDENT(MDApp):
 	x= Window.size[1]
 	title="SRAPS App"
 	def chg(self,gra):
-		screen_manager.get_screen("Mscreen").ids.imgs1.source = "gradients/"+gra
 		screen_manager.get_screen("Mscreen").ids.imgs2.source = "gradients/"+gra
 		screen_manager.get_screen("Mscreen").ids.imgs3.source = "gradients/"+gra
-		screen_manager.get_screen("Mscreen").ids.imgs4.source = "gradients/"+gra
 		screen_manager.get_screen("Mscreen").ids.imgs5.source = "gradients/"+gra
 		screen_manager.get_screen("Mscreen").ids.imgs6.source = "gradients/"+gra
-		screen_manager.get_screen("Mscreen").ids.imgs7.source = "gradients/"+gra
-		screen_manager.get_screen("Mscreen").ids.imgs8.source = "gradients/"+gra
 		settings.writeSettings("gra",gra)
 		Toast("Some gradients will change on next startup ! ")
 	def colorHex(self, color):
@@ -1167,6 +1181,8 @@ class SRAPS_APP_STUDENT(MDApp):
 			screen_manager.get_screen("Mscreen").ids.a891.icon_color = 0,0,0,0
 			screen_manager.get_screen("Mscreen").ids.a891.text_color = 0,0,0,0
 	def build(self):
+		self.ads = lambda self:KivAds() if platform == "android" else loaderS("Hy")
+		self.interstitial = lambda self :InterstitialAd(TestID.INTERSTITIAL) if platform == "android" else loaderS("Hy")
 		Loader.loading_image = "assets/trans.png"
 		Loader.error_image = "assets/trans.png"
 		self.theme_cls.material_style = "M3"

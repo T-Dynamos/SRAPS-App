@@ -16,23 +16,20 @@
 	source:"gradients/"+app.gra
 	icon:""
 	text:""
-	radius:"20dp"
+	radius:dp(20)
 	size_hint:None,None
 	size:dp(150),dp(120)
 	elevation:20
 	ripple_behavior:True
-	on_press:""
 	RelativeLayout:
 		FitImage:
-			source:"gradients/JShine.jpg"
+			source:root.source
 			radius:dp(20)
 		AnchorLayout:
 			MyMDCard:
-				on_press:root.on_press()
 				size_hint:None,None
-				size:dp(143),dp(113)
+				size:dp(146),dp(116)
 				radius:dp(20)
-			
 		AnchorLayout:
 			Image:
 				source:root.icon
@@ -330,7 +327,7 @@ MDScreen:
 													anchor_x:'right'
 													anchor_y:"bottom"
 													MDIconButton:
-														on_press:bot.switch_tab("homework")
+														on_press:app.interstitial();bot.switch_tab("homework")
 														icon:"chevron-right"
 									AnchorLayout:
 										MyMDCard:
@@ -359,7 +356,7 @@ MDScreen:
 													anchor_y:"bottom"
 													MDIconButton:
 														icon:"chevron-right"
-														on_press:bot.switch_tab("ess")
+														on_press:app.interstitial();bot.switch_tab("ess")
 
 					GridLayout:
 						cols:1
@@ -1014,98 +1011,100 @@ MDScreen:
 				halign:"center"
 				font_size:"30sp"
 				pos_hint:{"center_x":0.5,"center_y":0.93}
-			BoxLayout:
-				orientation:"vertical"
-				pos_hint:{"center_x":0.5,"center_y":0.5}
-				size_hint:None,None
-				size:app.y,app.x-dp(100)
+			AnchorLayout:
 				BoxLayout:
-					orentation:"horizontal"
-					anchor_y:"top"
+					orientation:"vertical"
+					pos_hint:{"center_x":0.5,"center_y":0.5}
 					size_hint:None,None
-					size:app.y,dp(150)
-					AnchorLayout:
-						IconRound:
-							id:imgs5
-							icon:'icons/mdi_account-group.png'
-							text:"School Facultuy"
-							on_press:app.show_ad();app.table()
-					AnchorLayout:
-						IconRound:
-							id:imgs6
-							icon:'icons/mdi_book-multiple.png'
-							text:"Book Lists"
-							on_press:app.show_ad();app.booklist()	
-				BoxLayout:
-					orentation:"horizontal"
-					size_hint:None,None
-					size:app.y,dp(150)												
-					AnchorLayout:
-						IconRound:
-							id:imgs2
-							icon:'icons/fa6-solid_school-circle-exclamation.png'
-							text:"Adim Process"
-							on_press:app.show_ad();app.adimn()
-					AnchorLayout:
-						IconRound:
-							id:imgs3
-							icon:'icons/fa6-solid_user-clock.png'
-							text:"Timinings"
-							on_press:app.time()
-				AnchorLayout:
-					orentation:"horizontal"
-					anchor_y:"bottom"
-					size_hint:None,None
-					size:app.y,dp(150)
-					MyMDCard:
-						md_bg_color:app.theme_cls.bg_light
-						radius:dp(20)
-						elevation:20
+					size:app.y,app.x-dp(100)
+					BoxLayout:
+						orentation:"horizontal"
+						anchor_y:"top"
 						size_hint:None,None
-						size:app.y-dp(30),dp(140)							
-						GridLayout:
-							cols:2
-							AnchorLayout:
-								size_hint:None,None
-								size:dp(100),dp(120)	
-								Image:
-									source:"icons/mdi_currency-rupee.png"
+						size:app.y,dp(150)
+						AnchorLayout:
+							IconRound:
+								id:imgs5
+								icon:'icons/mdi_account-group.png'
+								text:"School Facultuy"
+								on_press:app.show_ad();app.table()
+						AnchorLayout:
+							IconRound:
+								id:imgs6
+								icon:'icons/mdi_book-multiple.png'
+								text:"Book Lists"
+								on_press:app.show_ad();app.booklist()	
+					BoxLayout:
+						orentation:"horizontal"
+						size_hint:None,None
+						size:app.y,dp(150)												
+						AnchorLayout:
+							IconRound:
+								id:imgs2
+								icon:'icons/fa6-solid_school-circle-exclamation.png'
+								text:"Adim Process"
+								on_press:print("fucl")
+						AnchorLayout:
+							IconRound:
+								id:imgs3
+								icon:'icons/fa6-solid_user-clock.png'
+								text:"Timinings"
+								on_press:app.time()
+					AnchorLayout:
+						orentation:"horizontal"
+						anchor_y:"bottom"
+						size_hint:None,None
+						size:app.y,dp(150)
+						MyMDCard:
+							md_bg_color:app.theme_cls.bg_light
+							radius:dp(20)
+							elevation:20
+							size_hint:None,None
+							size:app.y-dp(30),dp(140)							
+							GridLayout:
+								cols:2
+								AnchorLayout:
 									size_hint:None,None
-									size:dp(80),dp(100)	
-							RelativeLayout:
+									size:dp(100),dp(120)	
+									Image:
+										source:"icons/mdi_currency-rupee.png"
+										size_hint:None,None
+										size:dp(80),dp(100)	
+								RelativeLayout:
 
-								id:op
-								MDLabel:
-									pos_hint:{"center_x":0.5,"center_y":0.8}
-									text:"Fee Status"
-									font_name:"assets/Poppins-Bold.ttf"
-									halign:"left"	
-								MDLabel:
-									pos_hint:{"center_x":0.5,"center_y":0.65}
-									text:"Balance  Remain : 10000"
-									font_name:"assets/Poppins-Regular.ttf"
-									halign:"left"
-									valign:"middle"	
-								MDLabel:
-									pos_hint:{"center_x":0.5,"center_y":0.5}
-									text:"Balance  Months : April,May"
-									font_name:"assets/Poppins-Regular.ttf"
-									halign:"left"
-									valign:"middle"								
-								MyMDCard:
-									pos_hint:{"center_x":0.5,"center_y":0.2}
-									radius:dp(20)
-									size_hint: None, None
-									size:op.width-dp(10),"40dp"
-									md_bg_color:app.theme_cls.primary_color
-									RelativeLayout:
-										MDLabel:
-											halign:"center"
-											text:"Update Fee status"		
-											font_name:"assets/Poppins-Regular.ttf"
-										MDIconButton:
-											pos_hint:{"center_x":0.9,"center_y":0.5}
-											icon:"arrow-right"		
+									id:op
+									MDLabel:
+										pos_hint:{"center_x":0.5,"center_y":0.8}
+										text:"Fee Status"
+										font_name:"assets/Poppins-Bold.ttf"
+										halign:"left"	
+									MDLabel:
+										pos_hint:{"center_x":0.5,"center_y":0.65}
+										text:"Balance  Remain : 10000"
+										font_name:"assets/Poppins-Regular.ttf"
+										halign:"left"
+										valign:"middle"	
+									MDLabel:
+										pos_hint:{"center_x":0.5,"center_y":0.5}
+										text:"Balance  Months : April,May"
+										font_name:"assets/Poppins-Regular.ttf"
+										halign:"left"
+										valign:"middle"								
+									MyMDCard:
+										pos_hint:{"center_x":0.5,"center_y":0.18}
+										radius:dp(20)
+										size_hint: None, None
+										ripple_behavior:True
+										size:op.width-dp(10),"40dp"
+										md_bg_color:app.theme_cls.primary_light if app.theme_cls.theme_style == "Light" else app.theme_cls.primary_light
+										RelativeLayout:
+											MDLabel:
+												halign:"center"
+												text:"Update Fee status"		
+												font_name:"assets/Poppins-Regular.ttf"
+											MDIconButton:
+												pos_hint:{"center_x":0.9,"center_y":0.5}
+												icon:"arrow-right"		
 
 
 		MDBottomNavigationItem:
