@@ -278,7 +278,7 @@ MDScreen:
 								font_name:"assets/Poppins-Bold.ttf"
 								font_size:"25sp"								
 								halign:'center'
-								text:open("student.conf","r").read().split("', '")[1]
+								text:open("student.conf","r").read().split(",")[1]
 						AnchorLayout:
 							pos_hint:{"center_x":0.5,"center_y":0.8}
 							orientation:"vertical"
